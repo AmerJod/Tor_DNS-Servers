@@ -1,0 +1,22 @@
+{
+
+    "$origin": "dnstestsuite.space.",
+    "$ttl": 3600,
+    "soa": {
+        "mname": "ns1.dnstestsuite.space.",
+        "rname": "admin.dnstestsuite.space.",
+        "serial": "{time}",
+        "refresh": 3600,
+        "retry": 600,
+        "expire": 604800,
+        "minimum": 86400
+    },
+    "ns": [
+        { "host": "ns1.dnstestsuite.space." },
+        { "host": "ns2.dnstestsuite.space." }
+    ],
+    "a": [
+        { "name": "@", "ttl": 400, "value": "52.20.33.59" }
+
+    ]
+}

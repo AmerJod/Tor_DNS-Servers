@@ -1,0 +1,28 @@
+
+// move files 
+scp -r -i C:/pem/DNS_MSc_Thesis_amer.pem C:/DNS/   ubuntu@34.198.193.29:/home/ubuntu/dns/
+
+
+
+scp -r -i C:/pem/DNS_MSc_Thesis_amer.pem C:/WebServer/   ubuntu@52.20.33.59:/home/ubuntu/dns/
+--------------------------------------
+
+
+
+
+
+scp -r ubuntu@172-31-16-226:/home/ubuntu/dns /C:/Users/Amer Jod/Desktop/UCL/Term 2/DS/DNS_Project/DNS
+
+  scp -r 
+
+
+scp -r -i /C:\DNS_MSc_Thesis_amer.pem uploads/* ubuntu@172.31.16.226:/home/ubuntu/dns /C:/DNS
+
+
+
+ssh -i C:/pem/DNS_MSc_Thesis_amer.pem   ubuntu@172.31.16.226 
+
+ssh -i C:/pem/DNS_MSc_Thesis_amer.pem   ubuntu@34.198.193.29
+
+
+scp -r /C:/DNS/  ubuntu@34.198.193.29:/home/ubuntu/dns/
