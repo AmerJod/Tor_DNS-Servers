@@ -386,7 +386,7 @@ def log_incoming(value):
 if __name__ == '__main__':
     print('Starting Mini DNS Server.. v%s' % VERSION)
     try:
-        ip = socket.gethostbyna9me(socket.gethostname())
+        ip = socket.gethostbyname(socket.gethostname())
         print("Host: %s " % ip)
         main(sys.argv[1:], ip)
     except:
