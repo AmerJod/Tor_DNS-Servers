@@ -134,7 +134,7 @@ def loadZone():
 def getZone(domain):
     global ZoneDATA
     try:
-        zoneName = '.'.join(domain)
+        zoneName = '.'.join(domain[1:])
         return ZoneDATA[zoneName]
     except Exception as e:
         return ''
@@ -328,7 +328,7 @@ def getResponse(data, addr):
 
     return DNSHeader + DNSQuestion + DNSBody
 
-def main(argv):
+def main(argv,IP):
     # gather Zone info and store it into memory
     global ZoneDATA
     ZoneDATA = loadZone()
@@ -343,19 +343,18 @@ def main(argv):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     opts = argv
-
     for opt in opts:
         if opt == '-s':
-            sock.bind((IP_ADDRESS_SERVER, PORT))
+            sock.bind((IP, PORT))
         elif opt == '-l' or opt == '':
             sock.bind((IP_ADDRESS_LOCAL, PORT))
-    # open socket and
 
     # keep listening
     while 1:
         data, addr = sock.recvfrom(512)
         response = getResponse(data, addr)
         sock.sendto(response, addr)
+
 def main_test():
     # gather Zone info and store it into memory
     global ZoneDATA
@@ -379,7 +378,6 @@ def main_test():
         sock.sendto(response, addr)
 
 
-
 def log_incoming(value):
     file = Log(filename='incoming_request',mode='out')
     file.wirteIntoFile(value)
@@ -387,5 +385,9 @@ def log_incoming(value):
 
 if __name__ == '__main__':
     print('Starting Mini DNS Server.. v%s' % VERSION)
-    main(sys.argv[1:])
-    #main_test()
+    try:
+        ip = socket.gethostbyna9me(socket.gethostname())
+        print("Host: %s " % ip)
+        main(sys.argv[1:], ip)
+    except:
+        main_test()
