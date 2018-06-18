@@ -6,14 +6,22 @@
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
 
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+
+
   <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
   <script src="static/js/bootstrap.min.js"></script>
-  <title>App</title>
+  <title>DNS resilience</title>
 
 </head>
   <body>
 			 <div class="container">
+				<div class="inner">
+					<a>Welcome to MY Webstite- UCL</a>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
 				<main-body id="main-body-container">
+						<!-- Header -->
 				   <!-- Flash Messages -->
 					{% with messages = get_flashed_messages() %}
 					{% if messages %}
