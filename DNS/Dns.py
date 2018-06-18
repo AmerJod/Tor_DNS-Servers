@@ -84,8 +84,8 @@ class Log():
     def counter(self):
         pass
 
-
-def storeDNSRequestJSON(status,time,srcIP,srcPort,domain,id):
+# TODO: need to implemant a class
+def storeDNSRequestJSON(status,time,srcIP,srcPort,domain):
     """Help for the bar method of Foo classes"""
     date = getTime(2)
     # TODO: need refactoring - make it more abstract
@@ -103,18 +103,18 @@ def storeDNSRequestJSON(status,time,srcIP,srcPort,domain,id):
         DNSRequestNodes = {
             'Request': {
                 'Status': status,
-                'ID': id,
+                'ID':  str(len(jsons)+1),
                 'Time': time,
                 'SrcIP': srcIP,
                 'SrcPort': srcPort,
                 'Domain': domain
             }
         }
-        jsons[id] = DNSRequestNodes
+        jsons[ str(len(jsons)+1)] = DNSRequestNodes
         # Write into Json file
         json.dump(jsons, jsonfile)
 
-
+#<editor-fold desc="Zone">
 
 # load all zones that we have when the DNS server starts up, and put them into memory
 def loadZone():
@@ -130,6 +130,7 @@ def loadZone():
             jsonZone[zoneName] = data
     return jsonZone
 
+
 def getZone(domain):
     global ZoneDATA
     try:
@@ -137,6 +138,9 @@ def getZone(domain):
         return ZoneDATA[zoneName]
     except Exception as e:
         return ''
+
+# </editor-fold>
+
 def getFlags(flags):
 
     response_Flag = ''
@@ -300,10 +304,10 @@ def getResponse(data, addr):
     domain = '.'.join(map(str, domainName))
     if recordType == 'ERROR':
         log_incoming(str(COUNTER)+'-** ERROR ** : SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain)
-        storeDNSRequestJSON('ERROR',getTime(3),addr[0] ,str(addr[1]),domain,COUNTER)
+        storeDNSRequestJSON('ERROR',getTime(3),addr[0] ,str(addr[1]),domain)
     else:
         log_incoming(str(COUNTER)+'- SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain)
-        storeDNSRequestJSON('Okay', getTime(3), addr[0], str(addr[1]), domain,COUNTER)
+        storeDNSRequestJSON('Okay', getTime(3), addr[0], str(addr[1]), domain)
 
 
     print(str(COUNTER) +'- Request form: ' + addr[0] +'  - Domain : ' + '.'.join(map(str, domainName)) + '\n')
@@ -383,5 +387,5 @@ def log_incoming(value):
 
 if __name__ == '__main__':
     print('Starting Mini DNS Server.. v%s' % VERSION)
-    #main(sys.argv[1:])
-    main_test()
+    main(sys.argv[1:])
+    #main_test()
