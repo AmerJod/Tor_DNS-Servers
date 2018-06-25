@@ -7,7 +7,7 @@ import glob
 import sys
 import logging
 
-VERSION = '0.7'
+VERSION = '0.8 b'
 DEBUG = False
 PORT = 53
 IP_ADDRESS_LOCAL = '127.0.0.1'
@@ -142,7 +142,7 @@ def loadZone():
 def getZone(domain):
     global ZoneDATA
     try:
-        zoneName = '.'.join(domain[-3:])
+        zoneName = '.'.join(domain[-3:]).lower()
         return ZoneDATA[zoneName]
     except Exception as e:
         return ''
@@ -164,6 +164,7 @@ def getFlags(flags):
     OPCODE = ''
     for bit in range(1, 5):
         OPCODE += str(ord(byte1) & (1 << bit))  # to get option 1/0
+
     #   Authoritative Answer
     AA = '1'  # Always 1
     # TrunCation
@@ -179,8 +180,8 @@ def getFlags(flags):
     # Response code
     RCODE = '0000'
 
-    response_Flag = int(QR + OPCODE + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,
-                                                                                                                   byteorder='big')
+    #response_Flag = int(QR + OPCODE + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
+    response_Flag = int(QR + '0000' + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
 
     return response_Flag
 
@@ -238,7 +239,6 @@ def getRecs(data):
         return (zone[qt], qt, domain)
     except:
         return ('', 'ERROR', domain)
-
 
 def buildQuestion(domainName, recordType):  # convert str into byte
     questionBytes = b''
@@ -371,6 +371,7 @@ def main(argv,IP):
     while 1:
         data, addr = sock.recvfrom(512)
         response = getResponse(data, addr)
+
         sock.sendto(response, addr)
 
 def main_test():
@@ -384,21 +385,58 @@ def main_test():
         print('test.py -l')
         sys.exit(2)
     '''
+    print("testing ....  ")
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.bind((IP_ADDRESS_LOCAL, PORT))
+
+    print("Host: %s | Port: %s " % (IP_ADDRESS_LOCAL,PORT ))
     # open socket and
 
     # keep listening
     while 1:
         data, addr = sock.recvfrom(512)
         response = getResponse(data, addr)
+
+        print("test 1")
+        print(str(response))
         sock.sendto(response, addr)
+
+def main_test_local():
+    # gather Zone info and store it into memory
+    global ZoneDATA
+    ZoneDATA = loadZone()
+    '''
+    try:
+        opts, args = getopt.getopt(argv, 'l:s')
+    except getopt.GetoptError:
+        print('test.py -l')
+        sys.exit(2)
+    '''
+    print("testing ....  ")
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.bind((IP_ADDRESS_LOCAL, PORT))
+
+    print("Host: %s | Port: %s " % (IP_ADDRESS_LOCAL,PORT ))
+    # open socket and
+
+    # keep listening
+    while 1:
+        #data, addr = sock.recvfrom(512)
+        #response = getResponse(data, addr)
+        BYTES =b'\xe8H\x84\x00\x00\x01\x00\x00\x00\x00\x00\x00\x02ns\x0cdnstEStsuiTe\x05SpACE\x00\x00\x01'
+
+        response = getResponse(BYTES, '127.0.0.2')
+        print("test 1")
+        print(str(response))
+        #sock.sendto(response, addr)
+        sock.sendto(response, '127.0.0.2')
+
 
 if __name__ == '__main__':
     print('Starting Mini DNS Server.. v%s' % VERSION)
     try: # on the server
         ip = socket.gethostbyname(socket.gethostname())
-        print("Host: %s " % ip)
         main(sys.argv[1:], ip)
     except: # locally
+        #main_test_local()
         main_test()
