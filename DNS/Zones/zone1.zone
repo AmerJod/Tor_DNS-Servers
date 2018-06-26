@@ -12,10 +12,10 @@
         "minimum": 8640
     },
     "ns": [
-        { "host": "ns1.dnstestsuite.space." }
+        { "host": "ns1.dnstestsuite.space." },
+        { "host": "ns2.dnstestsuite.space." }
     ],
-    "a": [
+    "A": [
         { "name": "@", "ttl": 400, "value": "52.20.33.59" }
-
     ]
 }

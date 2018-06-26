@@ -6,8 +6,9 @@ import socket
 import glob
 import sys
 import logging
+from enum import Enum
 
-VERSION = '0.8 b'
+VERSION = '0.9 b'
 DEBUG = False
 PORT = 53
 IP_ADDRESS_LOCAL = '127.0.0.1'
@@ -15,17 +16,17 @@ IP_ADDRESS_SERVER = '172.31.16.226'
 JsonRequestsPATH = 'JSON/DNSRequestNodes'
 COUNTER = 0
 
-RECORD_TYPES = {
-    '\x00\x01': 'A',
-    '\x00\x05': 'CNAME',
-    '\x00\x0f': 'MX',
-    '\x00\x02': 'NS',
-    '\x00\x10': 'TXT',
-    '\x00\x1c': 'AAAA',
-    '\x00\xff': 'ANY',
-}
+class RECORD_TYPES(Enum):
+     A      = b'\x00\x01'   # specifies  IP4 Address
+     CNAME  = b'\x00\x05'   # aliases
+     MX     = b'\x00\x0f'   # mail exchange server for DNS
+     NS     = b'\x00\x02'   # authoritative name server
+     TXT    = b'\x00\x10'   # arbitrary non-formatted text string.
+     AAAA   = b'\x00\x1c'   # specifies IP6 Address
+     ANY    = b'\x00\xff'
 
-#<editor-fold desc="*******************Random functions*******************">
+
+#<editor-fold desc="******************* Random functions *******************">
 
 def log_incoming(value):
     file = Log(filename='incoming_request',mode='out')
@@ -71,7 +72,6 @@ class Log():
             with open(self.file, 'w+') as file:
                 file.write('Start - '+date +'\n')
         '''
-
         # TODO: need refactoring - make it more abstract
         self.file = 'Logs/'+filename+'_'+date+'_counter+.txt'
         if (os.path.exists(self.file)) != True:
@@ -92,7 +92,7 @@ class Log():
         pass
 
 # TODO: need to implemant a class
-def storeDNSRequestJSON(status,time,srcIP,srcPort,domain):
+def storeDNSRequestJSON(status,time,recordType,transactionID,srcIP,srcPort,domain):
     """Help for the bar method of Foo classes"""
     date = getTime(2)
     # TODO: need refactoring - make it more abstract
@@ -106,12 +106,18 @@ def storeDNSRequestJSON(status,time,srcIP,srcPort,domain):
         with open(file, 'r') as jsonfile:
             jsons = json.load(jsonfile)
 
+
+    if domain[-1:] == '.':
+        domain = domain[:-1]
+
     with open(file,'w') as jsonfile:
         DNSRequestNodes = {
             'Request': {
-                'Status': status,
-                'ID':  str(len(jsons)+1),
+                'ID': str(len(jsons) + 1),
                 'Time': time,
+                'Status': status,
+                'TransactionID':transactionID,
+                'RecordType':recordType,
                 'SrcIP': srcIP,
                 'SrcPort': srcPort,
                 'Domain': domain
@@ -123,13 +129,13 @@ def storeDNSRequestJSON(status,time,srcIP,srcPort,domain):
 
 # </editor-fold>
 
-#<editor-fold desc="*******************Zone File*******************">
+#<editor-fold desc="******************* Zone File *******************">
 # load all zones that we have when the DNS server starts up, and put them into memory
 def loadZone():
     jsonZone = {}   # dictionary
     zoneFiles = glob.glob('Zones/*.zone')
 
-    printDebugMode(zoneFiles)   # Debug
+    printDebugMode(zoneFiles) # Debug
 
     for zone in zoneFiles:
         with open(zone) as zonedata:
@@ -149,7 +155,7 @@ def getZone(domain):
 
 # </editor-fold>
 
-#<editor-fold desc="*******************DNS Rspoonse*******************">
+#<editor-fold desc="******************* DNS Rspoonse *******************">
 
 def getFlags(flags):
     response_Flag = ''
@@ -180,8 +186,8 @@ def getFlags(flags):
     # Response code
     RCODE = '0000'
 
-    #response_Flag = int(QR + OPCODE + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
-    response_Flag = int(QR + '0000' + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
+    response_Flag = int(QR + OPCODE + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
+    #response_Flag = int(QR + '0000' + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
 
     return response_Flag
 
@@ -220,25 +226,36 @@ def getRecs(data):
     try:
         domain, questionType = getQuestionDomain(data)
         qt = ''
-        if questionType == b'\x00\x01':
-            qt = 'a'
+        if questionType == RECORD_TYPES.A.value:
+            qt = 'A'
+        elif questionType == RECORD_TYPES.AAAA.value:
+            qt = 'AAAA'
+        elif questionType == RECORD_TYPES.CNAME.value:
+            qt = 'CNAME'
+        elif questionType == RECORD_TYPES.MX.value:
+            qt = 'MX'
+        elif questionType == RECORD_TYPES.NS.value:
+            qt = 'NS'
+        elif questionType == RECORD_TYPES.TXT.value:
+            qt = 'TXT'
+        elif questionType == RECORD_TYPES.ANY.value:
+            qt = 'ANY'
 
         # print(domain)
         zone = getZone(domain)
         if DEBUG is True:  # Debug mode only
             print('-------------7')
-            print(qt)
-            '''
+
             print('Question Type: ' + str(qt))
             print('Zone: ' + str(zone[qt]))
             print('-------------5')
             print('Question Type: ' + str(qt))
             print('-------------6')
-            '''
 
-        return (zone[qt], qt, domain)
+
+        return (zone[qt], qt, domain,'OKAY')
     except:
-        return ('', 'ERROR', domain)
+        return ('', qt , domain, 'ERROR')
 
 def buildQuestion(domainName, recordType):  # convert str into byte
     questionBytes = b''
@@ -250,7 +267,7 @@ def buildQuestion(domainName, recordType):  # convert str into byte
         for char in part:
             questionBytes += ord(char).to_bytes(1, byteorder='big')
 
-    if recordType == 'a':
+    if recordType == RECORD_TYPES.A.name or recordType == RECORD_TYPES.AAAA.name:
         questionBytes += (1).to_bytes(2, byteorder='big')
 
     questionBytes += (1).to_bytes(2, byteorder='big')
@@ -259,18 +276,22 @@ def buildQuestion(domainName, recordType):  # convert str into byte
 
 def recordToBytes(domainName, recordType, recordTTL, recordValue):
     recordBytes = b'\xc0\x0c'
-    if recordType == 'a':
+    if recordType == RECORD_TYPES.A.name:
+        recordBytes = recordBytes + bytes([0]) + bytes([1])
+
+    # TODO: need to handle IP6-AAAA
+    elif recordType == RECORD_TYPES.AAAA.name:
         recordBytes = recordBytes + bytes([0]) + bytes([1])
 
     recordBytes = recordBytes + bytes([0]) + bytes([1])
 
     recordBytes += int(recordTTL).to_bytes(4, byteorder='big')
 
-    if recordType == 'a':
+    if recordType == RECORD_TYPES.A.name or recordType == RECORD_TYPES.AAAA.name:
         recordBytes = recordBytes + bytes([0]) + bytes([4])
-
         for part in recordValue.split('.'):
             recordBytes += bytes([int(part)])
+
 
     return recordBytes
 
@@ -283,6 +304,7 @@ def getResponse(data, addr):
     for byte in TransactionID_Byte:
         TransactionID += hex(byte)[2:]
     if DEBUG is True:  # Debug mode only
+        print('ID:')
         print(TransactionID)
 
     # FLAGS
@@ -291,10 +313,13 @@ def getResponse(data, addr):
         print(Flags)
 
     # Question Count, how many questions in the zone file
-    QDCOUNT = b'\x00\x01'  # dns has one question
+    QDCOUNT = RECORD_TYPES.A.value #b'\x00\x01'  # dns has one question
+
+    records, recordType, domainName, recStatus = getRecs(data[12:])
 
     # Answer Count
-    ANCOUNT = len(getRecs(data[12:])[0]).to_bytes(2, byteorder='big')  # 12 bytes to skip the header
+    #ANCOUNT = len(getRecs(data[12:])[0]).to_bytes(2, byteorder='big')  # 12 bytes to skip the header
+    ANCOUNT = len(records).to_bytes(2, byteorder='big')  # 12 bytes to skip the header
 
     # Name server count
     NSCOUNT = (0).to_bytes(2, byteorder='big')
@@ -308,31 +333,34 @@ def getResponse(data, addr):
         print('DNS HEADER: ' + str(DNSHeader))
         for byte in DNSHeader:
             dnsH += hex(byte)[2:]
-
         print(dnsH)
 
     # ********************************** DNS Question
 
-    records, recordType, domainName = getRecs(data[12:])
+    #records, recordType, domainName = getRecs(data[12:])
 
     global COUNTER
     COUNTER += 1
-
-    domain = '.'.join(map(str, domainName))
-    if recordType == 'ERROR':
-        log_incoming(str(COUNTER) + '-** ERROR ** : SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(
-            addr[1]) + '  |  Domain: ' + domain)
-        storeDNSRequestJSON('ERROR', getTime(3), addr[0], str(addr[1]), domain)
+    transactionID= str(int(TransactionID,16))
+    domain = '.'.join(map(str, domainName))[:-1]
+    status = 'Okay'
+    if recStatus == 'ERROR': # TODO: need to handle the exception in better way
+        log_incoming(str(COUNTER) + ': ** ERROR ** : RecordType: '+recordType+' | RequestId: '+transactionID+' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain)
+        status = 'ERROR'
     else:
-        log_incoming(str(COUNTER) + '- SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain)
-        storeDNSRequestJSON('Okay', getTime(3), addr[0], str(addr[1]), domain)
+        log_incoming(str(COUNTER) + ': RecordType: '+recordType+' | RequestId: '+transactionID+' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain)
+        status = 'OKAY'
 
-    print(str(COUNTER) + '- Request form: ' + addr[0] + '  - Domain : ' + '.'.join(map(str, domainName)) + '\n')
+    print(str(COUNTER) + ': '+status+' -  RecordType: '+recordType+'  - RequestId: ' + transactionID + ' Form: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n')
+    storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain)
+
+
 
     DNSQuestion = buildQuestion(domainName, recordType)
     if DEBUG is True:
         print('DNSQuestion: ' + str(DNSQuestion))
 
+    # ********************************** DNS Body
     # ********************************** DNS Body
 
     DNSBody = b''
@@ -351,28 +379,26 @@ def main(argv,IP):
     # gather Zone info and store it into memory
     global ZoneDATA
     ZoneDATA = loadZone()
-    '''
-    try:
-        opts, args = getopt.getopt(argv, 'l:s')
-    except getopt.GetoptError:
-        print('test.py -l')
-        sys.exit(2)
-    '''
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    print("\n                           **Zone file has been loaded**")
 
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     opts = argv
     for opt in opts:
         if opt == '-s':
             sock.bind((IP, PORT))
+            print("\n                           Host: %s | Port: %s \n" % (IP, PORT))
         elif opt == '-l' or opt == '':
             sock.bind((IP_ADDRESS_LOCAL, PORT))
+            print("\n                           Host: %s | Port: %s \n" % (IP_ADDRESS_LOCAL, PORT))
 
-    # keep listening
-    while 1:
-        data, addr = sock.recvfrom(512)
-        response = getResponse(data, addr)
-
-        sock.sendto(response, addr)
+    try:
+        # keep listening
+        while 1:
+            data, addr = sock.recvfrom(512)
+            response = getResponse(data, addr)
+            sock.sendto(response, addr)
+    except:
+        print("\nERROR: Terminated!!!")
 
 def main_test():
     # gather Zone info and store it into memory
@@ -412,31 +438,38 @@ def main_test_local():
         print('test.py -l')
         sys.exit(2)
     '''
-    print("testing ....  ")
+    print("Testing ....  ")
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.bind((IP_ADDRESS_LOCAL, PORT))
 
-    print("Host: %s | Port: %s " % (IP_ADDRESS_LOCAL,PORT ))
-    # open socket and
+    print("\n                           Host: %s | Port: %s " % (IP_ADDRESS_LOCAL,PORT ))
 
-    # keep listening
-    while 1:
-        #data, addr = sock.recvfrom(512)
-        #response = getResponse(data, addr)
-        BYTES =b'\xe8H\x84\x00\x00\x01\x00\x00\x00\x00\x00\x00\x02ns\x0cdnstEStsuiTe\x05SpACE\x00\x00\x01'
+    # testing
+    #BYTES =b'\xe8H\x84\x00\x00\x01\x00\x00\x00\x00\x00\x00\x02ns\x0cdnstEStsuiTe\x05SpACE\x00\x00\x01'
+    BYTES =b'\\$\x00\x10\x00\x01\x00\x00\x00\x00\x00\x01\x02ns\x0cdnStEstSuITE\x05SpACe\x00\x00\x1c\x00\x01\x00\x00)\x10\x00\x00\x00\x80\x00\x00\x00'
 
-        response = getResponse(BYTES, '127.0.0.2')
-        print("test 1")
-        print(str(response))
-        #sock.sendto(response, addr)
-        sock.sendto(response, '127.0.0.2')
+    response = getResponse(BYTES, '127.0.0.2')
+    print("response:")
+    print(str(response))
+
 
 
 if __name__ == '__main__':
-    print('Starting Mini DNS Server.. v%s' % VERSION)
+    print('\n                           Starting Mini DNS Server.. v%s \n' % VERSION)
+    with open('logo2.txt', 'r') as f:
+        lineArr = f.read()
+        print(lineArr)
     try: # on the server
-        ip = socket.gethostbyname(socket.gethostname())
-        main(sys.argv[1:], ip)
+        if len(sys.argv) != 1:
+            ip = socket.gethostbyname(socket.gethostname())
+            main(sys.argv[1:], ip)
+        else:
+            print('ERROR: argv....')
+            #main_test_local()
+
+
+            main_test()
     except: # locally
+        print('ERROR: argv....')
         #main_test_local()
         main_test()

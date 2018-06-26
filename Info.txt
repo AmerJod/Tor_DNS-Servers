@@ -7,9 +7,14 @@ scp -r -i C:/pem/DNS_MSc_Thesis_amer.pem C:/DNS/   ubuntu@34.198.193.29:/home/ub
 scp -r -i C:/pem/DNS_MSc_Thesis_amer.pem C:/WebServer/   ubuntu@52.20.33.59:/home/ubuntu/dns/
 --------------------------------------
 
+kill a process:
+sudo losf -i :53
+sudo kill -9 pid
 
 
 
+
+------------------------------------
 
 scp -r ubuntu@172-31-16-226:/home/ubuntu/dns /C:/Users/Amer Jod/Desktop/UCL/Term 2/DS/DNS_Project/DNS
 

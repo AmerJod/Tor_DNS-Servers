@@ -1,0 +1,7 @@
+.idea/
+DNS/JSON/DNSRequestNodes_2018-06-26.json
+DNS/Logs/incoming_request_2018-06-18_counter+.txt
+TOR/ConnectionsHandler/Connection_info/
+DNS/test/
+TOR/ConnectionsHandler/result.txt
+TOR/ConnectionsHandler/test.py
