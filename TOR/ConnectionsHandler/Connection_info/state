@@ -1,68 +1,73 @@
-# Tor state file last generated on 2018-06-17 03:53:57 local time
+# Tor state file last generated on 2018-06-28 21:52:33 local time
 # Other times below are in UTC
 # You *do not* need to edit this file.
 
 Guard in=default rsa_id=BFB5FAAB9BBCD4A3D6B537C356CE5DCA2736D9B7 nickname=Dirk sampled_on=2018-06-09T22:06:52 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-06T11:55:56 confirmed_idx=1
 Guard in=default rsa_id=F3CEC87ED91E0B0B1D86BE4D7DE90F00B607ECAF nickname=TotorBE2 sampled_on=2018-06-11T07:53:35 sampled_by=0.3.2.10 listed=1
-Guard in=default rsa_id=D907BCD0B9510C462EEB0688FD5421CD2E172B77 nickname=Piratenpartei3 sampled_on=2018-06-04T10:26:51 sampled_by=0.3.2.10 listed=1
-Guard in=default rsa_id=B2E67791AF660DFBE7E3A7BFFCD8F91A28F14A3B nickname=theutusRelay sampled_on=2018-06-01T05:10:40 sampled_by=0.3.2.10 listed=1
+Guard in=default rsa_id=D907BCD0B9510C462EEB0688FD5421CD2E172B77 nickname=Piratenpartei3 sampled_on=2018-06-04T10:26:51 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-25T06:36:07 confirmed_idx=3
+Guard in=default rsa_id=B2E67791AF660DFBE7E3A7BFFCD8F91A28F14A3B nickname=theutusRelay sampled_on=2018-06-01T05:10:40 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-26T15:15:53 confirmed_idx=8
 Guard in=default rsa_id=AEA760EE120B630262C70C1C11D4158BBF12C602 nickname=Sif sampled_on=2018-05-31T13:10:23 sampled_by=0.3.2.10 listed=1
-Guard in=default rsa_id=F4F605AA21C4633CCB5B8DBBC1CEEE5C590C6DCE nickname=puertasecreta sampled_on=2018-06-08T14:12:30 sampled_by=0.3.2.10 listed=1
-Guard in=default rsa_id=62C4035C1DC5961B0EB20923C4FDF1B1D53F1808 nickname=livercheese sampled_on=2018-06-06T13:17:28 sampled_by=0.3.2.10 listed=1
-Guard in=default rsa_id=A2E6BB5C391CD46B38C55B4329C35304540771F1 nickname=BeastieJoy62 sampled_on=2018-06-01T13:31:08 sampled_by=0.3.2.10 listed=1
-Guard in=default rsa_id=9456BBB3FB923DD1CDEC5C8B45D9615BC937DC42 nickname=Totonicapanp5 sampled_on=2018-06-01T03:01:20 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-09T18:03:35 confirmed_idx=0 pb_use_attempts=71.500000 pb_use_successes=71.500000 pb_circ_attempts=299.437500 pb_circ_successes=277.906250 pb_successful_circuits_closed=277.906250
+Guard in=default rsa_id=F4F605AA21C4633CCB5B8DBBC1CEEE5C590C6DCE nickname=puertasecreta sampled_on=2018-06-08T14:12:30 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-17T21:28:15 confirmed_idx=6
+Guard in=default rsa_id=62C4035C1DC5961B0EB20923C4FDF1B1D53F1808 nickname=livercheese sampled_on=2018-06-06T13:17:28 sampled_by=0.3.2.10 unlisted_since=2018-06-26T20:13:22 listed=0
+Guard in=default rsa_id=A2E6BB5C391CD46B38C55B4329C35304540771F1 nickname=BeastieJoy62 sampled_on=2018-06-01T13:31:08 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-19T08:18:13 confirmed_idx=10
+Guard in=default rsa_id=9456BBB3FB923DD1CDEC5C8B45D9615BC937DC42 nickname=Totonicapanp5 sampled_on=2018-06-01T03:01:20 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-09T18:03:35 confirmed_idx=0 pb_use_attempts=57.250000 pb_use_successes=57.250000 pb_circ_attempts=298.000061 pb_circ_successes=275.000000 pb_successful_circuits_closed=275.000000 pb_timeouts=2.750000
 Guard in=default rsa_id=953DB709F2A2DECC8D7560661F934E64411444F7 nickname=chopin sampled_on=2018-06-05T05:57:35 sampled_by=0.3.2.10 listed=1
 Guard in=default rsa_id=5ED563E71532F98D1495C95A813505D0121C6DF5 nickname=as44194l10502 sampled_on=2018-06-03T08:42:37 sampled_by=0.3.2.10 listed=1
 Guard in=default rsa_id=5FDA34ECC83610427841E467CCC6C6163EEC6BE7 nickname=isthisthereallife sampled_on=2018-05-31T19:54:07 sampled_by=0.3.2.10 listed=1
-Guard in=default rsa_id=906933A309F15D7CF379127078A6791DF9B0C763 nickname=Unnamed sampled_on=2018-06-03T10:46:40 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-07T16:17:28 confirmed_idx=2 pb_circ_attempts=5.000000 pb_circ_successes=5.000000 pb_successful_circuits_closed=5.000000
+Guard in=default rsa_id=906933A309F15D7CF379127078A6791DF9B0C763 nickname=Unnamed sampled_on=2018-06-03T10:46:40 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-07T16:17:28 confirmed_idx=2 pb_circ_attempts=6.000000 pb_circ_successes=6.000000 pb_successful_circuits_closed=6.000000
 Guard in=default rsa_id=30BEB24C793FC3592F78A0F09D028291A3EE8BFD nickname=Loiu92 sampled_on=2018-06-01T09:36:04 sampled_by=0.3.2.10 listed=1
-Guard in=default rsa_id=83CAF2F3543D100A35620B21CCA12B3D33618F45 nickname=PotatoOnionRing sampled_on=2018-06-09T01:36:37 sampled_by=0.3.2.10 listed=1
+Guard in=default rsa_id=83CAF2F3543D100A35620B21CCA12B3D33618F45 nickname=PotatoOnionRing sampled_on=2018-06-09T01:36:37 sampled_by=0.3.2.10 unlisted_since=2018-06-26T22:38:41 listed=0
 Guard in=default rsa_id=79E1EBA78A211C7DC7AB4AA688798FE64F5368D3 nickname=Unnamed sampled_on=2018-06-06T18:30:59 sampled_by=0.3.2.10 listed=1
 Guard in=default rsa_id=78809B6C50CB6491DB3A72C60EC39DC85BF72D1F nickname=kitten1 sampled_on=2018-06-01T10:51:08 sampled_by=0.3.2.10 listed=1
-Guard in=default rsa_id=63B32F7E5389E8DBC5E1BCEFE48312DA7CCEF5D6 nickname=torte sampled_on=2018-06-05T02:43:41 sampled_by=0.3.2.10 listed=1
-Guard in=default rsa_id=E81EF60A73B3809F8964F73766B01BAA0A171E20 nickname=Chimborazo sampled_on=2018-06-09T15:37:38 sampled_by=0.3.2.10 listed=1
-Guard in=default rsa_id=9C4DAED4759AA66D0E93EB27093BD21CFE2C2271 nickname=mimer0 sampled_on=2018-05-30T23:02:51 sampled_by=0.3.2.10 listed=1
+Guard in=default rsa_id=63B32F7E5389E8DBC5E1BCEFE48312DA7CCEF5D6 nickname=torte sampled_on=2018-06-05T02:43:41 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-23T04:56:17 confirmed_idx=4
+Guard in=default rsa_id=E81EF60A73B3809F8964F73766B01BAA0A171E20 nickname=Chimborazo sampled_on=2018-06-09T15:37:38 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-23T22:53:51 confirmed_idx=7
+Guard in=default rsa_id=9C4DAED4759AA66D0E93EB27093BD21CFE2C2271 nickname=mimer0 sampled_on=2018-05-30T23:02:51 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-20T14:51:07 confirmed_idx=9
+Guard in=default rsa_id=2151722FC89329E9FA40448FA875B9B459901E66 nickname=otac sampled_on=2018-06-18T14:51:33 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-20T07:32:28 confirmed_idx=5
+Guard in=default rsa_id=6118DDB580EEDD6FE5F8D3CC0DF1EE17D8A2A4C6 nickname=DevilHunter sampled_on=2018-06-21T13:34:39 sampled_by=0.3.2.10 listed=1 confirmed_on=2018-06-27T07:37:44 confirmed_idx=11
 TorVersion Tor 0.3.2.10
-LastWritten 2018-06-17 02:53:57
+LastWritten 2018-06-28 20:52:33
 TotalBuildTimes 1000
-CircuitBuildTimeBin 125 3
-CircuitBuildTimeBin 175 6
-CircuitBuildTimeBin 225 6
-CircuitBuildTimeBin 275 12
+CircuitBuildAbandonedCount 11
+CircuitBuildTimeBin 175 3
+CircuitBuildTimeBin 225 3
+CircuitBuildTimeBin 275 11
 CircuitBuildTimeBin 325 6
-CircuitBuildTimeBin 375 16
-CircuitBuildTimeBin 425 25
-CircuitBuildTimeBin 475 47
-CircuitBuildTimeBin 525 82
-CircuitBuildTimeBin 575 122
-CircuitBuildTimeBin 625 120
-CircuitBuildTimeBin 675 110
-CircuitBuildTimeBin 725 101
-CircuitBuildTimeBin 775 60
-CircuitBuildTimeBin 825 70
-CircuitBuildTimeBin 875 45
-CircuitBuildTimeBin 925 39
-CircuitBuildTimeBin 975 24
-CircuitBuildTimeBin 1025 19
-CircuitBuildTimeBin 1075 20
+CircuitBuildTimeBin 375 14
+CircuitBuildTimeBin 425 13
+CircuitBuildTimeBin 475 31
+CircuitBuildTimeBin 525 62
+CircuitBuildTimeBin 575 113
+CircuitBuildTimeBin 625 143
+CircuitBuildTimeBin 675 107
+CircuitBuildTimeBin 725 97
+CircuitBuildTimeBin 775 61
+CircuitBuildTimeBin 825 63
+CircuitBuildTimeBin 875 59
+CircuitBuildTimeBin 925 43
+CircuitBuildTimeBin 975 35
+CircuitBuildTimeBin 1025 28
+CircuitBuildTimeBin 1075 13
 CircuitBuildTimeBin 1125 12
-CircuitBuildTimeBin 1175 11
+CircuitBuildTimeBin 1175 9
 CircuitBuildTimeBin 1225 8
-CircuitBuildTimeBin 1275 4
-CircuitBuildTimeBin 1325 3
-CircuitBuildTimeBin 1375 1
+CircuitBuildTimeBin 1275 6
+CircuitBuildTimeBin 1325 7
+CircuitBuildTimeBin 1375 6
 CircuitBuildTimeBin 1425 3
-CircuitBuildTimeBin 1475 5
-CircuitBuildTimeBin 1575 5
-CircuitBuildTimeBin 1625 1
+CircuitBuildTimeBin 1475 4
+CircuitBuildTimeBin 1525 6
+CircuitBuildTimeBin 1575 3
+CircuitBuildTimeBin 1625 3
 CircuitBuildTimeBin 1675 2
-CircuitBuildTimeBin 1725 1
-CircuitBuildTimeBin 1775 1
-CircuitBuildTimeBin 1825 2
+CircuitBuildTimeBin 1775 2
+CircuitBuildTimeBin 1825 1
 CircuitBuildTimeBin 1875 1
-CircuitBuildTimeBin 1975 2
-CircuitBuildTimeBin 2025 1
+CircuitBuildTimeBin 2075 1
 CircuitBuildTimeBin 2125 1
-CircuitBuildTimeBin 2425 1
-CircuitBuildTimeBin 2575 1
+CircuitBuildTimeBin 2175 3
+CircuitBuildTimeBin 2225 1
+CircuitBuildTimeBin 2375 1
+CircuitBuildTimeBin 2675 1
 CircuitBuildTimeBin 3425 1
+CircuitBuildTimeBin 4175 1
+CircuitBuildTimeBin 5625 1

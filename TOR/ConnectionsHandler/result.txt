@@ -1,1 +1,4 @@
-Date 23:43:50 2018-06-17
+
+1- Starting Tor, connecting to: 85.25.44.141
+Fingerprint: 2067C8190A34529361CEA74FC2C92C7DBCCB074F
+Connected, Checking...

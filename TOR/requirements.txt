@@ -1,3 +1,5 @@
 stem
 pycurl
 pprint
+freeport
+tqdm

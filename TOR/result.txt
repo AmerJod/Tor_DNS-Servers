@@ -1,1 +1,138 @@
 Date 03:57:43 2018-06-17
+
+1- Starting Tor, connecting to: 66.175.208.248
+Fingerprint: 9FB2A07867929EA404667247AEE9656F3DF72447
+Connected, Checking...
+Failed Checking
+
+2- Starting Tor, connecting to: 195.176.3.20
+Fingerprint: 0D2DE242ADA0ED77325E3AEE3A9D8C5CD07C2CF3
+
+1- Starting Tor, connecting to: 65.19.167.130
+Fingerprint: 4B1E3276137AD12DCCEBE354EA11C1E47F804F67
+Connected, Checking...
+Connected Successfully2
+
+2- Starting Tor, connecting to: 37.187.30.78
+Fingerprint: 80AE7BE9A7F3CAA2F44946600348EE66A2F5297B
+
+1- Starting Tor, connecting to: 96.126.96.90
+Fingerprint: DA379D7B0CD1F7CF2FB3F0AC64B54150E784BF5B
+Connected, Checking...
+
+1- Starting Tor, connecting to: 162.247.74.27
+Fingerprint: 6C143720FFF8469EF6A5C5B4066366340CF6C0D1
+
+1- Starting Tor, connecting to: 172.81.132.189
+Fingerprint: 67FCEF02AE49719A10BBE28B99099161E477EB27
+Connected, Checking...
+
+1- Starting Tor, connecting to: 37.187.7.74
+Fingerprint: 61521C04165DED7642E06544DF3FC2A9448D8406
+Connected, Checking...
+Connected Successfully2
+
+2- Starting Tor, connecting to: 198.50.200.131
+Fingerprint: 98473936F2257E53BB4397382CA53C26C6DA2EA1
+Connected, Checking...
+Connected Successfully2
+
+3- Starting Tor, connecting to: 51.15.82.2
+Fingerprint: AA5750E4A356128E868F33940D61A420A0146171
+Connected, Checking...
+Connected Successfully2
+
+4- Starting Tor, connecting to: 178.20.55.16
+Fingerprint: EFAE44728264982224445E96214C15F9075DEE1D
+Connected, Checking...
+Connected Successfully2
+
+5- Starting Tor, connecting to: 89.234.157.254
+Fingerprint: 90FD830C357A5109AB3C505287713F1AC811174C
+Connected, Checking...
+Connected Successfully2
+
+6- Starting Tor, connecting to: 85.159.237.210
+Fingerprint: A9F5135AE18C7E25C7C79117CD8C7619BFEB85ED
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.56.80.243
+Fingerprint: 233305C289F36AEC5B291C9431AB316016C769CC
+Connected, Checking...
+Failed Checking
+
+2- Starting Tor, connecting to: 46.249.37.143
+Fingerprint: 5703226F4D8952CB8FE5B7B50C003E6B964198A4
+Connected, Checking...
+Failed Checking
+
+3- Starting Tor, connecting to: 188.126.77.152
+Fingerprint: 378D79CF8A9C5CA0EF6D9D0815AD01255C834484
+Connected, Checking...
+Failed Checking
+
+4- Starting Tor, connecting to: 193.150.121.66
+Fingerprint: F4E0DD37E79F3BD982180FFDC6A2CC1A3C8FF1D4
+
+1- Starting Tor, connecting to: 223.26.48.248
+Fingerprint: 01D7461B244FD409CBBE78CFF6F3FAE483F5CF14
+Connected, Checking...
+Connected Successfully2
+
+1- Starting Tor, connecting to: 95.130.11.170
+Fingerprint: 44A6A86E753D255F2DB3515CD4A5F1956F1176CC
+Connected, Checking...
+
+1- Starting Tor, connecting to: 80.68.92.225
+Fingerprint: 77B829E5628712BD3D639242B9A0B40DDCB6B871
+Connected, Checking...
+
+1- Starting Tor, connecting to: 173.212.244.116
+Fingerprint: 55403B9653A81F68C39787E000BD9F97E1F3B250
+Connected, Checking...
+
+1- Starting Tor, connecting to: 198.233.204.165
+Fingerprint: A5E3D05A4F44A915C429BF712334A4E28E46A10C
+Connected, Checking...
+
+1- Starting Tor, connecting to: 145.239.91.37
+Fingerprint: 96D4C61DB5B38EC7ABE3DB9BB87A97A8587B8087
+Connected, Checking...
+
+1- Starting Tor, connecting to: 51.15.88.249
+Fingerprint: B5A68709FF46B730CCA37D98CA477C4B9FF9296D
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.220.101.6
+Fingerprint: C08DE49658E5B3CFC6F2A952B453C4B608C9A16A
+Connected, Checking...
+
+1- Starting Tor, connecting to: 79.137.68.85
+Fingerprint: 41781FDC57238DAB955DF6D6E8400CEC5ACBE706
+
+1- Starting Tor, connecting to: 51.15.64.212
+Fingerprint: 3A32ADF351EEBD962944B9406AC2E9DE7E72F249
+Connected, Checking...
+
+1- Starting Tor, connecting to: 82.221.139.25
+Fingerprint: 549A5E85D6BCF476BF7A03A8823E7745DD319C17
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.248.160.214
+Fingerprint: CB8D0BAF58E6789A541BF04035D6EF225387C609
+Connected, Checking...
+
+1- Starting Tor, connecting to: 176.31.208.193
+Fingerprint: 79BF9325567BCC2FC5C8E9005ED098644D70F877
+Connected, Checking...
+
+1- Starting Tor, connecting to: 192.241.79.175
+Fingerprint: DA6CB6C05F4A404184FC3A85FDB83F935C6620DC
+Connected, Checking...
+
+1- Starting Tor, connecting to: 178.165.72.177
+Fingerprint: 3994E734DCD794479D1A60F4ABD3FC91CAA395EE
+Connected, Checking...
+
+1- Starting Tor, connecting to: 198.148.81.167
+Fingerprint: 79913D553FD12BBB94C706D35E9CCEE3F94CD5AC
