@@ -7,8 +7,12 @@ import glob
 import sys
 import logging
 from enum import Enum
+from stem.util import term
+from psutil import process_iter
+from signal import SIGTERM # or SIGKILL
 
-VERSION = '0.9 b'
+
+VERSION = '0.91 b'
 DEBUG = False
 PORT = 53
 IP_ADDRESS_LOCAL = '127.0.0.1'
@@ -151,6 +155,7 @@ def getZone(domain):
         zoneName = '.'.join(domain[-3:]).lower()
         return ZoneDATA[zoneName]
     except Exception as e:
+        print()
         return ''
 
 # </editor-fold>
@@ -221,7 +226,6 @@ def getQuestionDomain(data):
 
     return (domainparts, questiontype)
 
-
 def getRecs(data):
     try:
         domain, questionType = getQuestionDomain(data)
@@ -254,7 +258,8 @@ def getRecs(data):
 
 
         return (zone[qt], qt, domain,'OKAY')
-    except:
+    except Exception as ex:
+        log_incoming(str(ex))
         return ('', qt , domain, 'ERROR')
 
 def buildQuestion(domainName, recordType):  # convert str into byte
@@ -272,7 +277,6 @@ def buildQuestion(domainName, recordType):  # convert str into byte
 
     questionBytes += (1).to_bytes(2, byteorder='big')
     return questionBytes
-
 
 def recordToBytes(domainName, recordType, recordTTL, recordValue):
     recordBytes = b'\xc0\x0c'
@@ -294,7 +298,6 @@ def recordToBytes(domainName, recordType, recordTTL, recordValue):
 
 
     return recordBytes
-
 
 def getResponse(data, addr):
     # ********************************** DNS Header
@@ -347,12 +350,18 @@ def getResponse(data, addr):
     if recStatus == 'ERROR': # TODO: need to handle the exception in better way
         log_incoming(str(COUNTER) + ': ** ERROR ** : RecordType: '+recordType+' | RequestId: '+transactionID+' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain)
         status = 'ERROR'
+        print(term.format(str(
+            COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   Form: IP ' +
+              addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n',term.Color.RED))
+
     else:
         log_incoming(str(COUNTER) + ': RecordType: '+recordType+' | RequestId: '+transactionID+' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain)
         status = 'OKAY'
+        print(term.format(str(
+            COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   Form: IP ' +
+                          addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n', term.Color.GREEN))
 
-    print(str(COUNTER) + ': '+status+' -  RecordType: '+recordType+'  - RequestId: ' + transactionID + ' Form: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n')
-    storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain)
+        storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain)
 
 
 
@@ -372,6 +381,27 @@ def getResponse(data, addr):
         print(DNSBody)
 
     return DNSHeader + DNSQuestion + DNSBody
+
+def printOnScreenAlways(msg, color=term.Color.WHITE):
+       print(term.format(msg, color))
+
+def printLogo():
+    try:
+        print(term.format(('\n                           Starting Mini DNS Server.. v%s \n' % VERSION), term.Color.YELLOW))
+        with open('Logo/logo.txt', 'r') as f:
+            lineArr = f.read()
+            print(term.format(lineArr,term.Color.GREEN))
+        with open('Logo/logo2.txt', 'r') as f:
+            lineArr = f.read()
+            print(term.format(lineArr,term.Color.RED))
+    except Exception as ex:
+        log_incoming('ERROR: printLogo - ' + str(ex))
+
+def killprocess(port):
+    try:
+        os.system('freeport %s' % port)
+    except Exception as ex:
+        log_incoming(str(ex))
 
 # </editor-fold>
 
@@ -397,8 +427,9 @@ def main(argv,IP):
             data, addr = sock.recvfrom(512)
             response = getResponse(data, addr)
             sock.sendto(response, addr)
-    except:
-        print("\nERROR: Terminated!!!")
+    except Exception as ex:
+        log_incoming('ERROR: main '+ str(ex))
+        printOnScreenAlways("\nERROR: Terminated!!! :" + str(ex),term.Color.RED)
 
 def main_test():
     # gather Zone info and store it into memory
@@ -454,11 +485,10 @@ def main_test_local():
 
 
 
+
 if __name__ == '__main__':
-    print('\n                           Starting Mini DNS Server.. v%s \n' % VERSION)
-    with open('logo2.txt', 'r') as f:
-        lineArr = f.read()
-        print(lineArr)
+    killprocess(53)
+    printLogo()
     try: # on the server
         if len(sys.argv) != 1:
             ip = socket.gethostbyname(socket.gethostname())
@@ -466,10 +496,9 @@ if __name__ == '__main__':
         else:
             print('ERROR: argv....')
             #main_test_local()
-
-
             main_test()
     except: # locally
         print('ERROR: argv....')
         #main_test_local()
+
         main_test()
