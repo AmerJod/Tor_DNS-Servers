@@ -1,13 +1,16 @@
 
-// move files 
-scp -r -i C:/pem/DNS_MSc_Thesis_amer.pem C:/DNS/   ubuntu@34.198.193.29:/home/ubuntu/dns/
+// move files  DNS
+scp -r -i C:/pem/DNS_MSc_Thesis_amer.pem C:/DNS/   ubuntu@34.198.193.29:/home/ubuntu/dns7/
 
 move file from remote host to local host
 scp -r -i C:/pem/DNS_MSc_Thesis_amer.pem ubuntu@34.198.193.29:/home/ubuntu/dns6/ C:/DNS6/
 
 
+------------------- WEB SERVER
+scp -r -i C:/pem/DNS_MSc_Thesis_amer.pem ubuntu@34.198.193.29:/home/ubuntu/dns6/ C:/DNS6/
 
-scp -r -i C:/pem/DNS_MSc_Thesis_amer.pem C:/WebServer/   ubuntu@52.20.33.59:/home/ubuntu/dns/
+
+scp -r -i C:/pem/DNS_MSc_Thesis_amer.pem ubuntu@52.20.33.59:/home/ubuntu/web3/ C:/WebServer_Back/
 --------------------------------------
 
 kill a process:

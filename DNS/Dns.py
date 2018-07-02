@@ -8,11 +8,8 @@ import sys
 import logging
 from enum import Enum
 from stem.util import term
-from psutil import process_iter
-from signal import SIGTERM # or SIGKILL
 
-
-VERSION = '0.91 b'
+VERSION = '0.93 b'
 DEBUG = False
 PORT = 53
 IP_ADDRESS_LOCAL = '127.0.0.1'
@@ -53,10 +50,12 @@ def getTime(opt = 1):
         return (((str(date)).split('.')[0]).split(' ')[0])
     if opt == 3:    # time
         return (((str(date)).split('.')[0]).split(' ')[1])
+
 def int_to_hex(value, zfill=None):
     h = hex(value)  # 300 -> '0x12c'
     h = h[2:].zfill((zfill or 0) * 2)  # '0x12c' -> '00012c' if zfill=3
     return h.decode('hex')
+
 def bin_to_hex(value):
     # http://stackoverflow.com/questions/2072351/python-conversion-from-binary-string-to-hexadecimal/2072384#2072384
     # '0000 0100 1000 1101' -> '\x04\x8d'
@@ -103,7 +102,7 @@ def storeDNSRequestJSON(status,time,recordType,transactionID,srcIP,srcPort,domai
     file = JsonRequestsPATH +'_'+ date + '.json'
     jsons = {}
 
-    if (os.path.exists(file)) != True: # check if the file exist, if not create it.
+    if (os.path.exists(file)) != True:  # check if the file exist, if not create it.
         with open(file, 'w+') as jsonfile:
             json.dump(' ', jsonfile)
     else:
