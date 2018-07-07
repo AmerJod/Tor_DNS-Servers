@@ -11,7 +11,7 @@ from enum import Enum
 from stem.util import term
 
 VERSION = '0.96 b'
-DEBUG = True
+DEBUG = False
 PORT = 53
 IP_ADDRESS_LOCAL = '127.0.0.1'
 IP_ADDRESS_SERVER = '172.31.16.226'
@@ -445,14 +445,14 @@ def getResponse(data, addr,case_sensitive = True):
         modifiedDomain = '.'.join(map(str, domainName))[:-1]
         if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
             log_incoming(str(
-                COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain +'  |  modifiedDomain:' + modifiedDomain)
+                COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain +'  |  Modified Domain: ' + modifiedDomain)
             status = 'ERROR'
-            print(term.format(str( COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '  |  modifiedDomain:' + modifiedDomain +'\n', term.Color.RED))
+            print(term.format(str( COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain +'\n', term.Color.RED))
 
         else:
-            log_incoming(str(COUNTER) + ': RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain + '  |  modifiedDomain:' + modifiedDomain)
+            log_incoming(str(COUNTER) + ': RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain)
             status = 'OKAY'
-            print(term.format(str(  COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '  |  modifiedDomain:' + modifiedDomain + '\n',
+            print(term.format(str(  COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain + '\n',
                               term.Color.GREEN))
 
         storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain)
