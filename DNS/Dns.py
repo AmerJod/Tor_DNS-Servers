@@ -507,7 +507,7 @@ def printLogo():
 def killprocess(port):
     try:
         os.system('freeport %s' % port)
-        printOnScreenAlways('DNS port has been released',term.Color.GREEN)
+        #printOnScreenAlways('DNS port has been released',term.Color.GREEN)
     except Exception as ex:
         log_incoming(str(ex))
 
