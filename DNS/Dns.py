@@ -10,7 +10,7 @@ import logging
 from enum import Enum
 from stem.util import term
 
-VERSION = '0.95 b'
+VERSION = '0.96 b'
 DEBUG = True
 PORT = 53
 IP_ADDRESS_LOCAL = '127.0.0.1'
