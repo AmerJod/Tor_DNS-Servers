@@ -5,3 +5,10 @@ TOR/ConnectionsHandler/Connection_info/
 DNS/test/
 TOR/ConnectionsHandler/result.txt
 TOR/ConnectionsHandler/test.py
+DNS/JSON/
+TOR/NodeHandler/__pycache__/
+
+TOR/ConnectionsHandler/Nodes/
+TOR/ConnectionsHandler/__pycache__/
+TOR/__pycache__/
+TOR/Helper/__pycache__/

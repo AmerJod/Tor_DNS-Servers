@@ -15,8 +15,9 @@ def index():
     req =  Request(ip=request.remote_addr, datetime=datetime.now())
     # store it in json file
     storeHTTPRequestJSON(time=str(datetime.now()),srcIP=request.remote_addr)
-    db.session.add(req)
-    db.session.commit()
+    # storing in the database, so much data
+    #db.session.add(req)
+    #db.session.commit()
     return render_template("index.html")
 
 
