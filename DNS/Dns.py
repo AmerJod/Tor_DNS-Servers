@@ -458,7 +458,7 @@ def getResponse(data, addr,case_sensitive = True):
         storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain)
     else:
         if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
-            log_incoming(str( COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain)
+            log_incoming(str( COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain)
             status = 'ERROR'
             print(term.format(str( COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n', term.Color.RED))
 
@@ -555,6 +555,7 @@ def main_test():
     '''
     print("testing ....  ")
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    #sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind((IP_ADDRESS_LOCAL, PORT))
 
     print("Host: %s | Port: %s " % (IP_ADDRESS_LOCAL,PORT ))
@@ -588,7 +589,7 @@ def main_test_local():
 
     # testing
     #BYTES =b'\xe8H\x84\x00\x00\x01\x00\x00\x00\x00\x00\x00\x02ns\x0cdnstEStsuiTe\x05SpACE\x00\x00\x01'
-    BYTES =b'\\$\x00\x10\x00\x01\x00\x00\x00\x00\x00\x01\x02ns\x0cdnStEstSuITE\x05SpACe\x00\x00\x1c\x00\x01\x00\x00)\x10\x00\x00\x00\x80\x00\x00\x00'
+    BYTES =b'\\$\x00\x10\x00\x01\x00\x00\x00\x00\x00\x01\x02ns\x0cdnStEstSuITE  \x05SpACe\x00\x00\x1c\x00\x01\x00\x00)\x10\x00\x00\x00\x80\x00\x00\x00'
 
     response = getResponse(BYTES, '127.0.0.2')
     print("response:")
