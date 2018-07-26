@@ -12,3 +12,4 @@ TOR/ConnectionsHandler/Nodes/
 TOR/ConnectionsHandler/__pycache__/
 TOR/__pycache__/
 TOR/Helper/__pycache__/
+TORResolver/
