@@ -21,13 +21,13 @@ def main(argv):
 def makeDirectories():
 
     if not os.path.exists('JSON'):
-        os.makedirs('JSON\\CheckingRequests')
-        os.makedirs('JSON\\NormalRequests')
+        os.makedirs('JSON/CheckingRequests')
+        os.makedirs('JSON/NormalRequests')
     else:
-        if not os.path.exists('JSON\\CheckingRequests'):
-            os.makedirs('JSON\\CheckingRequests')
-        if not os.path.exists('JSON\\NormalRequests'):
-            os.makedirs('JSON\\NormalRequests')
+        if not os.path.exists('JSON/CheckingRequests'):
+            os.makedirs('JSON/CheckingRequests')
+        if not os.path.exists('JSON/NormalRequests'):
+            os.makedirs('JSON/NormalRequests')
 
     if not os.path.exists('Logs'):
         os.makedirs('Logs')
