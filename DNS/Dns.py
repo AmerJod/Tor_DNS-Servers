@@ -528,20 +528,22 @@ def killprocess(port):
 
 # make the directories in case they are missing
 def makeDirectories():
+    try:
 
-    if not os.path.exists('JSON'):
-        os.makedirs('JSON\\CheckingRequests')
-        os.makedirs('JSON\\NormalRequests')
-    else:
-        if not os.path.exists('JSON\\CheckingRequests'):
-            os.makedirs('JSON\\CheckingRequests')
-        if not os.path.exists('JSON\\NormalRequests'):
-            os.makedirs('JSON\\NormalRequests')
+        if not os.path.exists('JSON'):
+            os.makedirs('JSON/CheckingRequests')
+            os.makedirs('JSON/NormalRequests')
+        else:
+            if not os.path.exists('JSON/CheckingRequests'):
+                os.makedirs('JSON/CheckingRequests')
+            if not os.path.exists('JSON/NormalRequests'):
+                os.makedirs('JSON/NormalRequests')
 
-    if not os.path.exists('Logs'):
-        os.makedirs('JSON')
-
-
+        if not os.path.exists('Logs'):
+            os.makedirs('Logs')
+            
+    except Exception as ex:
+        printOnScreenAlways(ex, term.Color.RED)
 
 
 
