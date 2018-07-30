@@ -10,12 +10,13 @@ import logging
 from enum import Enum
 from stem.util import term
 
-VERSION = '0.96 b'
+VERSION = '0.99 b - Last modified: 30/07/2018'
 DEBUG = False
 PORT = 53
 IP_ADDRESS_LOCAL = '127.0.0.1'
 IP_ADDRESS_SERVER = '172.31.16.226'
-JsonRequestsPATH = 'JSON/DNSRequestNodes'
+JsonRequestsPATH = 'JSON/NormalRequests/DNSRequestNodes'
+JsonRequestsPATHCheck = 'JSON/CheckingRequests/DNSRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
 COUNTER = 0
 
 class RECORD_TYPES(Enum):
@@ -76,10 +77,10 @@ class Log():
                 file.write('Start - '+date +'\n')
         '''
         # TODO: need refactoring - make it more abstract
-        self.file = 'Logs/'+filename+'_'+date+'_counter+.txt'
+        self.file = 'Logs/' + filename + '_' + date + '_counter+.txt'
         if (os.path.exists(self.file)) != True:
             with open(self.file, 'w+') as file:
-                file.write('Start - '+date +'\n')
+                file.write('Start - ' + date + '\n')
 
     def wirteIntoFile(self,raw):
         if self.mode == 'out':
@@ -94,12 +95,18 @@ class Log():
     def counter(self):
         pass
 
-# TODO: need to implemant a class
-def storeDNSRequestJSON(status,time,recordType,transactionID,srcIP,srcPort,domain, modifiedDomain='none'):
+# TODO: need to implement a class
+def storeDNSRequestJSON(status, time, recordType, transactionID, srcIP, srcPort, domain, modifiedDomain='none', mode='none'):
     """Help for the bar method of Foo classes"""
     date = getTime(2)
-    # TODO: need refactoring - make it more abstract
-    file = JsonRequestsPATH +'_'+ date + '.json'
+
+    if mode == 'check':
+        file = JsonRequestsPATHCheck + '_' + date + '.json'
+    else:
+        # TODO: need refactoring - make it more abstract
+        file = JsonRequestsPATH + '_' + date + '.json'
+
+
     jsons = {}
 
     if (os.path.exists(file)) != True:  # check if the file exist, if not create it.
@@ -375,7 +382,7 @@ def recordToBytes(domainName, recordType, recordTTL, recordValue):
 
     return recordBytes
 
-def getResponse(data, addr,case_sensitive = True):
+def getResponse(data, addr,case_sensitive = False):
     # ********************************** DNS Header
     # Transaction ID
     TransactionID_Byte = data[:2]
@@ -455,7 +462,11 @@ def getResponse(data, addr,case_sensitive = True):
             print(term.format(str(  COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain + '\n',
                               term.Color.GREEN))
 
-        storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain)
+        if 'Check_' in domain:
+            storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain,mode='check')
+        else:
+            storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain)
+
     else:
         if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
             log_incoming(str( COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain)
@@ -467,7 +478,11 @@ def getResponse(data, addr,case_sensitive = True):
             status = 'OKAY'
             print(term.format(str( COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n',
                               term.Color.GREEN))
-        storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain)
+        if 'Check_' in domain:
+            storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, mode='check')
+        else:
+            storeDNSRequestJSON(status=status, time=getTime(3), recordType=recordType, transactionID=transactionID,
+                                srcIP=addr[0], srcPort=str(addr[1]), domain=domain)
 
     DNSQuestion = buildQuestion(domainName, recordType)
     if DEBUG is True:
@@ -497,10 +512,10 @@ def printLogo():
         print(term.format(('\n                           Starting Mini DNS Server.. v%s \n' % VERSION), term.Color.YELLOW))
         with open('Logo/logo.txt', 'r') as f:
             lineArr = f.read()
-            print(term.format(lineArr,term.Color.GREEN))
+            print(term.format(str(lineArr),term.Color.GREEN))
         with open('Logo/logo2.txt', 'r') as f:
             lineArr = f.read()
-            print(term.format(lineArr,term.Color.RED))
+            print(term.format(str(lineArr),term.Color.RED))
     except Exception as ex:
         log_incoming('ERROR: printLogo - ' + str(ex))
 
@@ -510,6 +525,25 @@ def killprocess(port):
         #printOnScreenAlways('DNS port has been released',term.Color.GREEN)
     except Exception as ex:
         log_incoming(str(ex))
+
+# make the directories in case they are missing
+def makeDirectories():
+
+    if not os.path.exists('JSON'):
+        os.makedirs('JSON\\CheckingRequests')
+        os.makedirs('JSON\\NormalRequests')
+    else:
+        if not os.path.exists('JSON\\CheckingRequests'):
+            os.makedirs('JSON\\CheckingRequests')
+        if not os.path.exists('JSON\\NormalRequests'):
+            os.makedirs('JSON\\NormalRequests')
+
+    if not os.path.exists('Logs'):
+        os.makedirs('JSON')
+
+
+
+
 
 # </editor-fold>
 
@@ -522,14 +556,18 @@ def main(argv,IP):
     case_sensitive = False
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     opts = argv
-
-    if opts[1] == '-s':
+    if opts[0] == '-s':
         sock.bind((IP, PORT))
-        if opts[2] == '-mcase':
-            case_sensitive = True
+        if opts.__len__() > 2:
+            if opts[1] == '-Ncase':
+                printOnScreenAlways("Change Domain Name letter case is enabled",term.Color.GREEN)
+                case_sensitive = True
         print("\n                           Host: %s | Port: %s \n" % (IP, PORT))
-    elif opts == '-l' or opts == '':
+
+    elif opts[0] == '-l' or opts == '':
         sock.bind((IP_ADDRESS_LOCAL, PORT))
+        if opts[1] == '-Ncase':
+            case_sensitive = True
         print("\n                           Host: %s | Port: %s \n" % (IP_ADDRESS_LOCAL, PORT))
 
     try:
@@ -553,7 +591,7 @@ def main_test():
         print('test.py -l')
         sys.exit(2)
     '''
-    print("testing ....  ")
+    print("Testing ....  ")
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     #sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind((IP_ADDRESS_LOCAL, PORT))
@@ -598,6 +636,7 @@ def main_test_local():
 
 if __name__ == '__main__':
     printLogo()
+    makeDirectories()
     killprocess(53)
     try: # on the server
         if len(sys.argv) != 1:
