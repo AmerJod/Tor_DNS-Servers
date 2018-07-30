@@ -7,12 +7,13 @@ from app import app, db
 from .models import Request
 
 
-JsonRequestsPATH = 'JSON/HTTPRequestNodes'
+JsonRequestsPATH = 'JSON/NormalRequests/HTTPRequestNodes'
+JsonRequestsPATHCheck = 'JSON/CheckingRequests/DNSRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-
-    req =  Request(ip=request.remote_addr, datetime=datetime.now())
+    req = Request(ip=request.remote_addr, datetime=datetime.now())
     # store it in json file
     storeHTTPRequestJSON(time=str(datetime.now()),srcIP=request.remote_addr)
     # storing in the database, so much data
@@ -20,14 +21,28 @@ def index():
     #db.session.commit()
     return render_template("index.html")
 
+@app.route('/check', methods=['GET', 'POST'])
+def check():
+    req = Request(ip=request.remote_addr, datetime=datetime.now())
+    # store it in json file
+    storeHTTPRequestJSON(time=str(datetime.now()),srcIP=request.remote_addr, mode='check')
+    # storing in the database, so much data
+    #db.session.add(req)
+    #db.session.commit()
+    return render_template("check.html")
+
 
 
 #TODO: need to implmment a class for it
-def storeHTTPRequestJSON(time,srcIP):
+def storeHTTPRequestJSON(time,srcIP,mode='none'):
     """Help for the bar method of Foo classes"""
     date = getTime(2)
-    # TODO: need refactoring - make it more abstract
-    file = JsonRequestsPATH +'_'+ date + '.json'
+    if mode == 'check':
+        file = JsonRequestsPATHCheck + '_' + date + '.json'
+    else:
+        # TODO: need refactoring - make it more abstract
+        file = JsonRequestsPATH + '_' + date + '.json'
+
     jsons = {}
 
     if (os.path.exists(file)) != True: # check if the file exist, if not create it.
@@ -48,7 +63,6 @@ def storeHTTPRequestJSON(time,srcIP):
         jsons[str(len(jsons)+1)] = DNSRequestNodes
         # Write into Json file
         json.dump(jsons, jsonfile)
-
 
 
 
