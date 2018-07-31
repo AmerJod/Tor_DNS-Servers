@@ -541,7 +541,7 @@ def makeDirectories():
 
         if not os.path.exists('Logs'):
             os.makedirs('Logs')
-            
+
     except Exception as ex:
         printOnScreenAlways(ex, term.Color.RED)
 
@@ -560,17 +560,21 @@ def main(argv,IP):
     opts = argv
     if opts[0] == '-s':
         sock.bind((IP, PORT))
-        if opts.__len__() > 2:
+        print("\n                           Host: %s | Port: %s \n" % (IP, PORT))
+        if opts.__len__() > 1:
             if opts[1] == '-Ncase':
                 printOnScreenAlways("Change Domain Name letter case is enabled",term.Color.GREEN)
                 case_sensitive = True
-        print("\n                           Host: %s | Port: %s \n" % (IP, PORT))
+
 
     elif opts[0] == '-l' or opts == '':
         sock.bind((IP_ADDRESS_LOCAL, PORT))
-        if opts[1] == '-Ncase':
-            case_sensitive = True
         print("\n                           Host: %s | Port: %s \n" % (IP_ADDRESS_LOCAL, PORT))
+        if opts.__len__() > 1:
+            if opts[1] == '-Ncase':
+                printOnScreenAlways("Change Domain Name letter case is enabled", term.Color.GREEN)
+                case_sensitive = True
+
 
     try:
         # keep listening
