@@ -10,7 +10,7 @@ import logging
 from enum import Enum
 from stem.util import term
 
-VERSION = '0.99 b - Last modified: 30/07/2018'
+VERSION = '0.992 b - Last modified: 30/07/2018'
 DEBUG = False
 PORT = 53
 IP_ADDRESS_LOCAL = '127.0.0.1'
@@ -446,8 +446,7 @@ def getResponse(data, addr,case_sensitive = False):
 
         #storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain)
     '''
-
-    if case_sensitive is True:
+    if case_sensitive is True and 'check_' in domain.lower():  # need to be more dynamic
         domainName = getLetterCaseSawped(domainName)
         modifiedDomain = '.'.join(map(str, domainName))[:-1]
         if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
