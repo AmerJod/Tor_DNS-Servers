@@ -1,26 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Gost Host One Page Template</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/fonticons.css') }}" />
+  		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/fonts/stylesheet.css') }}" />
+  		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/font-awesome.min.css') }}" />
+  		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/plugins.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}" />
+        <link rel="stylesheet"  href="{{ url_for('static', filename='assets/css/responsive.css') }}" />
+        <script src="static/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body data-spy="scroll" data-target="#navmenu">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+		<div class='preloader'><div class='loaded'>&nbsp;</div></div>
+        <!--Home page style-->
+        <header id="main_menu" class="header">
+            <div class="main_menu_bg navbar-fixed-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="nave_menu wow fadeInUp" data-wow-duration="1s">
+                            <nav class="navbar navbar-default" id="navmenu">
+                                <div class="container-fluid">
+                                    <!-- Brand and toggle get grouped for better mobile display -->
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="https://www.ucl.ac.uk"><img src="static/assets/images/ucl-logo.png" alt="UNIVERSITY COLLEGE LONDON" target="_blank"
+                                          style="height: 52.8px;"/> </a>
+                                    </div>
 
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+                                    <!-- Collect the nav links, forms, and other content for toggling -->
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li class="Home active"><a href="/">Home</a></li>
+                                            <li><a href="/thesis">The Thesis</a></li>
+                                            <li><a href="/aboutUs">About us</a></li>
+                                            <li><a href="https://bitbucket.org/AmerJoudiah/dns_project/src/master/" target="_blank">Repository</a></li>
 
 
-  <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
-  <script src="static/js/bootstrap.min.js"></script>
-  <title>DNS resilience</title>
+                                        </ul>
 
-</head>
-  <body>
-			 <div class="container">
-				<div class="inner">
-					<a>Welcome to MY Webstite- UCL</a>
-					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-				</div>
-				<main-body id="main-body-container">
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </header> <!--End of header -->
+
+
+
+    	<main-body id="main-body-container">
 						<!-- Header -->
 				   <!-- Flash Messages -->
 					{% with messages = get_flashed_messages() %}
@@ -32,14 +79,27 @@
 					</ul>
 					{% endif %}
 					{% endwith %}
-			
-			
+
+
 			{% block content %}{% endblock %}
-			
-			</main-body>
-		</div>
-  
-    <hr>
-    
-  </body>
+
+		</main-body>
+
+
+		<footer id="coppyrights" class="coppyrights">
+			<div class="container-fluid">
+			<div class="row">
+				<div class="coppyright">
+					<p class="wow fadeInUp" data-wow-duration="2s">Made with by <strong><a target="_blank" href="https://www.linkedin.com/in/amerjoudiah/">Amer Joudiah</a></strong> 2018.</p>
+				</div>
+			</div>
+			</div>
+		</footer>
+        <script src="static/assets/js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="static/assets/js/vendor/bootstrap.min.js"></script>
+        <script src="static/assets/js/jquery.easypiechart.min.js"></script>
+        <script src="static/assets/js/plugins.js"></script>
+        <script src="static/assets/js/main.js"></script>
+
+    </body>
 </html>

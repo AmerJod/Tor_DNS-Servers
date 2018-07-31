@@ -49,4 +49,5 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         pass
     httpd.server_close()
+
 print(time.asctime(), 'Server Stops - %s:%s' % (HOST_NAME, PORT_NUMBER))
