@@ -8,13 +8,21 @@ app.debug = True
 app.static_folder = 'static'
 
 
-VERSION = '4.00 '
+VERSION = '4.02'
+STARTS = False
 def main(argv):
     try:
-        if argv[0] == '-s': # on the server
-            app.run(host="0.0.0.0",port="80")
-    except:
+        if argv.__len__() > 0:
+            if argv[0] == '-s': # on the server
+                app.run(host="0.0.0.0",port="80",debug=False, threaded=True)
+            else:
+                print('Wrong parameters...')
+        else:
+            app.run()
+    except Exception as ex:
+        print(ex)
         # run it locally
+        print('Running locally... ')
         app.run()
 
 
@@ -33,16 +41,15 @@ def makeDirectories():
         os.makedirs('Logs')
 
 def printLogo():
-    try:
-        with open('Logo/logo.txt', 'r') as f:
-            lineArr = f.read()
-            print(term.format(str(lineArr),term.Color.GREEN))
-        with open('Logo/logo2.txt', 'r') as f:
-            lineArr = f.read()
-            print(term.format((str(lineArr) % str(VERSION)), term.Color.YELLOW))
-
-    except Exception as ex:
-     print('ERROR: printLogo - ' + str(ex))
+        try:
+            with open('Logo/logo.txt', 'r') as f:
+                lineArr = f.read()
+                print(term.format(str(lineArr),term.Color.GREEN))
+            with open('Logo/logo2.txt', 'r') as f:
+                lineArr = f.read()
+                print(term.format((str(lineArr) % str(VERSION)), term.Color.YELLOW))
+        except Exception as ex:
+            print('ERROR: printLogo - ' + str(ex))
 
 if __name__ == '__main__':
     makeDirectories()

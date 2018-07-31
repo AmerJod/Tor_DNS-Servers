@@ -8,33 +8,41 @@ from .models import Request
 
 
 JsonRequestsPATH = 'JSON/NormalRequests/HTTPRequestNodes'
-JsonRequestsPATHCheck = 'JSON/CheckingRequests/DNSRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
+JsonRequestsPATHCheck = 'JSON/CheckingRequests/HTTPCheckingRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     req = Request(ip=request.remote_addr, datetime=datetime.now())
     # store it in json file
-    storeHTTPRequestJSON(time=str(datetime.now()),srcIP=request.remote_addr)
+    storeHTTPRequestJSON(time=str(datetime.now()),srcIP=request.remote_addr, baseUrl=request.base_url)
     # storing in the database, so much data
     #db.session.add(req)
     #db.session.commit()
     return render_template("index.html")
 
+
+@app.route('/thesis', methods=['GET', 'POST'])
+def thesis():
+    return render_template("thesis.html")
+
+@app.route('/aboutUs', methods=['GET', 'POST'])
+def aboutUs():
+    return render_template("aboutUs.html")
+
 @app.route('/check', methods=['GET', 'POST'])
 def check():
     req = Request(ip=request.remote_addr, datetime=datetime.now())
     # store it in json file
-    storeHTTPRequestJSON(time=str(datetime.now()),srcIP=request.remote_addr, mode='check')
+    storeHTTPRequestJSON(time=str(datetime.now()),srcIP=request.remote_addr ,baseUrl=request.base_url, mode='check')
     # storing in the database, so much data
     #db.session.add(req)
     #db.session.commit()
     return render_template("check.html")
 
 
-
 #TODO: need to implmment a class for it
-def storeHTTPRequestJSON(time,srcIP,mode='none'):
+def storeHTTPRequestJSON(time,srcIP,baseUrl,mode='none'):
     """Help for the bar method of Foo classes"""
     date = getTime(2)
     if mode == 'check':
@@ -58,6 +66,7 @@ def storeHTTPRequestJSON(time,srcIP,mode='none'):
                 'ID': str(len(jsons)+1),
                 'Time': time,
                 'SrcIP': srcIP,
+                'Url':  baseUrl,
             }
         }
         jsons[str(len(jsons)+1)] = DNSRequestNodes
