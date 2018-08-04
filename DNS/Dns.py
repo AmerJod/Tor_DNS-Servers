@@ -10,9 +10,11 @@ import logging
 from enum import Enum
 from stem.util import term
 
-VERSION = '0.992 b - Last modified: 30/07/2018'
+VERSION = '0.993b'
+MODIFY_DATE = '- Last modified: 02/08/2018'
 DEBUG = False
 PORT = 53
+IP_ADDRESS_LOCAL = '127.0.0.1'
 IP_ADDRESS_LOCAL = '127.0.0.1'
 IP_ADDRESS_SERVER = '172.31.16.226'
 JsonRequestsPATH = 'JSON/NormalRequests/DNSRequestNodes'
@@ -264,7 +266,7 @@ def getQuestionDomain(data):
 
     domainParts.append('')
 
-    print(domainParts)
+    #print(domainParts)
 
 
     return (domainParts, questionType)
@@ -442,23 +444,26 @@ def getResponse(data, addr,case_sensitive = False):
         log_incoming(str(COUNTER) + ': RecordType: '+recordType+' | RequestId: '+transactionID+' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain)
         status = 'OKAY'
         print(term.format(str( COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' +
-                          addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n', term.Color.GREEN))
+                          addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain: ' + domain + '\n', term.Color.GREEN))
 
         #storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain)
     '''
     if case_sensitive is True and 'check_' in domain.lower():  # need to be more dynamic
-        domainName = getLetterCaseSawped(domainName)
-        modifiedDomain = '.'.join(map(str, domainName))[:-1]
+        modifiedDomain = domain # without permutation
+        if 're_check_' not in domain.lower(): # re_check without permutation
+            domainName = getLetterCaseSawped(domainName)
+            modifiedDomain = '.'.join(map(str, domainName))[:-1]
+
         if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
             log_incoming(str(
                 COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain +'  |  Modified Domain: ' + modifiedDomain)
             status = 'ERROR'
-            print(term.format(str( COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain +'\n', term.Color.RED))
+            print(term.format(str(COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain +'\n', term.Color.RED))
 
         else:
-            log_incoming(str(COUNTER) + ': RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain)
+            log_incoming(str(COUNTER) + ': RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain + '  |  Modified Domain: ' + modifiedDomain)
             status = 'OKAY'
-            print(term.format(str(  COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain + '\n',
+            print(term.format(str(COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain + '\n',
                               term.Color.GREEN))
 
         if 'Check_' in domain:
@@ -468,14 +473,14 @@ def getResponse(data, addr,case_sensitive = False):
 
     else:
         if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
-            log_incoming(str( COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain)
+            log_incoming(str(COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain)
             status = 'ERROR'
-            print(term.format(str( COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n', term.Color.RED))
+            print(term.format(str(COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain: ' + domain + '\n', term.Color.RED))
 
         else:
-            log_incoming(str(COUNTER) + ': RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain)
+            log_incoming(str(COUNTER) + ': RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain)
             status = 'OKAY'
-            print(term.format(str( COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n',
+            print(term.format(str(COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain: ' + domain + '\n',
                               term.Color.GREEN))
         if 'Check_' in domain:
             storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, mode='check')
@@ -508,7 +513,7 @@ def printOnScreenAlways(msg, color=term.Color.WHITE):
 
 def printLogo():
     try:
-        print(term.format(('\n                           Starting Mini DNS Server.. v%s \n' % VERSION), term.Color.YELLOW))
+        print(term.format(('\n                           Starting Mini DNS Server.. v%s \n' % VERSION + MODIFY_DATE), term.Color.YELLOW))
         with open('Logo/logo.txt', 'r') as f:
             lineArr = f.read()
             print(term.format(str(lineArr),term.Color.GREEN))
@@ -607,7 +612,7 @@ def main_test():
     # keep listening
     while 1:
         data, addr = sock.recvfrom(512)
-        response = getResponse(data, addr)
+        response = getResponse(data, addr,case_sensitive=True)
 
         print("test 1")
         print(str(response))
