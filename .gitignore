@@ -14,3 +14,5 @@ TOR/__pycache__/
 TOR/Helper/__pycache__/
 TORResolver/
 WebServer/JSON/
+*.pyc
+TOR/Helper/FetchFiles/
