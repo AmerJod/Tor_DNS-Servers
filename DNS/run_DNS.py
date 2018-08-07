@@ -1,29 +1,30 @@
-import datetime
-import getopt
-import os
-import random
+'''
+DNS Server - UCL - Amer Joudiah
+Mini DNS server for resolving our website 'dnstestsuite.space'.
+https://bitbucket.org/AmerJoudiah/dns_project/
+Note: Still private project.
+'''
+
 import socket
-import glob
-import logging
 import sys
 
-from enum import Enum
-from logging import config
-
 from stem.util import term
-
 
 from Helper import DNSFunctions
 from Helper.Helper import Helper
 from Helper.Helper import MODE_TYPES
 from Helper.Helper import MSG_TYPES
 
+
+
+
+
 VERSION = '0.998b'
 MODIFY_DATE = '- Last modified: 06/08/2018'
 IP_ADDRESS_LOCAL = '127.0.0.1'
 IP_ADDRESS_SERVER = '172.31.16.226'
 DEBUG = False
-PORT = 53
+PORT = 53  # 53 Default port
 
 ADVERSARY_MODE = False
 FIX_PORT = True  #True # try all the possible port
@@ -76,7 +77,7 @@ def main(argv,IP):
                 sock.sendto(response,addr)
 
     except Exception as ex:
-        DNSFunctions.loggingData('ERROR: main ' + str(ex))
+        DNSFunctions.loggingError(main,'ERROR: main ' + str(ex))
         Helper.printOnScreenAlways("\nERROR: Terminated!!! :" + str(ex),term.Color.RED)
 
 def main_test():
@@ -86,10 +87,8 @@ def main_test():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     #sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind((IP_ADDRESS_LOCAL, PORT))
-
     print("Host: %s | Port: %s " % (IP_ADDRESS_LOCAL,PORT ))
     # open socket and
-
     # keep listening
     while 1:
         data, addr = sock.recvfrom(512)
@@ -125,22 +124,6 @@ def main_test_local():
     print(str(response))
 
 if __name__ == '__main__':
-
-    #os.system("set PYTHONPATH=%%PYTHONPATH%%; %s " % str(os.getcwd()))
-    #print("os python 1 " +os.environ['PYTHONPATH'])
-    #os.environ['PYTHONPATH']  = os.getcwd()
-    #print("os python 2 " + os.environ['PYTHONPATH'])
-
-
-    #print('path sys 1 ' + str(sys.path[0]))
-
-    #path1= os.getcwd().replace("\\", "\\\\")
-    #print(path1)
-    #sys.path.insert(0,os.getcwd().replace("/", "\\"))
-    #sys.path.insert(0,(sys.path[0]+'/Helper').replace("/", "\\") )
-   # print("os python" + os.environ['PYTHONPATH'])
-
-    #print('path ' + str(sys.path))
 
     DNSFunctions.makeDirectories()
     DNSFunctions.initLogger()

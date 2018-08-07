@@ -1,6 +1,8 @@
 #! /usr/bin/env python3
-# this file is to move  files to DNS server
-# you have to have the KEY
+'''
+To move the DNS files to DNS server.
+You MUST have the KEY stored on your PC
+'''
 
 import sys
 import datetime
@@ -9,12 +11,12 @@ from enum import Enum
 
 DNS_SERVERIP = '34.198.193.29'
 DNS_SERVER_PATH = 'dns_0998_Betav2'
-
+KEY_PATH = 'C:/pem/DNS_MSc_Thesis_amer.pem'
 
 class TransferFiles:
     def __init__(self):
         self.mode = ''
-        self.Key = "C:/pem/DNS_MSc_Thesis_amer.pem"
+        self.Key = KEY_PATH
 
 
     def TransferToDNS(self,folderName='none'):

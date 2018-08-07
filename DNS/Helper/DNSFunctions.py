@@ -78,6 +78,9 @@ def initLogger():
     # add the handler to the root logger
     logging.getLogger('').addHandler(console)
 
+def loggingError(fuctName,error):
+    logging.error('DNSFunction - storeDNSRequestJSON - JSON invalid : %s' % str(er))
+
 def setDebuggingMode(debug):
     DEBUG = debug
 
@@ -102,7 +105,7 @@ def killprocess(port):
         os.system('freeport %s' % port)
         #printOnScreenAlways('DNS port has been released',term.Color.GREEN)
     except Exception as ex:
-        logging(ex)
+        logging.error('DNSFunctions - killprocess: %s' % ex)
 
 def printLogo(version,modifyDate):
     try:
@@ -114,7 +117,7 @@ def printLogo(version,modifyDate):
             lineArr = f.read()
             print(term.format(str(lineArr),term.Color.RED))
     except Exception as ex:
-        logging('printLogo - ' + str(ex))
+        logging.error('printLogo - ' + str(ex))
 
 # TODO: Need refactor- NOT IMPORTANT
 # option: 1 full (time+date)
@@ -147,16 +150,16 @@ def makeDirectories():
 
     except Exception as ex:
         Helper.printOnScreenAlways(ex, term.Color.RED)
-        logging(ex)
+        logging.error('DNSFunctions - makeDirectories: %s' % ex)
 
 class RECORD_TYPES(Enum):
-    A = b'\x00\x01'  # specifies  IP4 Address
-    CNAME = b'\x00\x05'  # aliases
-    MX = b'\x00\x0f'  # mail exchange server for DNS
-    NS = b'\x00\x02'  # authoritative name server
-    TXT = b'\x00\x10'  # arbitrary non-formatted text string.
-    AAAA = b'\x00\x1c'  # specifies IP6 Address
-    ANY = b'\x00\xff'
+    A       = b'\x00\x01'  # specifies  IP4 Address
+    CNAME   = b'\x00\x05'  # aliases
+    MX      = b'\x00\x0f'  # mail exchange server for DNS
+    NS      = b'\x00\x02'  # authoritative name server
+    TXT     = b'\x00\x10'  # arbitrary non-formatted text string.
+    AAAA    = b'\x00\x1c'  # specifies IP6 Address
+    ANY     = b'\x00\xff'
 
 def int_to_hex(value, zfill=None):
     h = hex(value)  # 300 -> '0x12c'
