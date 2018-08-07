@@ -8,7 +8,7 @@ import os
 from enum import Enum
 
 DNS_SERVERIP = '34.198.193.29'
-DNS_SERVER_PATH = 'dns_0994Test'
+DNS_SERVER_PATH = 'dns_0998_Betav2'
 
 
 class TransferFiles:
@@ -26,7 +26,6 @@ class TransferFiles:
 
             com = (com % (self.Key, RootPath,DNS_SERVERIP,folderName ))
             os.system(com)
-            print('Transfer file is done.')
         except Exception as ex:
             print(ex)
 

@@ -1,35 +1,34 @@
 import datetime
 import getopt
-import json
 import os
 import random
 import socket
 import glob
-import sys
 import logging
+import sys
+
 from enum import Enum
+from logging import config
+
 from stem.util import term
 
-from DNS.Helper import DNSFunctions
-from DNS.Helper.Helper import Helper
-from DNS.Helper.Helper import MODE_TYPES
-from DNS.Helper.Helper import MSG_TYPES
+
+from Helper import DNSFunctions
+from Helper.Helper import Helper
+from Helper.Helper import MODE_TYPES
+from Helper.Helper import MSG_TYPES
 
 VERSION = '0.998b'
 MODIFY_DATE = '- Last modified: 06/08/2018'
-DEBUG = False
-PORT = 53
-IP_ADDRESS_LOCAL = '127.0.0.1'
 IP_ADDRESS_LOCAL = '127.0.0.1'
 IP_ADDRESS_SERVER = '172.31.16.226'
-
+DEBUG = False
+PORT = 53
 
 ADVERSARY_MODE = False
 FIX_PORT = True  #True # try all the possible port
 FIX_REQUESTID = False #False  # try all the possible request ID
 NUMBER_OF_TRYS = 10000
-
-
 
 def main(argv,IP):
     # gather Zone info and store it into memory
@@ -77,7 +76,7 @@ def main(argv,IP):
                 sock.sendto(response,addr)
 
     except Exception as ex:
-        DNSFunctions.log_incoming('ERROR: main '+ str(ex))
+        DNSFunctions.loggingData('ERROR: main ' + str(ex))
         Helper.printOnScreenAlways("\nERROR: Terminated!!! :" + str(ex),term.Color.RED)
 
 def main_test():
@@ -127,8 +126,25 @@ def main_test_local():
 
 if __name__ == '__main__':
 
-    DNSFunctions.printLogo(version=VERSION,modifyDate=MODIFY_DATE)
+    #os.system("set PYTHONPATH=%%PYTHONPATH%%; %s " % str(os.getcwd()))
+    #print("os python 1 " +os.environ['PYTHONPATH'])
+    #os.environ['PYTHONPATH']  = os.getcwd()
+    #print("os python 2 " + os.environ['PYTHONPATH'])
+
+
+    #print('path sys 1 ' + str(sys.path[0]))
+
+    #path1= os.getcwd().replace("\\", "\\\\")
+    #print(path1)
+    #sys.path.insert(0,os.getcwd().replace("/", "\\"))
+    #sys.path.insert(0,(sys.path[0]+'/Helper').replace("/", "\\") )
+   # print("os python" + os.environ['PYTHONPATH'])
+
+    #print('path ' + str(sys.path))
+
     DNSFunctions.makeDirectories()
+    DNSFunctions.initLogger()
+    DNSFunctions.printLogo(version=VERSION,modifyDate=MODIFY_DATE)
     DNSFunctions.killprocess(PORT)
     DNSFunctions.setDebuggingMode(DEBUG)
     #DNSFunctions.setAdversaryMode(ADVERSARY_MODE)
