@@ -19,13 +19,14 @@ from enum import Enum
 from .Helper import Helper
 from .Helper import MSG_TYPES
 from .Helper import LogData
+from .Helper import TIME_FORMAT
 
 
 JSON_REQUESTS_PATH = 'JSON/NormalRequests/DNSRequestNodes'
 JSON_REQUESTS_PATH_CHECK = 'JSON/CheckingRequests/DNSRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
 ERRORS_LOG_PATH = 'Logs/Errors/'
 
-DEBUG = False
+DEBUG = True
 COUNTER = 0
 
 
@@ -55,6 +56,36 @@ def setAdversaryMode(adversary_mode):
 def loggingData(value):
     file = LogData(filename='incoming_request', mode='out')
     file.wirteIntoFile(value)
+
+
+
+# Log all the incoming DNS request and return the logged row as string
+def logDNSRequest(counter,status, recordType, requestId, srcIP, srcPort, domain, modifiedDomain='', mode='none'):
+    """Help for the bar method of Foo classes"""
+    date = Helper.getTime(TIME_FORMAT.FULL)
+    printedRow= ''
+
+
+    if status =='ERROR':
+        if modifiedDomain == '':
+            printedRow = ('%s - %d: ** ERROR ** : | RecordType: %s | RequestId: %s | SrcIP: %s  |  SrcPort: %d  |  Domain: %s ' %
+                        (date,counter, recordType, requestId, srcIP, srcPort, domain))
+        else:
+            printedRow = ('%s - %d: ** ERROR ** : | RecordType: %s | RequestId: %s | SrcIP: %s  |  SrcPort: %d  |  Domain: %s  |  Modified Domain: %s' %
+                        (date,counter,recordType,requestId,srcIP,srcPort,domain,modifiedDomain))
+        printStatus = MSG_TYPES.ERROR
+
+    elif status =='OKAY':
+        if modifiedDomain == '':
+            printedRow = ('%s - %d: | RecordType: %s | RequestId: %s | SrcIP: %s  |  SrcPort: %d  |  Domain: %s ' %
+                        (date,counter, recordType, requestId, srcIP, srcPort, domain))
+        else:
+            printedRow = ('%s - %d: | RecordType: %s | RequestId: %s | SrcIP: %s  |  SrcPort: %d  |  Domain: %s  |  Modified Domain: %s' %
+                        (date,counter,recordType,requestId,srcIP,srcPort,domain,modifiedDomain))
+        printStatus = MSG_TYPES.RESULT
+
+    loggingData(printedRow)
+    return (printedRow,printStatus)
 
 #
 def killprocess(port):
@@ -128,7 +159,7 @@ def bin_to_hex(value):
 # TODO: need to implement a class
 def storeDNSRequestJSON(status, time, recordType, transactionID, srcIP, srcPort, domain, modifiedDomain='none', mode='none'):
     """Help for the bar method of Foo classes"""
-    date = Helper.getTime(2)
+    date = Helper.getTime(TIME_FORMAT.DATE)
     pathDirt = ''
     if mode == 'check':
         path = JSON_REQUESTS_PATH_CHECK
@@ -179,7 +210,7 @@ def storeDNSRequestJSON(status, time, recordType, transactionID, srcIP, srcPort,
 #
 def storeDNSRequestJSONText(status, time, recordType, transactionID, srcIP, srcPort, domain, modifiedDomain='none', mode='none'):
     """Help for the bar method of Foo classes"""
-    date = Helper.getTime(2)
+    date = Helper.getTime(TIME_FORMAT.DATE)
 
     if mode == 'check':
         file = JSON_REQUESTS_PATH_CHECK + '_' + date + '.json'
@@ -266,11 +297,12 @@ def getFlags(flags):
     response_Flag = ''
 
     # First byte contains:  QR: 1 bit | Opcode: 4 bits  | AA: 1 bit | TC: 1 bit  |RD: 1 bit
+
     byte1 = bytes(flags[:1])
     # Second byte contains:  RA: 1 bit | Z: 3 bits  | RCODE: 4 bit
     byte2 = bytes(flags[1:2])
 
-    QR = '1'  # query: 0 , response: 0.
+    QR = '1'  # QR: indicates whether the packet is a request (0) or a response (1).
     # OPCODE
     OPCODE = ''
     for bit in range(1, 5):
@@ -290,9 +322,19 @@ def getFlags(flags):
 
     # Response code
     RCODE = '0000'
+    try:
+        response_Flag = int(QR + OPCODE + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
+        #response_Flag = int(QR + '0000' + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
+    except:
+        response_Flag = int(QR + '0001' + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
+        print('------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
 
-    response_Flag = int(QR + OPCODE + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
-    #response_Flag = int(QR + '0000' + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
+        print('OPCODE' + str(OPCODE))
+        print('QR' + str(QR))
+        print('AA' + str(AA))
+        print('TC' + str(TC))
+        print('RD' + str(RD))
+        print(str(int(QR + OPCODE + AA + TC + RD, 2)))
 
     return response_Flag
 
@@ -362,7 +404,7 @@ def getQuestionDomain(data):
 
     return (domainParts, questionType)
 
-#
+# TODO : Need to be deleted
 def getQuestionDomain_temp(data):
     state = 0
     expectedlength = 0
@@ -462,7 +504,7 @@ def recordToBytes(domainName, recordType, recordTTL, recordValue):
     if recordType == RECORD_TYPES.A.name:
         recordBytes = recordBytes + bytes([0]) + bytes([1])
 
-    # TODO: need to handle IP6-AAAA
+    # TODO: need to handle IPv6-AAAA
     elif recordType == RECORD_TYPES.AAAA.name:
         recordBytes = recordBytes + bytes([0]) + bytes([1])
 
@@ -474,12 +516,10 @@ def recordToBytes(domainName, recordType, recordTTL, recordValue):
         recordBytes = recordBytes + bytes([0]) + bytes([4])
         for part in recordValue.split('.'):
             recordBytes += bytes([int(part)])
-
-
     return recordBytes
 
 #
-def getResponse(data, addr,case_sensitive = False):
+def getResponse(data, addr,case_sensitive = False,withoutRequestId=False):
     # ********************************** DNS Header
     # Transaction ID
     TransactionID_Byte = data[:2]
@@ -511,13 +551,22 @@ def getResponse(data, addr,case_sensitive = False):
     # Additional count
     ARCOUNT = (0).to_bytes(2, byteorder='big')
 
-    DNSHeader = TransactionID_Byte + Flags + QDCOUNT + ANCOUNT + NSCOUNT + ARCOUNT
+    RealDNSHeader_Test = b' ' # for testing
+    if withoutRequestId is False:
+        DNSHeader = TransactionID_Byte + Flags + QDCOUNT + ANCOUNT + NSCOUNT + ARCOUNT
+    else:
+        # BUILD THE HEADER WITHOUT THE TRANSACTION ID/REQUEST ID, AFTER FORGE IT, WILL BE ADDED TO THE HEADER
+        DNSHeader = Flags + QDCOUNT + ANCOUNT + NSCOUNT + ARCOUNT
+        RealDNSHeader_Test = TransactionID_Byte + Flags + QDCOUNT + ANCOUNT + NSCOUNT + ARCOUNT
+
     if DEBUG is True:
         dnsH = ''
         print('DNS HEADER: ' + str(DNSHeader))
+        print('DNS HEADER_test: ' + str(RealDNSHeader_Test))
+
         for byte in DNSHeader:
             dnsH += hex(byte)[2:]
-        print(dnsH)
+        print('DNSHeader:' + dnsH)
 
     # ********************************** DNS Question
 
@@ -526,41 +575,20 @@ def getResponse(data, addr,case_sensitive = False):
     global COUNTER
     COUNTER += 1
     transactionID= str(int(TransactionID,16))
+    srcIP = addr[0]
+    srcPort = addr[1]
     domain = '.'.join(map(str, domainName))[:-1]
     status = 'Okay'
-    '''
-    if recStatus == 'ERROR': # TODO: need to handle the exception in better way
-        loggingData(str(COUNTER) + ': ** ERROR ** : RecordType: '+recordType+' | RequestId: '+transactionID+' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain)
-        status = 'ERROR'
-        print(term.format(str(
-            COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' +  addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n',term.Color.RED))
 
-    else:
-        loggingData(str(COUNTER) + ': RecordType: '+recordType+' | RequestId: '+transactionID+' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain)
-        status = 'OKAY'
-        print(term.format(str( COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' +
-                          addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain: ' + domain + '\n', term.Color.GREEN))
-
-        #storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain)
-    '''
-    time = Helper.getTime(3)
+    time = Helper.getTime(TIME_FORMAT.TIME)
     if case_sensitive is True and 'check_' in domain.lower():  # need to be more dynamic
         modifiedDomain = domain # without permutation
         if 're_check_' not in domain.lower(): # re_check without permutation
             domainName = getLetterCaseSawped(domainName)
             modifiedDomain = '.'.join(map(str, domainName))[:-1]
 
-        if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
-            loggingData(str(
-                COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain +'  |  Modified Domain: ' + modifiedDomain)
-            status = 'ERROR'
-            print(term.format(str(COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain +'\n', term.Color.RED))
-
-        else:
-            loggingData(str(COUNTER) + ': RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain + '  |  Modified Domain: ' + modifiedDomain)
-            status = 'OKAY'
-            print(term.format(str(COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain + '\n',
-                              term.Color.GREEN))
+        printedRow,printStatus = logDNSRequest(counter=COUNTER,status=recStatus, recordType=recordType, requestId=transactionID, srcIP=srcIP, srcPort=srcPort, domain=domain, modifiedDomain=modifiedDomain, mode='none')
+        Helper.printOnScreenAlways(printedRow,printStatus)
 
         if 'Check_' in domain:
             storeDNSRequestJSON(status=status, time=time,recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain,mode='check')
@@ -568,16 +596,12 @@ def getResponse(data, addr,case_sensitive = False):
             storeDNSRequestJSON(status=status, time=time,recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain)
 
     else:
-        if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
-            loggingData(str(COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain)
-            status = 'ERROR'
-            print(term.format(str(COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain: ' + domain + '\n', term.Color.RED))
 
-        else:
-            loggingData(str(COUNTER) + ': RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain)
-            status = 'OKAY'
-            print(term.format(str(COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain: ' + domain + '\n',
-                              term.Color.GREEN))
+        printedRow, printStatus = logDNSRequest(counter=COUNTER, status=recStatus, recordType=recordType,
+                                                requestId=transactionID, srcIP=srcIP, srcPort=srcPort, domain=domain,
+                                                 mode='none')
+        Helper.printOnScreenAlways(printedRow, printStatus)
+
         if 'Check_' in domain:
             storeDNSRequestJSON(status=status, time=time,recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, mode='check')
         else:
@@ -588,20 +612,24 @@ def getResponse(data, addr,case_sensitive = False):
     if DEBUG is True:
         print('DNSQuestion: ' + str(DNSQuestion))
 
-    # ********************************** DNS Body
+
     # ********************************** DNS Body
     DNSBody = b''
     for record in records:
         DNSBody += recordToBytes(domainName, recordType, record['ttl'], record['value'])
+
     if DEBUG is True:
-        print(DNSBody)
-    return DNSHeader + DNSQuestion + DNSBody
+        print('DNSBody: '+str(DNSBody))
+        print(str(DNSHeader) + '\n' + str(DNSQuestion)+'\n' + str(DNSBody ))
+
+    return (DNSHeader + DNSQuestion + DNSBody)  #, (RealDNSHeader_Test + DNSQuestion + DNSBody)
 
 
 # </editor-fold>
 
 #<editor-fold desc="******************* DNS Forged *******************">
 #
+# TODO: need to be deleted
 def getForgedResponse(data, addr, case_sensitive=True):
     # ********************************** DNS Header
     # Transaction ID
@@ -633,13 +661,11 @@ def getForgedResponse(data, addr, case_sensitive=True):
     # Additional count
     ARCOUNT = (0).to_bytes(2, byteorder='big')
 
-    Forged = True
-    if Forged is True:
-        pass
-        #TransactionID_Byte = BruteFouceTransactionID(TransactionID_Byte)
+    #*****
+    # BUILD THE HEADER WITHOUT THE TRANSACTION ID/REQUEST ID, AFTER FORGE IT, WILL BE ADDED TO THE HEADER
+    #*****  DNSHeader = TransactionID_Byte + Flags + QDCOUNT + ANCOUNT + NSCOUNT + ARCOUNT
     DNSHeader = Flags + QDCOUNT + ANCOUNT + NSCOUNT + ARCOUNT
 
-#    DNSHeader = TransactionID_Byte + Flags + QDCOUNT + ANCOUNT + NSCOUNT + ARCOUNT
     if DEBUG is True:
         dnsH = ''
         print('DNS HEADER: ' + str(DNSHeader))
@@ -655,49 +681,44 @@ def getForgedResponse(data, addr, case_sensitive=True):
     COUNTER += 1
     transactionID = str(int(TransactionID, 16))
     domain = '.'.join(map(str, domainName))[:-1]
+    srcIP = addr[0]
+    srcPort = addr[1]
     status = 'Okay'
-    '''
-    if recStatus == 'ERROR': # TODO: need to handle the exception in better way
-        loggingData(str(COUNTER) + ': ** ERROR ** : RecordType: '+recordType+' | RequestId: '+transactionID+' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain)
-        status = 'ERROR'
-        print(term.format(str(
-            COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' +  addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n',term.Color.RED))
 
-    else:
-        loggingData(str(COUNTER) + ': RecordType: '+recordType+' | RequestId: '+transactionID+' | SrcIP: ' + addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain)
-        status = 'OKAY'
-        print(term.format(str( COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' +
-                          addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n', term.Color.GREEN))
-
-        #storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain)
-    '''
-    time = Helper.getTime(3)
+    time = Helper.getTime(TIME_FORMAT.TIME)
     if case_sensitive is True:
         domainName = getLetterCaseSawped(domainName)
         modifiedDomain = '.'.join(map(str, domainName))[:-1]
-        if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
-            loggingData(str(
-                COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' +
-                        addr[0] + '  |  SrcPort: ' + str(
-                addr[1]) + '  |  Domain: ' + domain + '  |  Modified Domain: ' + modifiedDomain)
-            status = 'ERROR'
-            print(term.format(str(
-                COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' +
-                              addr[0] + ' : Port: ' + str(
-                addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain + '\n',
-                              term.Color.RED))
 
-        else:
-            loggingData(
-                str(COUNTER) + ': RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[
-                    0] + '  |  SrcPort: ' + str(
-                    addr[1]) + '  |  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain)
-            status = 'OKAY'
-            print(term.format(str(
-                COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' +
-                              addr[0] + ' : Port: ' + str(
-                addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain + '\n',
-                              term.Color.GREEN))
+        printedRow, printStatus = logDNSRequest(counter=COUNTER, status=recStatus, recordType=recordType,
+                                                requestId=transactionID, srcIP=srcIP, srcPort=srcPort, domain=domain,
+                                                modifiedDomain=modifiedDomain, mode='none')
+        Helper.printOnScreenAlways(printedRow, printStatus)
+
+        # if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
+        #     loggingData(str(
+        #         COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' +
+        #                 addr[0] + '  |  SrcPort: ' + str(
+        #         addr[1]) + '  |  Domain: ' + domain + '  |  Modified Domain: ' + modifiedDomain)
+        #     status = 'ERROR'
+        #     print(term.format(str(
+        #         COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' +
+        #                       addr[0] + ' : Port: ' + str(
+        #         addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain + '\n',
+        #                       term.Color.RED))
+
+        # else:
+        #     loggingData(
+        #         str(COUNTER) + ': RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[
+        #             0] + '  |  SrcPort: ' + str(
+        #             addr[1]) + '  |  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain)
+        #     status = 'OKAY'
+        #     print(term.format(str(
+        #         COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' +
+        #                       addr[0] + ' : Port: ' + str(
+        #         addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain + '\n',
+        #                       term.Color.GREEN))
+
         if 'Check_' in domain:
             storeDNSRequestJSON(status=status, time=time, recordType=recordType, transactionID=transactionID,
                             srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain, mode='check')
@@ -705,24 +726,33 @@ def getForgedResponse(data, addr, case_sensitive=True):
             storeDNSRequestJSON(status=status, time=time, recordType=recordType, transactionID=transactionID,
                             srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain)
     else:
-        if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
-            loggingData(str(
-                COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' +
-                        addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain)
-            status = 'ERROR'
-            print(term.format(str(
-                COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' +
-                              addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n', term.Color.RED))
 
-        else:
-            loggingData(
-                str(COUNTER) + ': RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[
-                    0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain)
-            status = 'OKAY'
-            print(term.format(str(
-                COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' +
-                              addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n',
-                              term.Color.GREEN))
+
+        # if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
+        #     loggingData(str(
+        #         COUNTER) + ': ** ERROR ** : RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' +
+        #                 addr[0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain: ' + domain)
+        #     status = 'ERROR'
+        #     print(term.format(str(
+        #         COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' +
+        #                       addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n', term.Color.RED))
+        #
+        # else:
+        #     loggingData(
+        #         str(COUNTER) + ': RecordType: ' + recordType + ' | RequestId: ' + transactionID + ' | SrcIP: ' + addr[
+        #             0] + '  |  SrcPort: ' + str(addr[1]) + '  |  Domain : ' + domain)
+        #     status = 'OKAY'
+        #     print(term.format(str(
+        #         COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' +
+        #                       addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n',
+        #                       term.Color.GREEN))
+
+
+        printedRow, printStatus = logDNSRequest(counter=COUNTER, status=recStatus, recordType=recordType,
+                                                requestId=transactionID, srcIP=srcIP, srcPort=srcPort, domain=domain,
+                                                 mode='none')
+        Helper.printOnScreenAlways(printedRow, printStatus)
+
         if 'Check_' in domain:
             storeDNSRequestJSON(status=status, time=time, recordType=recordType, transactionID=transactionID,
                                 srcIP=addr[0], srcPort=str(addr[1]), domain=domain, mode='check')
@@ -734,7 +764,6 @@ def getForgedResponse(data, addr, case_sensitive=True):
     if DEBUG is True:
         print('DNSQuestion: ' + str(DNSQuestion))
 
-    # ********************************** DNS Body
     # ********************************** DNS Body
 
     DNSBody = b''
@@ -748,25 +777,33 @@ def getForgedResponse(data, addr, case_sensitive=True):
     return DNSHeader + DNSQuestion + DNSBody
 
 #   generate Request Id
-def generateResponseWithRequestId(response,sock,addr,times):
+def generateResponseWithRequestId(response,sock,addr,times): #,expectedID=0,resp=''):
     try:
         r = 1
         while r <= 1:
             print("Round: " + str(r))
-            requestIds = []
             requestIds = [random.randint(1, 65536) for i in range(times)]
             requestIds.sort()
             index = 0
+            hafltimes= times/2
             for requestId in requestIds:  #range (1, 10000): # 1000 time should be enoght
-
                 index+=1
                 print('R: '+str(r)+' - '+str(index) +'- Transaction ID: ' + str(requestId))
                 TransactionID_Byte = (requestId).to_bytes(2, byteorder='big')
-                response = TransactionID_Byte + response
+                finalResponse = TransactionID_Byte + response
+                # if hafltimes == index:
+                #     TransactionID_Byte = (int(expectedID)).to_bytes(2, byteorder='big')
+                #     finalResponse = TransactionID_Byte + response
+                #
+                #     print('expectedID: '+str(expectedID))
+                #     print('Real: '+str(resp))
+                #     print('Fake: ' + str(finalResponse))
+                #     sock.sendto(finalResponse, addr)
+                #     break
                 # print(str(response))
                 # print('Response :)')
                 # print(str(response))
-                sock.sendto(response, addr)
+                sock.sendto(finalResponse, addr)
             r = r+1
     except Exception as ex:
         logging.error('DNSFunctions - generateResponseWithRequestId:\n %s ' % traceback.format_exc())
@@ -774,7 +811,6 @@ def generateResponseWithRequestId(response,sock,addr,times):
 #   generate Request Id
 def generateResponseWithPortNumber(response,sock,addr,times):
     try:
-        portNumbers = []
         portNumbers = [random.randint(1, 65536) for i in range(times)]
         portNumbers.sort()
         index=0
@@ -785,6 +821,7 @@ def generateResponseWithPortNumber(response,sock,addr,times):
             lst[1] = portNumber
             addr = tuple(lst)
             sock.sendto(response, addr)
+
     except Exception as ex:
         logging.error('DNSFunctions - generateResponseWithPortNumber: \n %s ' % traceback.format_exc())
 

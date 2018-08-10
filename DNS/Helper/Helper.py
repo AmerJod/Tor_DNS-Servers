@@ -20,6 +20,11 @@ class MODE_TYPES(Enum):
     printing = '-out'
     none = '-none'
 
+class TIME_FORMAT(Enum):
+    FULL = 'full'
+    DATE = 'date'
+    TIME = 'time'
+
 class MSG_TYPES(Enum):
     RESULT = term.Color.GREEN
     ERROR = term.Color.RED
@@ -44,7 +49,7 @@ class Helper:
             print(msg) # could be like this
 
     def initLogger(level,enableConsole=False):
-        date = Helper.getTime(2)
+        date = Helper.getTime(TIME_FORMAT.DATE)
         file = ("%sE-%s.log" % (ERRORS_LOG_PATH, date))
         # set up logging to file - see previous section for more details
         logging.basicConfig(level=int(level),
@@ -67,18 +72,22 @@ class Helper:
     def loggingError(fuctName, error):
         logging.error(str(error))
 
-    def getTime(opt=1):
+    def getTime(format=TIME_FORMAT.FULL):
         date = datetime.datetime.now()
-        if opt == 1:  # full
-            return (((str(date)).split('.')[0]).split(' ')[1] + ' ' + ((str(date)).split('.')[0]).split(' ')[0])
-        if opt == 2:  # date
-            return (((str(date)).split('.')[0]).split(' ')[0])
-        if opt == 3:  # time
-            return (((str(date)).split('.')[0]).split(' ')[1])
+        try:
+            if format == TIME_FORMAT.FULL:  # full
+                return (((str(date)).split('.')[0]).split(' ')[1] + ' ' + ((str(date)).split('.')[0]).split(' ')[0])
+            if format == TIME_FORMAT.DATE:  # date
+                return (((str(date)).split('.')[0]).split(' ')[0])
+            if format == TIME_FORMAT.TIME:  # time
+                return (((str(date)).split('.')[0]).split(' ')[1])
+        except Exception as ex:
+            print('Helper - getTime: %s' % ex)
+
 
 class LogData():
     def __init__(self, filename, mode='none'):
-        date = Helper.getTime(2)
+        date = Helper.getTime(TIME_FORMAT.DATE)
         self.mode = mode
         '''
         self.file = 'Logs/'+filename+'_'+date+'.log'     # This is hard coded but you could make dynamic
@@ -96,7 +105,7 @@ class LogData():
     def wirteIntoFile(self, raw):
         if self.mode == 'out':
             data = ''
-            raw = str(Helper.getTime(3)) + ': ' + raw
+            #raw = str(Helper.getTime(TIME_FORMAT.TIME)) + ': ' + raw
             with open(self.file, 'r') as file:
                 data = file.read()
             with open(self.file, 'w+') as file:

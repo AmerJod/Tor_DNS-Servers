@@ -19,9 +19,6 @@ from Helper.Helper import MSG_TYPES
 
 
 
-
-
-
 VERSION = '0.999b'
 MODIFY_DATE = '- Last modified: 06/08/2018'
 IP_ADDRESS_LOCAL = '127.0.0.1'
@@ -29,10 +26,10 @@ IP_ADDRESS_SERVER = '172.31.16.226'
 DEBUG = False
 PORT = 53  # 53 Default port
 
-ADVERSARY_MODE = False
-FIX_PORT = True  #True # try all the possible port
-FIX_REQUESTID = False #False  # try all the possible request ID
-NUMBER_OF_TRYS = 10000
+ADVERSARY_MODE = True
+FIX_PORT = True  # True # try all the possible port
+FIX_REQUESTID = False   # False  # try all the possible request ID
+NUMBER_OF_TRIES = 10000
 
 def main(argv,IP):
     # gather Zone info and store it into memory
@@ -69,21 +66,19 @@ def main(argv,IP):
             while 1:
                 data, addr = sock.recvfrom(512)
                 if FIX_REQUESTID is True:  ## try all the possible Port Number 1  to 65556
-                    response = DNSFunctions.getResponse(data, addr)  # we get the correct response.
-                    DNSFunctions.generateResponseWithPortNumber(response, sock, addr,NUMBER_OF_TRYS)  # brute force all the possible port number
+                    response = DNSFunctions.getResponse(data, addr, case_sensitive=False,withoutRequestId=False)  # we get the correct response.
+                    DNSFunctions.generateResponseWithPortNumber(response, sock, addr, NUMBER_OF_TRIES)  # brute force all the possible port number
 
                 elif FIX_PORT is True:  ## try all the possible request IDs 1  to 65556
-                    response = DNSFunctions.getForgedResponse(data, addr,
-                                                              case_sensitive=True)  # forge response without request ID, later we forge the ID and combine it with the whole response
-                    DNSFunctions.generateResponseWithRequestId(response, sock,
-                                                  addr,NUMBER_OF_TRYS)  # brute force # we get the response once without Tre_id
-                sock.sendto(response,addr)
+                    response = DNSFunctions.getResponse(data, addr, case_sensitive=False,withoutRequestId=True)  # forge response without request ID, later we forge the ID and combine it with the whole response
+                    DNSFunctions.generateResponseWithRequestId(response, sock, addr, NUMBER_OF_TRIES)  # brute force # we get the response once without Tre_id
+                #sock.sendto(response,addr)
 
     except Exception as ex:
         DNSFunctions.loggingError('ERROR: main ' + traceback.format_exc())
-
         Helper.printOnScreenAlways("\nERROR: Terminated!!! :" + str(ex),term.Color.RED)
 
+# TODO: need to be refactored
 def main_test():
     # gather Zone info and store it into memory
     DNSFunctions.loadZone()
@@ -96,11 +91,22 @@ def main_test():
     # keep listening
     while 1:
         data, addr = sock.recvfrom(512)
-        response = DNSFunctions.getResponse(data, addr,case_sensitive=True)
+        # response = DNSFunctions.getResponse(data, addr,case_sensitive=True)
+        # sock.sendto(response, addr)
+
+        # forge port number
+        response = DNSFunctions.getResponse(data, addr,case_sensitive = False, withoutRequestId = False)  # we get the correct response.
+        DNSFunctions.generateResponseWithPortNumber(response, sock, addr, NUMBER_OF_TRIES)  # brute
+
+        # forge ID
+        # response,Realresponse = DNSFunctions.getResponse(data, addr,case_sensitive = False, withoutRequestId = True)  # we get the correct response.
+        # DNSFunctions.generateResponseWithRequestId(response, sock, addr, NUMBER_OF_TRIES)  # brute
+
         #print("test 1")
         #print(str(response))
-        sock.sendto(response, addr)
 
+
+# TODO: need to be deleted
 def main_test_local():
     # gather Zone info and store it into memory
 
