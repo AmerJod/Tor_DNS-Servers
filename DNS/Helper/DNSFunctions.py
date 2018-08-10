@@ -11,13 +11,14 @@ import glob
 import random
 import logging
 import logging.config
+import traceback
 
 from stem.util import term
 from enum import Enum
 
 from .Helper import Helper
 from .Helper import MSG_TYPES
-from .Helper import MODE_TYPES
+from .Helper import LogData
 
 
 JSON_REQUESTS_PATH = 'JSON/NormalRequests/DNSRequestNodes'
@@ -29,77 +30,33 @@ COUNTER = 0
 
 
 #<editor-fold desc="******************* General Tools *******************">
-class LogData():
-    def __init__(self, filename, mode='none'):
-        date = getTime(2)
-        self.mode = mode
-        '''
-        self.file = 'Logs/'+filename+'_'+date+'.log'     # This is hard coded but you could make dynamic
 
-        if (os.path.exists(self.file)) != True:
-            with open(self.file, 'w+') as file:
-                file.write('Start - '+date +'\n')
-        '''
-        # TODO: need refactoring - make it more abstract
-        self.file = 'Logs/' + filename + '_' + date + '_counter+.txt'
-        if (os.path.exists(self.file)) != True:
-            with open(self.file, 'w+') as file:
-                file.write('Start - ' + date + '\n')
+class RECORD_TYPES(Enum):
+    A       = b'\x00\x01'  # specifies  IP4 Address
+    CNAME   = b'\x00\x05'  # aliases
+    MX      = b'\x00\x0f'  # mail exchange server for DNS
+    NS      = b'\x00\x02'  # authoritative name server
+    TXT     = b'\x00\x10'  # arbitrary non-formatted text string.
+    AAAA    = b'\x00\x1c'  # specifies IP6 Address
+    ANY     = b'\x00\xff'
 
-    def wirteIntoFile(self, raw):
-        if self.mode == 'out':
-            data = ''
-            raw = str(getTime(3)) + ': ' + raw
-            with open(self.file, 'r') as file:
-                data = file.read()
-            with open(self.file, 'w+') as file:
-                file.write(data)
-                file.write(raw + '\n')
-
-    def counter(self):
-        pass
-
-def initLogger():
-    date = getTime(2)
-    file = ("%sE-%s.log" % (ERRORS_LOG_PATH,date) )
-    # set up logging to file - see previous section for more details
-    logging.basicConfig(level=logging.ERROR,
-                        format='%(asctime)-s %(name)-8s %(levelname)-8s %(message)s',
-                        datefmt='%Y-%m-%d %H:%M',
-                        filename=file,
-                        filemode='w')
-    # define a Handler which writes INFO messages or higher to the sys.stderr
-    console = logging.StreamHandler()
-    console.setLevel(logging.INFO)
-    # set a format which is simpler for console use
-    formatter = logging.Formatter('%(asctime)-s %(name)-12s: %(levelname)-8s %(message)s')
-    # tell the handler to use this format
-    console.setFormatter(formatter)
-    # add the handler to the root logger
-    logging.getLogger('').addHandler(console)
-
-def loggingError(fuctName,error):
-    logging.error('DNSFunction - storeDNSRequestJSON - JSON invalid : %s' % str(er))
-
+# class TASK_MODE(Enum):
+#     request = '-out'
+#     TorconnectionChecking = '-none'
+#
 def setDebuggingMode(debug):
     DEBUG = debug
 
+#
 def setAdversaryMode(adversary_mode):
     ADVERSARY_MODE = adversary_mode
 
-def getTime(opt = 1):
-    date = datetime.datetime.now()
-    if opt == 1:    # full
-        return (((str(date)).split('.')[0]).split(' ')[1] + ' ' + ((str(date)).split('.')[0]).split(' ')[0])
-    if opt == 2:    # date
-        return (((str(date)).split('.')[0]).split(' ')[0])
-    if opt == 3:    # time
-        return (((str(date)).split('.')[0]).split(' ')[1])
-
+#
 def loggingData(value):
     file = LogData(filename='incoming_request', mode='out')
     file.wirteIntoFile(value)
 
+#
 def killprocess(port):
     try:
         os.system('freeport %s' % port)
@@ -107,6 +64,7 @@ def killprocess(port):
     except Exception as ex:
         logging.error('DNSFunctions - killprocess: %s' % ex)
 
+#
 def printLogo(version,modifyDate):
     try:
         print(term.format(('\n                           Starting Mini DNS Server.. v%s ' % version + modifyDate), term.Color.YELLOW))
@@ -128,7 +86,7 @@ def printDebugMode(values):
         for string in values:
             print(string)
 
-# make the directories in case they are missing
+#   make the directories in case they are missing
 def makeDirectories():
     try:
 
@@ -150,22 +108,16 @@ def makeDirectories():
 
     except Exception as ex:
         Helper.printOnScreenAlways(ex, term.Color.RED)
-        logging.error('DNSFunctions - makeDirectories: %s' % ex)
+        logging.error('DNSFunctions - makeDirectories: %s' % traceback.format_exc())
 
-class RECORD_TYPES(Enum):
-    A       = b'\x00\x01'  # specifies  IP4 Address
-    CNAME   = b'\x00\x05'  # aliases
-    MX      = b'\x00\x0f'  # mail exchange server for DNS
-    NS      = b'\x00\x02'  # authoritative name server
-    TXT     = b'\x00\x10'  # arbitrary non-formatted text string.
-    AAAA    = b'\x00\x1c'  # specifies IP6 Address
-    ANY     = b'\x00\xff'
 
+#
 def int_to_hex(value, zfill=None):
     h = hex(value)  # 300 -> '0x12c'
     h = h[2:].zfill((zfill or 0) * 2)  # '0x12c' -> '00012c' if zfill=3
     return h.decode('hex')
 
+#
 def bin_to_hex(value):
     # http://stackoverflow.com/questions/2072351/python-conversion-from-binary-string-to-hexadecimal/2072384#2072384
     # '0000 0100 1000 1101' -> '\x04\x8d'
@@ -176,7 +128,7 @@ def bin_to_hex(value):
 # TODO: need to implement a class
 def storeDNSRequestJSON(status, time, recordType, transactionID, srcIP, srcPort, domain, modifiedDomain='none', mode='none'):
     """Help for the bar method of Foo classes"""
-    date = getTime(2)
+    date = Helper.getTime(2)
     pathDirt = ''
     if mode == 'check':
         path = JSON_REQUESTS_PATH_CHECK
@@ -189,21 +141,19 @@ def storeDNSRequestJSON(status, time, recordType, transactionID, srcIP, srcPort,
     jsons = {}
 
     if (os.path.exists(pathFile)) != True:  # check if the file exist, if not create it.
-        with open(pathFile, 'w+') as jsonfile:
+        with open(pathFile, 'w+') as jsonfile: # not exist
             json.dump(' ', jsonfile)
     else:
         try:
             with open(pathFile, 'r') as jsonfile:
                 jsons = json.load(jsonfile)
+
         except ValueError as er:
-            pathFile = ('%s_%s_E%s.json' % (path, date,random.randint(1,50)))
-            logging.error('DNSFunction - storeDNSRequestJSON - JSON invalid : %s' % str(er))
+            logging.error('DNSFunction - storeDNSRequestJSON - JSON invalid - file: %s : %s' % (path,str(er)))
+            os.rename(pathFile, ('%s_%s_error_%d.json' % (path,date,random.randint(1,50))))
 
-
-            with open(pathFile, 'w+') as jsonfile:
+            with open(pathFile, 'a+') as jsonfile:
                     json.dump(' ', jsonfile)
-
-
 
     if domain[-1:] == '.':
         domain = domain[:-1]
@@ -226,9 +176,10 @@ def storeDNSRequestJSON(status, time, recordType, transactionID, srcIP, srcPort,
         # Write into Json file
         json.dump(jsons, jsonfile)
 
+#
 def storeDNSRequestJSONText(status, time, recordType, transactionID, srcIP, srcPort, domain, modifiedDomain='none', mode='none'):
     """Help for the bar method of Foo classes"""
-    date = getTime(2)
+    date = Helper.getTime(2)
 
     if mode == 'check':
         file = JSON_REQUESTS_PATH_CHECK + '_' + date + '.json'
@@ -288,9 +239,7 @@ def loadZone():
     global ZONEDATA
     jsonZone = {}   # dictionary
     zoneFiles = glob.glob('Zones/*.zone')
-
     printDebugMode(zoneFiles) # Debug
-
     for zone in zoneFiles:
         with open(zone) as zonedata:
             data = json.load(zonedata)
@@ -299,20 +248,20 @@ def loadZone():
     ZONEDATA = jsonZone
     Helper.printOnScreenAlways("\n              =--------------**Zone file has been loaded**--------------=",MSG_TYPES.RESULT)
 
-
+#   get zone and domain name
 def getZone(domain):
     global ZONEDATA
     try:
         zoneName = '.'.join(domain[-3:]).lower()
         return ZONEDATA[zoneName]
     except Exception as ex:
-        logging.error('DNSFunctions - getZone: %s ' % str(ex))
+        logging.error('DNSFunctions - getZone: \n%s ' % traceback.format_exc())
         return ''
 
 # </editor-fold>
 
 #<editor-fold desc="******************* DNS Tools/Rspoonse *******************">
-
+#
 def getFlags(flags):
     response_Flag = ''
 
@@ -347,7 +296,7 @@ def getFlags(flags):
 
     return response_Flag
 
-
+#
 def getQuestionDomain(data):
     state = 1
     index=0
@@ -413,6 +362,7 @@ def getQuestionDomain(data):
 
     return (domainParts, questionType)
 
+#
 def getQuestionDomain_temp(data):
     state = 0
     expectedlength = 0
@@ -442,6 +392,7 @@ def getQuestionDomain_temp(data):
 
     return (domainparts, questiontype)
 
+#
 def getLetterCaseSawped(dmoainParts):
     newParts =  dmoainParts[:-3] # save all the elements but  not the last 3  including ''
     dmoainParts = dmoainParts[-3:] # get only last 3 elemnets of the list exmaple.com.
@@ -451,6 +402,7 @@ def getLetterCaseSawped(dmoainParts):
         newParts.append(part)
     return newParts
 
+#
 def getRecs(data):
     try:
         domain, questionType = getQuestionDomain(data)
@@ -484,9 +436,10 @@ def getRecs(data):
 
         return (zone[qt], qt, domain,'OKAY')
     except Exception as ex:
-        logging.error('DNSFunctions - getRecs: %s ' % str(ex))
+        logging.error('DNSFunctions - getRecs: \n%s ' % traceback.format_exc())
         return ('', qt , domain, 'ERROR')
 
+#
 def buildQuestion(domainName, recordType):  # convert str into byte
     questionBytes = b''
 
@@ -503,6 +456,7 @@ def buildQuestion(domainName, recordType):  # convert str into byte
     questionBytes += (1).to_bytes(2, byteorder='big')
     return questionBytes
 
+#
 def recordToBytes(domainName, recordType, recordTTL, recordValue):
     recordBytes = b'\xc0\x0c'  # Pointer to domain name
     if recordType == RECORD_TYPES.A.name:
@@ -524,6 +478,7 @@ def recordToBytes(domainName, recordType, recordTTL, recordValue):
 
     return recordBytes
 
+#
 def getResponse(data, addr,case_sensitive = False):
     # ********************************** DNS Header
     # Transaction ID
@@ -588,6 +543,7 @@ def getResponse(data, addr,case_sensitive = False):
 
         #storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain)
     '''
+    time = Helper.getTime(3)
     if case_sensitive is True and 'check_' in domain.lower():  # need to be more dynamic
         modifiedDomain = domain # without permutation
         if 're_check_' not in domain.lower(): # re_check without permutation
@@ -607,9 +563,9 @@ def getResponse(data, addr,case_sensitive = False):
                               term.Color.GREEN))
 
         if 'Check_' in domain:
-            storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain,mode='check')
+            storeDNSRequestJSON(status=status, time=time,recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain,mode='check')
         else:
-            storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain)
+            storeDNSRequestJSON(status=status, time=time,recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain)
 
     else:
         if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
@@ -623,9 +579,9 @@ def getResponse(data, addr,case_sensitive = False):
             print(term.format(str(COUNTER) + ': ' + status + ' -  RecordType: ' + recordType + '  - RequestId: ' + transactionID + '   From: IP ' + addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain: ' + domain + '\n',
                               term.Color.GREEN))
         if 'Check_' in domain:
-            storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, mode='check')
+            storeDNSRequestJSON(status=status, time=time,recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, mode='check')
         else:
-            storeDNSRequestJSON(status=status, time=getTime(3), recordType=recordType, transactionID=transactionID,
+            storeDNSRequestJSON(status=status, time=time, recordType=recordType, transactionID=transactionID,
                                 srcIP=addr[0], srcPort=str(addr[1]), domain=domain)
 
     DNSQuestion = buildQuestion(domainName, recordType)
@@ -645,7 +601,7 @@ def getResponse(data, addr,case_sensitive = False):
 # </editor-fold>
 
 #<editor-fold desc="******************* DNS Forged *******************">
-
+#
 def getForgedResponse(data, addr, case_sensitive=True):
     # ********************************** DNS Header
     # Transaction ID
@@ -715,7 +671,7 @@ def getForgedResponse(data, addr, case_sensitive=True):
 
         #storeDNSRequestJSON(status=status, time=getTime(3),recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain)
     '''
-
+    time = Helper.getTime(3)
     if case_sensitive is True:
         domainName = getLetterCaseSawped(domainName)
         modifiedDomain = '.'.join(map(str, domainName))[:-1]
@@ -743,10 +699,10 @@ def getForgedResponse(data, addr, case_sensitive=True):
                 addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain + '\n',
                               term.Color.GREEN))
         if 'Check_' in domain:
-            storeDNSRequestJSON(status=status, time=getTime(3), recordType=recordType, transactionID=transactionID,
+            storeDNSRequestJSON(status=status, time=time, recordType=recordType, transactionID=transactionID,
                             srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain, mode='check')
         else:
-            storeDNSRequestJSON(status=status, time=getTime(3), recordType=recordType, transactionID=transactionID,
+            storeDNSRequestJSON(status=status, time=time, recordType=recordType, transactionID=transactionID,
                             srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain)
     else:
         if recStatus == 'ERROR':  # TODO: need to handle the exception in better way
@@ -768,10 +724,10 @@ def getForgedResponse(data, addr, case_sensitive=True):
                               addr[0] + ' : Port: ' + str(addr[1]) + '  -  Domain : ' + domain + '\n',
                               term.Color.GREEN))
         if 'Check_' in domain:
-            storeDNSRequestJSON(status=status, time=getTime(3), recordType=recordType, transactionID=transactionID,
+            storeDNSRequestJSON(status=status, time=time, recordType=recordType, transactionID=transactionID,
                                 srcIP=addr[0], srcPort=str(addr[1]), domain=domain, mode='check')
         else:
-            storeDNSRequestJSON(status=status, time=getTime(3), recordType=recordType, transactionID=transactionID,
+            storeDNSRequestJSON(status=status, time=time, recordType=recordType, transactionID=transactionID,
                             srcIP=addr[0], srcPort=str(addr[1]), domain=domain)
 
     DNSQuestion = buildQuestion(domainName, recordType)
@@ -791,8 +747,7 @@ def getForgedResponse(data, addr, case_sensitive=True):
 
     return DNSHeader + DNSQuestion + DNSBody
 
-
-# generate Request Id
+#   generate Request Id
 def generateResponseWithRequestId(response,sock,addr,times):
     try:
         r = 1
@@ -814,9 +769,9 @@ def generateResponseWithRequestId(response,sock,addr,times):
                 sock.sendto(response, addr)
             r = r+1
     except Exception as ex:
-        logging.error('DNSFunctions - generateResponseWithRequestId: %s ' % str(ex))
+        logging.error('DNSFunctions - generateResponseWithRequestId:\n %s ' % traceback.format_exc())
 
-# generate Request Id
+#   generate Request Id
 def generateResponseWithPortNumber(response,sock,addr,times):
     try:
         portNumbers = []
@@ -831,7 +786,7 @@ def generateResponseWithPortNumber(response,sock,addr,times):
             addr = tuple(lst)
             sock.sendto(response, addr)
     except Exception as ex:
-        logging.error('DNSFunctions - generateResponseWithPortNumber: %s ' % str(ex))
+        logging.error('DNSFunctions - generateResponseWithPortNumber: \n %s ' % traceback.format_exc())
 
 
 # </editor-fold>

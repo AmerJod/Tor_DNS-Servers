@@ -4,14 +4,16 @@ Mini DNS server for resolving our website 'dnstestsuite.space'.
 https://bitbucket.org/AmerJoudiah/dns_project/
 Note: Still private project.
 '''
-
+import logging
 import socket
 import sys
+import traceback
 
 from stem.util import term
 
 from Helper import DNSFunctions
 from Helper.Helper import Helper
+
 from Helper.Helper import MODE_TYPES
 from Helper.Helper import MSG_TYPES
 
@@ -19,7 +21,8 @@ from Helper.Helper import MSG_TYPES
 
 
 
-VERSION = '0.998b'
+
+VERSION = '0.999b'
 MODIFY_DATE = '- Last modified: 06/08/2018'
 IP_ADDRESS_LOCAL = '127.0.0.1'
 IP_ADDRESS_SERVER = '172.31.16.226'
@@ -77,7 +80,8 @@ def main(argv,IP):
                 sock.sendto(response,addr)
 
     except Exception as ex:
-        DNSFunctions.loggingError(main,'ERROR: main ' + str(ex))
+        DNSFunctions.loggingError('ERROR: main ' + traceback.format_exc())
+
         Helper.printOnScreenAlways("\nERROR: Terminated!!! :" + str(ex),term.Color.RED)
 
 def main_test():
@@ -93,9 +97,8 @@ def main_test():
     while 1:
         data, addr = sock.recvfrom(512)
         response = DNSFunctions.getResponse(data, addr,case_sensitive=True)
-
-        print("test 1")
-        print(str(response))
+        #print("test 1")
+        #print(str(response))
         sock.sendto(response, addr)
 
 def main_test_local():
@@ -126,7 +129,7 @@ def main_test_local():
 if __name__ == '__main__':
 
     DNSFunctions.makeDirectories()
-    DNSFunctions.initLogger()
+    Helper.initLogger(level=logging.ERROR,enableConsole=False)
     DNSFunctions.printLogo(version=VERSION,modifyDate=MODIFY_DATE)
     DNSFunctions.killprocess(PORT)
     DNSFunctions.setDebuggingMode(DEBUG)
