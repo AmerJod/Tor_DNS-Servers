@@ -1,6 +1,6 @@
 # README #
 
-# DNS_Project - 10/08/2018
+# A Dynamic Test-Suite for DNS Resilience - 10/08/2018
 
 UCL - Project
 This project is part of dissertation 'A Dynamic Test-Suite for DNS Resilience' at UNIVERSITY COLLEGE LONDON.
@@ -22,10 +22,12 @@ This program has been built using python (PyCharm 2018.1)
 
     3- Generate some statistics that help to find the most vulnerable DNS servers.
 
-    4- Has 3 different modes
+    4- Has 3 different modes:
             1- TOR connection checker: check if the exit node is accebele
-            2- DNS 0x20-bit encoding checker: check if the DNS servers that are used by the TOR network have implemented 0x20-bit encoding countermeasure.
-            3- DNS statistic generator: generate DNS statistics about the port number and the requests Id that have been used.
+            2- DNS 0x20-bit encoding checker: check if the DNS servers that are used by the TOR network have
+               implemented 0x20-bit encoding countermeasure.
+            3- DNS statistic generator: generate DNS statistics about the port number and the requests Id
+               that have been used.
 
 2- DNS Server:
 
