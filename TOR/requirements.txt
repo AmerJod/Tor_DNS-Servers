@@ -1,5 +1,7 @@
 stem
 pycurl
+certifi
 pprint
 freeport
 tqdm
+tor

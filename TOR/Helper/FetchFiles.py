@@ -13,13 +13,15 @@ WEB_SERVERIP = '52.20.33.59'
 class FETCHFROM_OPT(Enum):
     FromDNS = 'scp -r -i scp -r -i %s ' + 'ubuntu@%s' % DNS_SERVERIP + ':/home/ubuntu/%s "%s" '
     FromDNSLogs = 'scp -r -i scp -r -i %s ' + 'ubuntu@%s' % DNS_SERVERIP + ':/home/ubuntu/%s/Logs "%s" '
-    FromWebServer = 'scp -r -i %s ' + 'ubuntu@%s' % WEB_SERVERIP + ':/home/ubuntu/%s  "%s" '
-    FromWebServerLogs = 'scp -r -i %s ' + 'ubuntu@%s' % WEB_SERVERIP + ':/home/ubuntu/s%/JSON "%s" '
+    FromDNSJSON = 'scp -r -i scp -r -i %s ' + 'ubuntu@%s' % DNS_SERVERIP + ':/home/ubuntu/%s/JSON "%s" '
+    FromWebServer = 'scp -r -i %s ' + 'ubuntu@%s' % WEB_SERVERIP + ':/home/ubuntu/%s "%s" '
+    FromWebServerJOSNs = 'scp -r -i %s ' + 'ubuntu@%s' % WEB_SERVERIP + ':/home/ubuntu/s%/JSON "%s" '
 
 
 class FETCHFILE_OPT(Enum):
     All = 'all'
     Logs = 'logs'
+    JSON = 'json'
 
 
 class FetchFiles:
@@ -58,6 +60,8 @@ class FetchFiles:
                 com = FETCHFROM_OPT.FromDNS.value
             elif mode == FETCHFILE_OPT.Logs.value:
                 com = FETCHFROM_OPT.FromDNSLogs.value
+            elif mode == FETCHFILE_OPT.JSON.value:
+                com = FETCHFROM_OPT.FromDNSJSON.value
 
             com = ( com % (self.Key,self.DnsPath,dict))
             os.system(com)
@@ -75,8 +79,9 @@ class FetchFiles:
             com = ''
             if mode == FETCHFILE_OPT.All.value:
                 com = FETCHFROM_OPT.FromWebServer.value
-            elif mode == FETCHFILE_OPT.Logs.value:
-                com = FETCHFROM_OPT.FromWebServerLogs.value
+            elif mode == FETCHFILE_OPT.JSON.value:
+                com = FETCHFROM_OPT.FromWebServerJOSNs.value
+
 
             com = (com % (self.Key,self.WebPath,dict))
             os.system(com)
@@ -120,6 +125,8 @@ class FetchFiles:
                                 self.fetchFromDNS(mode=FETCHFILE_OPT.All.value)
                             elif argv[3] == '-logs':
                                 self.fetchFromDNS( mode=FETCHFILE_OPT.Logs.value)
+                            elif argv[3] == '-json':
+                                self.fetchFromDNS(mode=FETCHFILE_OPT.JSON.value)
                             else:
                                 self.fetchFromDNS()
                         else:
@@ -128,7 +135,7 @@ class FetchFiles:
                     if argv[2] == '-fetch':
                         if argv[3] == '-all':
                             self.fetchFromServer(mode=FETCHFILE_OPT.All.value)
-                        elif argv[3] == '-logs':
+                        elif argv[3] == '-json':
                             self.fetchFromServer(mode=FETCHFILE_OPT.Logs.value)
                         else:
                             self.fetchFromServer()
@@ -140,7 +147,7 @@ class FetchFiles:
 if __name__ == '__main__':  # for debugging purpose
     argv= sys.argv
     fetch = FetchFiles()
-    fetch.run(['','-web','-fetch', '-all'])
+    fetch.run(['','-dns','-fetch', '-logs'])
 
 
 

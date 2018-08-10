@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 import json
 import os
 import time
@@ -23,34 +25,35 @@ class MSG_TYPES(Enum):
     ERROR = term.Color.RED
     YELLOW = term.Color.YELLOW
 
-
+'''
+Gather Eixt nodes and store them in a JSON file
+'''
 class NodesHandler:
 
     def __init__(self, mode='none'):
         script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
-        self.NODES_PATH = ('../ConnectionsHandler/Nodes/ExitNodesJSON.json')
-        self.NODES_PATH= os.path.join(script_dir, self.NODES_PATH)
+        self.NODES_PATH = ('../ConnectionsHandler/Nodes/GatheredExitNodesJSON.json')
+        self.NODES_PATH = os.path.join(script_dir, self.NODES_PATH)
         self.mode = '-none' #mode
 
-       # self.Helper = Helper()
     def run(self):
         self.ExitNode()
-        nodeNumber = self.GetJOSNInfo(Node_DATA.Address)
-        return nodeNumber
+        node_Number = self.GetJOSNInfo(Node_DATA.Address)
+        return node_Number
 
     def ExitNode(self):
         count = 0
-        ExitNodes = []
-        Stem_nodes=stem.descriptor.remote.get_server_descriptors()
+        exit_Nodes = []
+        stem_Nodes=stem.descriptor.remote.get_server_descriptors()
 
 
-        for desc in Stem_nodes:
-            # Check if the Node is an exit one
+        for desc in stem_Nodes:
+            # CheckingRequest if the Node is an exit one
             if desc.exit_policy.is_exiting_allowed():
                 count = count + 1
                 # Print nodes
                 Helper.printOnScreen('  %s %s' % (desc.nickname, desc.address) ,MSG_TYPES.RESULT.value, self.mode)
-                ExitNodes.append({
+                exit_Nodes.append({
                     'ExitNode': {
                         'Address': desc.address,
                         'Fingerprint': desc.fingerprint,
@@ -65,16 +68,16 @@ class NodesHandler:
             break'''
         # Write into Json file
         with open(self.NODES_PATH, 'w') as outfile:
-            json.dump(ExitNodes, outfile)
+            json.dump(exit_Nodes, outfile)
 
     def GetJOSNInfo(self,exit_node):
         count = 0
         with open(self.NODES_PATH) as f:
-            jsonObjects = json.load(f)
+            json_Objects = json.load(f)
         # print the whole obj
 
-        node_number =len(jsonObjects)
-        for obj in tqdm(jsonObjects, ncols=80, desc='Storing ExitNodes'):
+        node_number =len(json_Objects)
+        for obj in tqdm(json_Objects, ncols=80, desc='Storing ExitNodes'):
             if self.mode =='-out':
                 if exit_node == Node_DATA.Address:
                     pprint(obj['ExitNode']['Address'].encode("ascii"))

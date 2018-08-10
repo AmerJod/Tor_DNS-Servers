@@ -1,6 +1,11 @@
+#! /usr/bin/env python3
+
+# RUN IT ONLY ON ANY UNIX DISTRIBUTION BUT NOT WINDOWS
+
 import json
 import stem.descriptor.remote
 import sys
+
 from enum import Enum
 from pprint import pprint
 from stem.util import term
@@ -12,15 +17,15 @@ from TOR.Helper.Helper import Helper
 from TOR.Helper.Helper import MODE_TYPES
 from TOR.NodeHandler import NodesHandler
 
-
-VERSION = 1.1
+VERSION = 1.6
 
 def printLogo():
     print(term.format(('\n                           Starting TOR MAPPER.. v%s' % VERSION), term.Color.YELLOW))
     with open('Logo/logo.txt', 'r') as f:
-        lineArr = f.read()
-        print(term.format((lineArr % str(VERSION)),term.Color.GREEN))
+        line_Arr = f.read()
+        print(term.format((line_Arr % str(VERSION)), term.Color.GREEN))
         print('\n')
+
         '''
         with open('Logo/logo2.txt', 'r') as f:
         lineArr = f.read()
@@ -29,58 +34,58 @@ def printLogo():
 
 def main(argv):
     mode = '-none'
-    requiredNodes = 0
+    required_Nodes = 0
     printLogo()
 
     if argv[1:] != []:  # on the server
         try:
-            numberOFNodes= -1
+            required_Nodes= -1
             opt = argv[1]
             error = False
             if len(argv) == 3:  # mode printing
-                if argv[2] == MODE_TYPES.print.value or argv[2] == MODE_TYPES.none.value:
+                if argv[2] == MODE_TYPES.printing.value or argv[2] == MODE_TYPES.none.value:
                     mode = argv[2]
 
             elif len(argv) == 5:
-                if argv[2] == '-n':
-                    requiredNodes = argv[3]
+                if argv[2] == '-n': # stop after certain nodes number
+                    required_Nodes = argv[3]
                 else:
                     error = True
 
-                if argv[4] == MODE_TYPES.print.value or argv[4] == MODE_TYPES.none.value:
+                if argv[4] == MODE_TYPES.printing.value or argv[4] == MODE_TYPES.none.value:
                     mode = argv[4]
                 else:
                     error = True
 
                 if error is True:
-                    Helper.printOnScreen('WRONG ......',color=MSG_TYPES.ERROR.value)
+                    Helper.printOnScreen('WRONG ......',color=MSG_TYPES.ERROR)
                     sys.exit(2)
             else:
-                Helper.printOnScreen('WRONG Too Many arguments .', color=MSG_TYPES.ERROR.value)
+                Helper.printOnScreen('WRONG Too Many arguments.', color=MSG_TYPES.ERROR)
 
 
             ###---------------------------------------
 
             try:
-                Helper.printOnScreenAlways("Gathering Info ... ", MSG_TYPES.RESULT.value)
+                Helper.printOnScreenAlways("Gathering Info ... ", MSG_TYPES.RESULT)
                 nodes = NodesHandler.NodesHandler(mode=mode)
-                nodesNumber = nodes.run()
-                Helper.printOnScreenAlways(("DONE, %s nodes have been gathered" % str(nodesNumber)),MSG_TYPES.RESULT.value)
+                nodes_Number = nodes.run()
+                Helper.printOnScreenAlways(("DONE, %s nodes have been gathered" % str(nodes_Number)),MSG_TYPES.RESULT)
             except Exception as ex:
-                Helper.printOnScreenAlways(("Exit nodes are not gathered.. :(, ERROR : %s" % str(ex)),MSG_TYPES.ERROR.value)
+                Helper.printOnScreenAlways(("Exit nodes are not gathered.. :(, ERROR : %s" % str(ex)),MSG_TYPES.ERROR)
                 sys.exit()
 
-            if opt == '-r' or opt == '-c':    #   check the connections
-                if(int(requiredNodes) > 0):
-                    con = TORConnector.TORConnections(opt,mode,requiredNodes)
+            if opt == '-r' or opt == '-c' or opt == '-cd':    #   check the connections
+                if(int(required_Nodes) > 0):
+                    con = TORConnector.TORConnections(opt,mode,required_Nodes)
                     con.run()
                 else:
                     con = TORConnector.TORConnections(opt,mode)
                     con.run()
 
-
         except Exception as ex:
-            Helper.printOnScreenAlways(ex,MSG_TYPES.ERROR)
+            #Helper.printOnScreenAlways(ex,MSG_TYPES.ERROR)
+            print(ex)
             sys.exit()
 
 
@@ -91,14 +96,15 @@ if __name__ == '__main__':
             main(sys.argv[1:])
         else:
             print('ERROR: argv....')
-            #main(['', '-c','-n','3','-out'])
-            main(['', '-r','-none'])
+            main(['', '-cd','-n','9','-out'])
+            #main(['', '-r','-none']) # -r means requesting // -c checking the tor connection only
             sys.exit()
             #main_test()
     except Exception as ex:  # locally
         print('ERROR: argv....  OR %s' % str(ex))
         #main(['','-c','-n','3','-out'])
-        main(['', '-r', '-none'])
+        main(['','-cd','-n','9','-out'])
+        #main(['', '-r', '-none']) # -r means requesting
 
         sys.exit()
 
