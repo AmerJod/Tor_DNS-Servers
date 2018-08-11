@@ -21,7 +21,6 @@ from .Helper import MSG_TYPES
 from .Helper import LogData
 from .Helper import TIME_FORMAT
 
-
 JSON_REQUESTS_PATH = 'JSON/NormalRequests/NormalDNSRequestNodes'
 JSON_REQUESTS_PATH_CHECK = 'JSON/CheckingRequests/CheckingDNSRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
 ERRORS_LOG_PATH = 'Logs/Errors/'
@@ -589,7 +588,7 @@ def getResponse(data, addr,case_sensitive = False,withoutRequestId=False):
         printedRow,printStatus = logDNSRequest(counter=COUNTER,status=recStatus, recordType=recordType, requestId=transactionID, srcIP=srcIP, srcPort=srcPort, domain=domain, modifiedDomain=modifiedDomain, mode='none')
         Helper.printOnScreenAlways(printedRow,printStatus)
 
-        if 'Check_' in domain:
+        if 'check_' in domain.lower():
             storeDNSRequestJSON(status=status, time=time,recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain,mode='check')
         else:
             storeDNSRequestJSON(status=status, time=time,recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain)
@@ -601,7 +600,7 @@ def getResponse(data, addr,case_sensitive = False,withoutRequestId=False):
                                                  mode='none')
         Helper.printOnScreenAlways(printedRow, printStatus)
 
-        if 'Check_' in domain:
+        if 'check_' in domain.lower():
             storeDNSRequestJSON(status=status, time=time,recordType=recordType,transactionID=transactionID, srcIP=addr[0], srcPort=str(addr[1]), domain=domain, mode='check')
         else:
             storeDNSRequestJSON(status=status, time=time, recordType=recordType, transactionID=transactionID,
@@ -718,7 +717,7 @@ def getForgedResponse(data, addr, case_sensitive=True):
         #         addr[1]) + '  -  Domain : ' + domain + '  |  Modified Domain: ' + modifiedDomain + '\n',
         #                       term.Color.GREEN))
 
-        if 'Check_' in domain:
+        if 'check_' in domain.lower():
             storeDNSRequestJSON(status=status, time=time, recordType=recordType, transactionID=transactionID,
                             srcIP=addr[0], srcPort=str(addr[1]), domain=domain, modifiedDomain=modifiedDomain, mode='check')
         else:
@@ -752,7 +751,7 @@ def getForgedResponse(data, addr, case_sensitive=True):
                                                  mode='none')
         Helper.printOnScreenAlways(printedRow, printStatus)
 
-        if 'Check_' in domain:
+        if 'check_' in domain.lower():
             storeDNSRequestJSON(status=status, time=time, recordType=recordType, transactionID=transactionID,
                                 srcIP=addr[0], srcPort=str(addr[1]), domain=domain, mode='check')
         else:

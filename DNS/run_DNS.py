@@ -19,7 +19,7 @@ from Helper.Helper import MSG_TYPES
 
 
 
-VERSION = '1.1 b'
+VERSION = '1.12 b'
 MODIFY_DATE = '- Last modified: 11/08/2018'
 IP_ADDRESS_LOCAL = '127.0.0.1'
 IP_ADDRESS_SERVER = '172.31.16.226'
