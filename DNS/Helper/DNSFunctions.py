@@ -22,8 +22,8 @@ from .Helper import LogData
 from .Helper import TIME_FORMAT
 
 
-JSON_REQUESTS_PATH = 'JSON/NormalRequests/DNSRequestNodes'
-JSON_REQUESTS_PATH_CHECK = 'JSON/CheckingRequests/DNSRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
+JSON_REQUESTS_PATH = 'JSON/NormalRequests/NormalDNSRequestNodes'
+JSON_REQUESTS_PATH_CHECK = 'JSON/CheckingRequests/CheckingDNSRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
 ERRORS_LOG_PATH = 'Logs/Errors/'
 
 DEBUG = False
