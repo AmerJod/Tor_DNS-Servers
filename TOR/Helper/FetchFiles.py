@@ -1,5 +1,5 @@
 '''
-this file is to fetch files from and to servers(DNS/WebServer)
+This file is to fetch files from and to servers(DNS/WebServer)
 YOU MUST HAVE THE KEY STORE ON YOUR MACHINE.
 '''
 
@@ -7,7 +7,7 @@ import sys
 import datetime
 import os
 from enum import Enum
-from .MoveFiles import MoveFiles
+from MoveFiles import MoveFiles
 
 DNS_SERVERIP = '34.198.193.29'
 WEB_SERVERIP = '52.20.33.59'
@@ -17,7 +17,7 @@ class FETCHFROM_OPT(Enum):
     FromDNSLogs = 'scp -r -i scp -r -i %s ' + 'ubuntu@%s' % DNS_SERVERIP + ':/home/ubuntu/%s/Logs "%s" '
     FromDNSJSON = 'scp -r -i scp -r -i %s ' + 'ubuntu@%s' % DNS_SERVERIP + ':/home/ubuntu/%s/JSON "%s" '
     FromWebServer = 'scp -r -i %s ' + 'ubuntu@%s' % WEB_SERVERIP + ':/home/ubuntu/%s "%s" '
-    FromWebServerJOSNs = 'scp -r -i %s ' + 'ubuntu@%s' % WEB_SERVERIP + ':/home/ubuntu/s%/JSON "%s" '
+    FromWebServerJOSNs = 'scp -r -i %s ' + 'ubuntu@%s' % WEB_SERVERIP + ':/home/ubuntu/%s/JSON "%s" '
 
 
 class FETCHFILE_OPT(Enum):
@@ -27,7 +27,7 @@ class FETCHFILE_OPT(Enum):
 
 
 class FetchFiles:
-    DnsServerPath = 'dns_0998_Betav5'
+    DnsServerPath = 'dns_1_Betav1'
     WebServerPath = 'web402'
 
     def __init__(self, dnsPath='none',webPath='none'):
@@ -67,7 +67,7 @@ class FetchFiles:
 
             com = ( com % (self.Key,self.DnsPath,dict))
             os.system(com)
-            print('Moving file is done.')
+            print('Fetching file is done.')
         except Exception as ex:
             print(ex)
 
@@ -114,6 +114,17 @@ class FetchFiles:
         except Exception as ex:
             print(ex)
 
+
+    def removeEmptyDirectories(self):
+        Folders = [x for x in os.listdir('FetchFiles')]
+        #Folders = [x for x in os.listdir('FetchFiles') if (os.path.isdir(os.path.join('FetchFiles', x))) == True]
+        for folder in Folders:
+
+            os.rmdir(folder)
+            #if os.listdir(folder) == []:
+            #   print(folder)
+            #  os.rmdir(folder)
+
     def run(self,argv):
         self.makeDirectories()
 
@@ -138,7 +149,7 @@ class FetchFiles:
                         if argv[3] == '-all':
                             self.fetchFromServer(mode=FETCHFILE_OPT.All.value)
                         elif argv[3] == '-json':
-                            self.fetchFromServer(mode=FETCHFILE_OPT.Logs.value)
+                            self.fetchFromServer(mode=FETCHFILE_OPT.JSON.value)
                         else:
                             self.fetchFromServer()
                     else:
@@ -149,9 +160,12 @@ class FetchFiles:
 if __name__ == '__main__':  # for debugging purpose
     argv= sys.argv
     fetch = FetchFiles()
-    fetch.run(['','-dns','-fetch', '-logs'])
-    move = MoveFiles()
-    move.findAllDNSFiles(folder='logs')
+
+    fetch.run(['','-dns','-fetch', '-all'])
+    #fetch.removeEmptyDirectories()
+
+    #move = MoveFiles()
+    #move.findAllDNSFiles(folder='logs')
 
 
 

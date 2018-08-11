@@ -25,6 +25,7 @@ from enum import Enum
 from tqdm import tqdm
 import shlex
 
+from TOR.ConnectionsHandler.Models.Results import CONNECTION_STATUS
 from TOR.Helper.Helper import MSG_TYPES
 from TOR.Helper.Helper import Helper
 from TOR.Helper.Helper import MODE_TYPES
@@ -46,7 +47,7 @@ class TORConnections:
 
         self.REQUIRED_NODES = requiredNodes
         self.SOCKS_PORT = 7000
-        self.CONRTROL_PORT = 9051
+        self.CONTROL_PORT = 9051
 
         self.DOMAIN_URL = 'dnstestsuite.space'
         self.DOMAIN_URL_CHECK = 'dnstestsuite.space/check'  # uses to check if the dns is supporting the 0x20 coding
@@ -71,7 +72,7 @@ class TORConnections:
         self.ExitNodes_List = []
 
 
-    def loadExitNodes(self):
+    def loadExitNodesFromJSON(self):
         cur_path = os.path.dirname(__file__)
         cwd = os.getcwd()
         #print(cwd)
@@ -88,8 +89,8 @@ class TORConnections:
             random.shuffle(json_Objects)
             return json_Objects
 
-
-    def checkTorConnectionForLinux(self,numberOfNodes=10000):   # check Tor connection
+    # check Tor connection only, if the node is accessable
+    def checkTorConnection(self, numberOfNodes=10000):   # check Tor connection
         start_time = time.time()
         nodes_Count = 0
         successfully_Connections = 0
@@ -97,7 +98,7 @@ class TORConnections:
         failed_Connections = 0
 
         # load
-        json_Objects = self.loadExitNodes()
+        json_Objects = self.loadExitNodesFromJSON()
         #random.shuffle(json_Objects)
 
         result = 3 # assume that the connection has failed
@@ -123,23 +124,6 @@ class TORConnections:
             result = self.connectToTORExitNode(fingerprint, ip, nodes_Count, TASK_MODE.TOR_CONNECTION_CHECKING)
             self.Result_List.append(result)
 
-            '''
-            
-            try:
-                if result == 1:    # Connection succeed
-                    successfully_Connections += 1
-
-                elif result == 2:   # Connection succeed , but checking failed.
-                    successfully_Connections_Checking_Failed += 1
-
-                elif result == 3:   # Connection failed
-                    failed_Connections += 1
-
-            #TODO: need to check why we have here
-            except:
-                failed_Connections += 1
-
-            '''
 
         time_taken = time.time() - start_time
         finalResult = Results.FinalResult(time_taken, nodes_Count, successfully_Connections, successfully_Connections_Checking_Failed, failed_Connections)
@@ -162,7 +146,8 @@ class TORConnections:
             file.write('Checking Failed rate:    '+str(successfully_Connections_Checking_Failed/nodes_Count * 100)+'% \n')
             file.write('Failed Connections rate: '+str(failed_Connections/nodes_Count * 100)+'% \n')
 
-    def checkWebsiteConnection(self, numberOfNodes=10000):  # check DNS if it supports domain name 0x20 coding.
+    #  check DNS if it supports domain name 0x20 coding.
+    def checkWebsiteConnection(self, numberOfNodes=10000):
         start_time = time.time()
         nodesCount = 0
         successfully_Connections = 0
@@ -173,7 +158,7 @@ class TORConnections:
         failed_Connections = 0
 
         # load
-        json_Objects = self.loadExitNodes()
+        json_Objects = self.loadExitNodesFromJSON()
         # random.shuffle(json_Objects)
 
         result = 3  # assume that connection failed
@@ -216,6 +201,7 @@ class TORConnections:
 
 
     # resolve our domain via our DNS
+    # findTORDNSResolver(self)
     def requestDomainViaTor(self):
         Helper.printOnScreenAlways('Requesting %s  via TOR ' % self.DOMAIN_URL)
 
@@ -225,7 +211,7 @@ class TORConnections:
         successfully_Connections_Checking_Failed = 0
         failed_Connections = 0
 
-        json_Objects = self.loadExitNodes()
+        json_Objects = self.loadExitNodesFromJSON()
 
         if stem.util.system.is_windows():
             # Terminate the tor in case if it is still running
@@ -255,11 +241,11 @@ class TORConnections:
 
 
 
-    def startTorConnection(self, exitFingerprint, ip):
+    def startTorConnection(self, exitFingerprint, ip,mode=TASK_MODE.DNS_0x20_CHECKING):
         # Start an instance of Tor configured to only exit through Russia. This prints
         # Tor's bootstrap information as it starts. Note that this likely will not
         # work if you have another Tor instance running.
-        result = self.connectToTORExitNode(exitFingerprint, ip, 3, 'check-domain')  # check if the website i
+        result = self.connectToTORExitNode(exitFingerprint, ip, 3, mode)  # check if the website i
 
 
     def start1(self,exitFingerprint, ip):
@@ -268,7 +254,7 @@ class TORConnections:
         # work if you have another Tor instance running.
 
         # Terminate the tor in case if it is still running
-        if not (stem.util.system.get_pid_by_port(self.CONRTROL_PORT)):
+        if not (stem.util.system.get_pid_by_port(self.CONTROL_PORT)):
             print(term.format("Starting Tor, connecting to: %s \n", term.Attr.BOLD) % ip)
             tor_process = stem.process.launch_tor_with_config(
                 timeout=90,
@@ -276,7 +262,7 @@ class TORConnections:
                 config={
                     'SocksPort': str(self.SOCKS_PORT),
                     'ExitNodes': '$' + exitFingerprint,
-                    'ControlPort': str(self.CONRTROL_PORT),
+                    'ControlPort': str(self.CONTROL_PORT),
                     'DataDirectory': 'Connection_info',
                 },
             )
@@ -347,20 +333,21 @@ class TORConnections:
         start_time = time.time()
         result = False
 
-        torConnection = Connection(mode=self.mode, pycurlTimeout=self.PYCURL_TIMEOUT, socksPort=self.SOCKS_PORT, conrtrolPort=self.CONRTROL_PORT,
-                                              torConnectionTimeout=self.TOR_CONNECTION_TIMEOUT, domainUrl =self.DOMAIN_URL, domainUrlCheck = self.DOMAIN_URL_CHECK,
-                                              domainCorrectMessageResult= self.DOMAIN__CORRECT_MESSAGE_RESULT, torCheckConnection =self.TOR_CHECK_CONNECTION,
-                                              exitNodeFingerprint=exitNodeFingerprint, exitNodeIp=exitNodeIp)
+        torConnection = Connection(mode=self.mode, pycurlTimeout=self.PYCURL_TIMEOUT, socksPort=self.SOCKS_PORT, controlPort=self.CONTROL_PORT,
+                                   torConnectionTimeout=self.TOR_CONNECTION_TIMEOUT, domainUrl =self.DOMAIN_URL, domainUrlCheck = self.DOMAIN_URL_CHECK,
+                                   domainCorrectMessageResult= self.DOMAIN__CORRECT_MESSAGE_RESULT, torCheckConnection =self.TOR_CHECK_CONNECTION,
+                                   exitNodeFingerprint=exitNodeFingerprint, exitNodeIp=exitNodeIp)
         result = torConnection.connect(index)
         try:
             url = ''
-            if mode == TASK_MODE.REQUEST_DOMAIN: #
-                #   RUN_MANYTIMES_MODE to send many request to the DNS so will have alot of information(port/id they use) about TOR DNS solver.
-                result = torConnection.request(self.RUN_MANYTIMES_MODE,self.REQUEST_TIMES)
-            elif mode ==TASK_MODE.TOR_CONNECTION_CHECKING:  #'check': # check the connection reliability of the Tor exit node only
-                result = torConnection.checkTORConnection()
-            elif mode == TASK_MODE.DNS_0x20_CHECKING: #'check-domain': # check if the website is accessible
-                result = torConnection.checkDNSFor0x20Encoding()
+            if result.connectionStatus == CONNECTION_STATUS.CONNECTED.value:
+                if mode == TASK_MODE.REQUEST_DOMAIN: #
+                    #   RUN_MANYTIMES_MODE to send many request to the DNS so will have alot of information(port/id they use) about TOR DNS solver.
+                    result = torConnection.request(self.RUN_MANYTIMES_MODE,self.REQUEST_TIMES)
+                elif mode ==TASK_MODE.TOR_CONNECTION_CHECKING:  #'check': # check the connection reliability of the Tor exit node only
+                    result = torConnection.checkTORConnection()
+                elif mode == TASK_MODE.DNS_0x20_CHECKING: #'check-domain': # check if the website is accessible
+                    result = torConnection.checkDNSFor0x20Encoding()
 
             return result
 
@@ -396,33 +383,7 @@ class TORConnections:
 
         return result
 
-    def RequestDomain(self,domain):
-        for i in range(1, self.REQUEST_TIMES):
-            sub_Domain = str(i) + '_' + domain
-            url = 'http://' + sub_Domain
-            result = self.query(url)
-            # change the query fucntion / no time for it ::(
-            '''
-            from joblib import Parallel, delayed
-            import multiprocessing
-            
-            # what are your inputs, and what operation do you want to
-            # perform on each input. For example...
-            inputs = range(10)
-            
-            
-            def processInput(i):
-                a = i*i
-                print(a)
-                return a
-            
-            
-            num_cores = multiprocessing.cpu_count()
-            
-            results = Parallel(n_jobs=num_cores)(delayed(processInput)(i) for i in inputs)
-            
-            print(results)
-            '''
+
 
     def showArgu(self):
         parser = argparse.ArgumentParser(description='Enumerate all the exit nodes in TOR network -> CheckingRequest TOR connection via them || Request website.')
@@ -445,7 +406,7 @@ class TORConnections:
                 if opt1 == '-r':  # check the connections
                     self.requestDomainViaTor()
                 elif opt1 == '-c':
-                    self.checkTorConnectionForLinux(number_OF_Nodes)
+                    self.checkTorConnection(number_OF_Nodes)
                 elif opt1 == '-cd': # check the domain name connection
                     self.checkWebsiteConnection(number_OF_Nodes)
 
@@ -458,7 +419,7 @@ class TORConnections:
             if self.opt == '-r':  # check the connections
                 self.requestDomainViaTor()
             elif self.opt == '-c':
-                self.checkTorConnectionForLinux(self.REQUIRED_NODES)
+                self.checkTorConnection(self.REQUIRED_NODES)
             elif self.opt == '-cd':  # check the domain name connection
                 self.checkWebsiteConnection(self.REQUIRED_NODES)
 
@@ -479,18 +440,20 @@ class TORConnections:
 if __name__ == '__main__':
 
     con = TORConnections('-cd','-out', 5,runManyTimeMode=True)
-    con.run()
+    #con.run()
     #con.test()
     #176.10.104.243
     #167.10.104.240
     # start("38A42B8D7C0E6346F4A4821617740AEE86EA885B", "185.107.70.202") # works
     TORFunctions.ProcesskillForWindows('tor.exe')
 
+    con.startTorConnection("47AD6697492C9CC1F91A709E346555592F71188B","94.248.20.15")
+    #
     #con.startTorConnection('8ED84B53BD9556CCBB036073A1AD508EC27CBE52', '23.129.64.103')
     #con.startTorConnection('8ED84B53BD9556CCBB036073A1AD508EC27CBE52', '173.246.38.148')
-
+    #
     #con.startTorConnection('FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF', '173.249.57.253')
-    #con.startTorConnection('FF80EB7648E54819F37522C4FC1F1AE9E760C0A8', '195.123.224.108')
+    # con.startTorConnection('FF80EB7648E54819F37522C4FC1F1AE9E760C0A8', '195.123.224.108')
 
     #con.startTorConnection('C430811EECD20A1BB268D0A855324359D908F45B', '173.71.214.155')
 

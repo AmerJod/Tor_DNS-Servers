@@ -20,7 +20,7 @@ from TOR.Helper.Helper import Helper
 from TOR.Helper.Helper import MODE_TYPES
 from TOR.NodeHandler import NodesHandler
 
-VERSION = 1.6
+VERSION = 1.7
 
 def printLogo():
     print(term.format(('\n                           Starting TOR MAPPER.. v%s' % VERSION), term.Color.YELLOW))
