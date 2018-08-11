@@ -1,3 +1,4 @@
+import time
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 HOST_NAME = '120.0.0.1'

@@ -5,7 +5,8 @@ from flask import render_template, redirect, url_for, request
 from datetime import datetime
 from app import app, db
 from .models import Request
-
+from Helper.Helper import Helper
+from Helper.Helper import TIME_FORMAT
 
 JsonRequestsPATH = 'JSON/NormalRequests/HTTPRequestNodes'
 JsonRequestsPATHCheck = 'JSON/CheckingRequests/HTTPCheckingRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
@@ -44,7 +45,7 @@ def check():
 #TODO: need to implmment a class for it
 def storeHTTPRequestJSON(time,srcIP,baseUrl,mode='none'):
     """Help for the bar method of Foo classes"""
-    date = getTime(2)
+    date = Helper.getTime(TIME_FORMAT.DATE)
     if mode == 'check':
         file = JsonRequestsPATHCheck + '_' + date + '.json'
     else:
@@ -75,14 +76,3 @@ def storeHTTPRequestJSON(time,srcIP,baseUrl,mode='none'):
 
 
 
-# option: 1 full (time+date)
-# option: 2 date
-# option: 3 time
-def getTime(opt = 1):
-    date = datetime.now()
-    if opt == 1:    # full
-        return (((str(date)).split('.')[0]).split(' ')[1] + ' ' + ((str(date)).split('.')[0]).split(' ')[0])
-    if opt == 2:    # date
-        return (((str(date)).split('.')[0]).split(' ')[0])
-    if opt == 3:    # time
-        return (((str(date)).split('.')[0]).split(' ')[1])
