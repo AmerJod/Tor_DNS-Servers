@@ -1,11 +1,13 @@
-#! /usr/bin/env python3
-# this file is to fetch files from and to servers(DNS/WebServer)
-# you must have the KEY store on your machine.
+'''
+this file is to fetch files from and to servers(DNS/WebServer)
+YOU MUST HAVE THE KEY STORE ON YOUR MACHINE.
+'''
 
 import sys
 import datetime
 import os
 from enum import Enum
+from .MoveFiles import MoveFiles
 
 DNS_SERVERIP = '34.198.193.29'
 WEB_SERVERIP = '52.20.33.59'
@@ -25,7 +27,7 @@ class FETCHFILE_OPT(Enum):
 
 
 class FetchFiles:
-    DnsServerPath = 'dns_0993'
+    DnsServerPath = 'dns_0998_Betav5'
     WebServerPath = 'web402'
 
     def __init__(self, dnsPath='none',webPath='none'):
@@ -148,6 +150,9 @@ if __name__ == '__main__':  # for debugging purpose
     argv= sys.argv
     fetch = FetchFiles()
     fetch.run(['','-dns','-fetch', '-logs'])
+    move = MoveFiles()
+    move.findAllDNSFiles(folder='logs')
+
 
 
 

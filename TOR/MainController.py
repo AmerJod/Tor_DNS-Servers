@@ -3,6 +3,9 @@
 # RUN IT ONLY ON ANY UNIX DISTRIBUTION BUT NOT WINDOWS
 
 import json
+import os
+import traceback
+
 import stem.descriptor.remote
 import sys
 
@@ -32,11 +35,32 @@ def printLogo():
         print(term.format(lineArr,term.Color.RED))
         '''
 
+#   make the directories in case they are missing
+def makeDirectories():
+    try:
+        if not os.path.exists('GatheredFiles'):
+            os.makedirs('GatheredFiles')
+            os.makedirs('GatheredFiles/Logs')
+            os.makedirs('GatheredFiles/JSON')
+        else:
+            if not os.path.exists('GatheredFiles/Logs'):
+                os.makedirs('GatheredFiles/Logs')
+            if not os.path.exists('GatheredFiles/JSON'):
+                os.makedirs('GatheredFiles/JSON')
+
+
+    except Exception as ex:
+        Helper.printOnScreenAlways(ex, term.Color.RED)
+        #Helper.l logging.error('DNSFunctions - makeDirectories: %s' % traceback.format_exc())
+
+
+
+
 def main(argv):
     mode = '-none'
     required_Nodes = 0
     printLogo()
-
+    makeDirectories()
     if argv[1:] != []:  # on the server
         try:
             required_Nodes= -1
