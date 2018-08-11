@@ -19,14 +19,14 @@ from Helper.Helper import MSG_TYPES
 
 
 
-VERSION = '1.0 b'
-MODIFY_DATE = '- Last modified: 06/08/2018'
+VERSION = '1.1 b'
+MODIFY_DATE = '- Last modified: 11/08/2018'
 IP_ADDRESS_LOCAL = '127.0.0.1'
 IP_ADDRESS_SERVER = '172.31.16.226'
 DEBUG = False
 PORT = 53  # 53 Default port
 
-ADVERSARY_MODE = True
+ADVERSARY_MODE = False
 FIX_PORT = True  # True # try all the possible port
 FIX_REQUESTID = False   # False  # try all the possible request ID
 NUMBER_OF_TRIES = 10000
@@ -142,7 +142,7 @@ if __name__ == '__main__':
     #DNSFunctions.setAdversaryMode(ADVERSARY_MODE)
 
     if ADVERSARY_MODE is True:
-        Helper.printOnScreenAlways('*****Adversary mode is activated*****', MSG_TYPES.YELLOW)
+        Helper.printOnScreenAlways('              *****Adversary mode is activated*****', MSG_TYPES.YELLOW)
     try: # on the server
         if len(sys.argv) != 1:
             ip = socket.gethostbyname(socket.gethostname())

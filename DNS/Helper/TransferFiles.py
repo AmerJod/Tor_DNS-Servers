@@ -8,9 +8,12 @@ import sys
 import datetime
 import os
 from enum import Enum
+from DNS.Helper.Helper import Helper
+from DNS.Helper.Helper import MSG_TYPES
+
 
 DNS_SERVERIP = '34.198.193.29'
-DNS_SERVER_PATH = 'dns_0998_Betav5'
+DNS_SERVER_PATH = 'dns_11_B'
 KEY_PATH = 'C:/pem/DNS_MSc_Thesis_amer.pem'
 
 class TransferFiles:
@@ -44,6 +47,7 @@ class TransferFiles:
 
 
     def run(self,argv):
+        Helper.printOnScreenAlways('Transferring files .....',MSG_TYPES.RESULT)
 
         print('path: ' + str(os.chdir(os.path.dirname(os.path.realpath(__file__)))))
         try:
@@ -52,9 +56,9 @@ class TransferFiles:
                     if argv.__len__() > 3:
                         if argv[2] == '-n':
                             self.TransferToDNS(folderName=argv[3])
-                            print('Transfering file is done')
+                            Helper.printOnScreenAlways('Transferring files is done', MSG_TYPES.RESULT)
                     else:
-                        print('Missing parameters. Folder Name?! ')
+                        Helper.printOnScreenAlways('Missing parameters. Folder Name?! ',MSG_TYPES.ERROR)
 
         except Exception as ex:
             print(ex)

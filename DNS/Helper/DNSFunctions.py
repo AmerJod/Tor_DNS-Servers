@@ -71,7 +71,7 @@ def logDNSRequest(counter,status, recordType, requestId, srcIP, srcPort, domain,
             printedRow = ('%s - %d: ** ERROR ** : | RecordType: %s | RequestId: %s | SrcIP: %s  |  SrcPort: %d  |  Domain: %s ' %
                         (date,counter, recordType, requestId, srcIP, srcPort, domain))
         else:
-            printedRow = ('%s - %d: ** ERROR ** : | RecordType: %s | RequestId: %s | SrcIP: %s  |  SrcPort: %d  |  Domain: %s  |  Modified Domain: %s' %
+            printedRow = ('%s - %d: ** ERROR ** : | RecordType: %s | RequestId: %s | SrcIP: %s  |  SrcPort: %d  |  Domain: %s  |  ModifiedDomain: %s' %
                         (date,counter,recordType,requestId,srcIP,srcPort,domain,modifiedDomain))
         printStatus = MSG_TYPES.ERROR
 
@@ -80,7 +80,7 @@ def logDNSRequest(counter,status, recordType, requestId, srcIP, srcPort, domain,
             printedRow = ('%s - %d: | RecordType: %s | RequestId: %s | SrcIP: %s  |  SrcPort: %d  |  Domain: %s ' %
                         (date,counter, recordType, requestId, srcIP, srcPort, domain))
         else:
-            printedRow = ('%s - %d: | RecordType: %s | RequestId: %s | SrcIP: %s  |  SrcPort: %d  |  Domain: %s  |  Modified Domain: %s' %
+            printedRow = ('%s - %d: | RecordType: %s | RequestId: %s | SrcIP: %s  |  SrcPort: %d  |  Domain: %s  |  ModifiedDomain: %s' %
                         (date,counter,recordType,requestId,srcIP,srcPort,domain,modifiedDomain))
         printStatus = MSG_TYPES.RESULT
 
@@ -108,10 +108,6 @@ def printLogo(version,modifyDate):
     except Exception as ex:
         logging.error('printLogo - ' + str(ex))
 
-# TODO: Need refactor- NOT IMPORTANT
-# option: 1 full (time+date)
-# option: 2 date
-# option: 3 time
 def printDebugMode(values):
     if DEBUG is True:  # Debug mode only
         for string in values:
@@ -208,7 +204,7 @@ def storeDNSRequestJSON(status, time, recordType, transactionID, srcIP, srcPort,
         # Write into Json file
         json.dump(jsons, jsonfile)
 
-#
+# TODO: need to handle storing json in a better way
 def storeDNSRequestJSONText(status, time, recordType, transactionID, srcIP, srcPort, domain, modifiedDomain='none', mode='none'):
     """Help for the bar method of Foo classes"""
     date = Helper.getTime(TIME_FORMAT.DATE)
@@ -479,7 +475,9 @@ def getRecs(data):
 
         return (zone[qt], qt, domain,'OKAY')
     except Exception as ex:
-        logging.error('DNSFunctions - getRecs: \n%s ' % traceback.format_exc())
+        if str(ex) != str(KeyError('AAAA')): # IPv6- if it's IPv6, is it not important
+            logging.error('DNSFunctions - getRecs: \n%s ' % traceback.format_exc())
+
         return ('', qt , domain, 'ERROR')
 
 #
