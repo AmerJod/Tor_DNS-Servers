@@ -26,7 +26,7 @@ JSON_REQUESTS_PATH = 'JSON/NormalRequests/DNSRequestNodes'
 JSON_REQUESTS_PATH_CHECK = 'JSON/CheckingRequests/DNSRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
 ERRORS_LOG_PATH = 'Logs/Errors/'
 
-DEBUG = True
+DEBUG = False
 COUNTER = 0
 
 
@@ -122,6 +122,7 @@ def makeDirectories():
     try:
 
         if not os.path.exists('JSON'):
+            os.makedirs('JSON')
             os.makedirs('JSON/CheckingRequests')
             os.makedirs('JSON/NormalRequests')
         else:

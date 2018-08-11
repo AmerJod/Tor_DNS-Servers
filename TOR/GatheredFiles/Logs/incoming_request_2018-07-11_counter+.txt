@@ -1,0 +1,4 @@
+Start - 2018-07-11
+09:48:49: 1: RecordType: A | RequestId: 20467 | SrcIP: 74.125.74.14  |  SrcPort: 62973  |  Domain : dnstestsuite.space
+09:48:49: 2: RecordType: A | RequestId: 1329 | SrcIP: 173.194.98.10  |  SrcPort: 63428  |  Domain : dnstestsuite.space
+09:56:33: 3: RecordType: A | RequestId: 28452 | SrcIP: 217.12.200.200  |  SrcPort: 54548  |  Domain : 23_195-123-212-75.DNsTestsuITe.SpACE

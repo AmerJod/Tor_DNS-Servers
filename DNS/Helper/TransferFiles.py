@@ -10,7 +10,7 @@ import os
 from enum import Enum
 
 DNS_SERVERIP = '34.198.193.29'
-DNS_SERVER_PATH = 'dns_0998_Betav2'
+DNS_SERVER_PATH = 'dns_0998_Betav5'
 KEY_PATH = 'C:/pem/DNS_MSc_Thesis_amer.pem'
 
 class TransferFiles:

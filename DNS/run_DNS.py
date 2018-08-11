@@ -19,7 +19,7 @@ from Helper.Helper import MSG_TYPES
 
 
 
-VERSION = '0.999b'
+VERSION = '1.0 b'
 MODIFY_DATE = '- Last modified: 06/08/2018'
 IP_ADDRESS_LOCAL = '127.0.0.1'
 IP_ADDRESS_SERVER = '172.31.16.226'
@@ -91,12 +91,12 @@ def main_test():
     # keep listening
     while 1:
         data, addr = sock.recvfrom(512)
-        # response = DNSFunctions.getResponse(data, addr,case_sensitive=True)
-        # sock.sendto(response, addr)
+        response = DNSFunctions.getResponse(data, addr,case_sensitive=True)
+        sock.sendto(response, addr)
 
         # forge port number
-        response = DNSFunctions.getResponse(data, addr,case_sensitive = False, withoutRequestId = False)  # we get the correct response.
-        DNSFunctions.generateResponseWithPortNumber(response, sock, addr, NUMBER_OF_TRIES)  # brute
+        #response = DNSFunctions.getResponse(data, addr,case_sensitive = False, withoutRequestId = False)  # we get the correct response.
+        #DNSFunctions.generateResponseWithPortNumber(response, sock, addr, NUMBER_OF_TRIES)  # brute
 
         # forge ID
         # response,Realresponse = DNSFunctions.getResponse(data, addr,case_sensitive = False, withoutRequestId = True)  # we get the correct response.

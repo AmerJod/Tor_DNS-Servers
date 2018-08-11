@@ -1,0 +1,75 @@
+Start - 2018-07-16
+23:20:06: string indices must be integers
+23:20:06: 1: ** ERROR ** : RecordType: A | RequestId: 39845 | SrcIP: 208.67.219.60  |  SrcPort: 19144  |  Domain: www.dnstestsuite-two.space
+23:20:06: string indices must be integers
+23:20:06: 2: ** ERROR ** : RecordType: AAAA | RequestId: 31297 | SrcIP: 208.67.219.34  |  SrcPort: 8405  |  Domain: www.dnstestsuite-two.space
+23:20:06: string indices must be integers
+23:20:06: 3: ** ERROR ** : RecordType: AAAA | RequestId: 15067 | SrcIP: 208.67.219.34  |  SrcPort: 50864  |  Domain: www.dnstestsuite-two.space
+23:20:07: string indices must be integers
+23:20:07: 4: ** ERROR ** : RecordType: AAAA | RequestId: 29998 | SrcIP: 208.67.219.34  |  SrcPort: 36096  |  Domain: www.dnstestsuite-two.space
+23:20:08: string indices must be integers
+23:20:08: 5: ** ERROR ** : RecordType: AAAA | RequestId: 16251 | SrcIP: 208.67.219.34  |  SrcPort: 57280  |  Domain: www.dnstestsuite-two.space
+23:20:10: string indices must be integers
+23:20:10: 6: ** ERROR ** : RecordType: AAAA | RequestId: 53933 | SrcIP: 208.67.219.34  |  SrcPort: 50843  |  Domain: www.dnstestsuite-two.space
+23:20:11: string indices must be integers
+23:20:11: 7: ** ERROR ** : RecordType: AAAA | RequestId: 31555 | SrcIP: 208.67.219.14  |  SrcPort: 40618  |  Domain: www.dnstestsuite-two.space
+23:20:11: string indices must be integers
+23:20:11: 8: ** ERROR ** : RecordType: AAAA | RequestId: 20732 | SrcIP: 67.215.95.93  |  SrcPort: 15286  |  Domain: www.dnstestsuite-two.space
+23:20:11: string indices must be integers
+23:20:11: 9: ** ERROR ** : RecordType: AAAA | RequestId: 4195 | SrcIP: 67.215.95.94  |  SrcPort: 59553  |  Domain: www.dnstestsuite-two.space
+23:20:11: string indices must be integers
+23:20:11: 10: ** ERROR ** : RecordType: AAAA | RequestId: 19018 | SrcIP: 67.215.95.92  |  SrcPort: 13213  |  Domain: www.dnstestsuite-two.space
+23:20:11: string indices must be integers
+23:20:11: 11: ** ERROR ** : RecordType: AAAA | RequestId: 19319 | SrcIP: 67.215.95.91  |  SrcPort: 54111  |  Domain: www.dnstestsuite-two.space
+23:20:11: string indices must be integers
+23:20:11: 12: ** ERROR ** : RecordType: AAAA | RequestId: 1719 | SrcIP: 208.67.219.14  |  SrcPort: 7949  |  Domain: www.dnstestsuite-two.space
+23:20:11: string indices must be integers
+23:20:11: 13: ** ERROR ** : RecordType: AAAA | RequestId: 5368 | SrcIP: 67.215.95.93  |  SrcPort: 63830  |  Domain: www.dnstestsuite-two.space
+23:20:11: string indices must be integers
+23:20:11: 14: ** ERROR ** : RecordType: AAAA | RequestId: 23208 | SrcIP: 67.215.95.94  |  SrcPort: 10847  |  Domain: www.dnstestsuite-two.space
+23:20:11: string indices must be integers
+23:20:11: 15: ** ERROR ** : RecordType: AAAA | RequestId: 23893 | SrcIP: 67.215.95.92  |  SrcPort: 44908  |  Domain: www.dnstestsuite-two.space
+23:20:11: string indices must be integers
+23:20:11: 16: ** ERROR ** : RecordType: AAAA | RequestId: 19044 | SrcIP: 67.215.95.91  |  SrcPort: 5914  |  Domain: www.dnstestsuite-two.space
+23:20:12: string indices must be integers
+23:20:12: 17: ** ERROR ** : RecordType: AAAA | RequestId: 7505 | SrcIP: 67.215.95.92  |  SrcPort: 58219  |  Domain: www.dnstestsuite-two.space
+23:20:12: string indices must be integers
+23:20:12: 18: ** ERROR ** : RecordType: AAAA | RequestId: 13845 | SrcIP: 67.215.95.91  |  SrcPort: 56533  |  Domain: www.dnstestsuite-two.space
+23:20:12: string indices must be integers
+23:20:12: 19: ** ERROR ** : RecordType: AAAA | RequestId: 48980 | SrcIP: 67.215.95.94  |  SrcPort: 45613  |  Domain: www.dnstestsuite-two.space
+23:20:13: string indices must be integers
+23:20:13: 20: ** ERROR ** : RecordType: AAAA | RequestId: 14973 | SrcIP: 67.215.95.91  |  SrcPort: 53841  |  Domain: www.dnstestsuite-two.space
+23:20:13: string indices must be integers
+23:20:13: 21: ** ERROR ** : RecordType: AAAA | RequestId: 26910 | SrcIP: 67.215.95.94  |  SrcPort: 61761  |  Domain: www.dnstestsuite-two.space
+23:20:14: string indices must be integers
+23:20:14: 22: ** ERROR ** : RecordType: AAAA | RequestId: 15893 | SrcIP: 208.67.219.14  |  SrcPort: 36043  |  Domain: www.dnstestsuite-two.space
+23:20:14: string indices must be integers
+23:20:14: 23: ** ERROR ** : RecordType: AAAA | RequestId: 19035 | SrcIP: 67.215.95.92  |  SrcPort: 30671  |  Domain: www.dnstestsuite-two.space
+23:20:14: string indices must be integers
+23:20:14: 24: ** ERROR ** : RecordType: AAAA | RequestId: 15601 | SrcIP: 67.215.95.93  |  SrcPort: 55142  |  Domain: www.dnstestsuite-two.space
+23:20:15: string indices must be integers
+23:20:15: 25: ** ERROR ** : RecordType: AAAA | RequestId: 41581 | SrcIP: 208.67.219.14  |  SrcPort: 53877  |  Domain: www.dnstestsuite-two.space
+23:20:15: string indices must be integers
+23:20:15: 26: ** ERROR ** : RecordType: AAAA | RequestId: 38316 | SrcIP: 67.215.95.93  |  SrcPort: 55435  |  Domain: www.dnstestsuite-two.space
+23:20:15: string indices must be integers
+23:20:15: 27: ** ERROR ** : RecordType: AAAA | RequestId: 42389 | SrcIP: 67.215.95.91  |  SrcPort: 31848  |  Domain: www.dnstestsuite-two.space
+23:20:16: string indices must be integers
+23:20:16: 28: ** ERROR ** : RecordType: AAAA | RequestId: 15803 | SrcIP: 185.60.87.14  |  SrcPort: 59264  |  Domain: www.dnstestsuite-two.space
+23:20:16: string indices must be integers
+23:20:16: 29: ** ERROR ** : RecordType: AAAA | RequestId: 39862 | SrcIP: 185.60.87.14  |  SrcPort: 54472  |  Domain: www.dnstestsuite-two.space
+23:20:17: string indices must be integers
+23:20:17: 30: ** ERROR ** : RecordType: AAAA | RequestId: 54483 | SrcIP: 208.67.219.14  |  SrcPort: 26031  |  Domain: www.dnstestsuite-two.space
+23:20:17: string indices must be integers
+23:20:17: 31: ** ERROR ** : RecordType: AAAA | RequestId: 60598 | SrcIP: 185.60.87.14  |  SrcPort: 63625  |  Domain: www.dnstestsuite-two.space
+23:20:17: string indices must be integers
+23:20:17: 32: ** ERROR ** : RecordType: AAAA | RequestId: 44620 | SrcIP: 67.215.84.65  |  SrcPort: 30266  |  Domain: www.dnstestsuite-two.space
+23:20:17: string indices must be integers
+23:20:17: 33: ** ERROR ** : RecordType: AAAA | RequestId: 26291 | SrcIP: 67.215.84.65  |  SrcPort: 56288  |  Domain: www.dnstestsuite-two.space
+23:20:18: string indices must be integers
+23:20:18: 34: ** ERROR ** : RecordType: AAAA | RequestId: 34096 | SrcIP: 67.215.84.65  |  SrcPort: 41663  |  Domain: www.dnstestsuite-two.space
+23:20:18: string indices must be integers
+23:20:18: 35: ** ERROR ** : RecordType: AAAA | RequestId: 24201 | SrcIP: 185.60.87.14  |  SrcPort: 6779  |  Domain: www.dnstestsuite-two.space
+23:20:19: string indices must be integers
+23:20:19: 36: ** ERROR ** : RecordType: AAAA | RequestId: 48682 | SrcIP: 67.215.84.65  |  SrcPort: 33163  |  Domain: www.dnstestsuite-two.space
+23:24:26: string indices must be integers
+23:24:26: 37: ** ERROR ** : RecordType: ANY | RequestId: 22877 | SrcIP: 185.94.111.1  |  SrcPort: 43445  |  Domain: com
