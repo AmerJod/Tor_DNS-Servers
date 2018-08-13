@@ -272,7 +272,7 @@ def loadRealZone():
         zoneName = data['$origin']
         jsonZone[zoneName] = data
     ZONEDATA = jsonZone
-    Helper.printOnScreenAlways("\n                              =--------------**Zone file has been loaded**--------------=",MSG_TYPES.RESULT)
+    Helper.printOnScreenAlways("\n                             =-----------------**Zone file has been loaded**------------------=\n",MSG_TYPES.RESULT)
 
 def loadFakeZone():
     global FAKEZONEDATA
@@ -284,7 +284,7 @@ def loadFakeZone():
         zoneName = data['$origin']
         jsonZone[zoneName] = data
     FAKEZONEDATA = jsonZone
-    Helper.printOnScreenAlways("\n                              =--------------**Fake Zone file has been loaded**--------------=",MSG_TYPES.RESULT)
+    Helper.printOnScreenAlways("                              =--------------**Fake Zone file has been loaded**--------------=",MSG_TYPES.RESULT)
 
 
 #   get zone and domain name

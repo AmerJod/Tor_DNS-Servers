@@ -16,6 +16,13 @@ ERRORS_LOG_PATH = 'Logs/Errors/'
 #     logging.DEBUG    = 10
 #     logging.NOTSET   = 0
 
+
+class ADVERSARY_TASK_MODE(Enum):
+    RRANDOMIZE_PORT_NUMBER = 'rport'
+    RRANDOMIZE_REQUEST_ID = 'rid'
+    RRANDOMIZE_BOTH = 'both'  # not implmented yet.
+
+
 class MODE_TYPES(Enum):
     printing = '-out'
     none = '-none'
