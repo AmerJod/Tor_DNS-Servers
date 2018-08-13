@@ -97,7 +97,7 @@ def killprocess(port):
 #
 def printLogo(version,modifyDate):
     try:
-        print(term.format(('\n                           Starting Mini DNS Server.. v%s ' % version + modifyDate), term.Color.YELLOW))
+        print(term.format(('\n                     Starting Mini DNS Server.. v%s - Last modified: %s' % (version , modifyDate)), term.Color.YELLOW))
         with open('Logo/logo.txt', 'r') as f:
             lineArr = f.read()
             print(term.format(str(lineArr),term.Color.GREEN))
@@ -262,18 +262,30 @@ def storeDNSRequestJSONText(status, time, recordType, transactionID, srcIP, srcP
 
 #<editor-fold desc="******************* Zone File *******************">
 # load all zones that we have when the DNS server starts up, and put them into memory
-def loadZone():
+def loadRealZone():
     global ZONEDATA
     jsonZone = {}   # dictionary
-    zoneFiles = glob.glob('Zones/*.zone')
-    printDebugMode(zoneFiles) # Debug
-    for zone in zoneFiles:
-        with open(zone) as zonedata:
-            data = json.load(zonedata)
-            zoneName = data['$origin']
-            jsonZone[zoneName] = data
+    zFile = 'Zones/RealZone.zone'
+    printDebugMode(zFile) # Debug
+    with open(zFile) as zonedata:
+        data = json.load(zonedata)
+        zoneName = data['$origin']
+        jsonZone[zoneName] = data
     ZONEDATA = jsonZone
-    Helper.printOnScreenAlways("\n              =--------------**Zone file has been loaded**--------------=",MSG_TYPES.RESULT)
+    Helper.printOnScreenAlways("\n                              =--------------**Zone file has been loaded**--------------=",MSG_TYPES.RESULT)
+
+def loadFakeZone():
+    global FAKEZONEDATA
+    jsonZone = {}   # dictionary
+    zFile = 'Zones/FakeZone.zone'
+    printDebugMode(zFile) # Debug
+    with open(zFile) as zonedata:
+        data = json.load(zonedata)
+        zoneName = data['$origin']
+        jsonZone[zoneName] = data
+    FAKEZONEDATA = jsonZone
+    Helper.printOnScreenAlways("\n                              =--------------**Fake Zone file has been loaded**--------------=",MSG_TYPES.RESULT)
+
 
 #   get zone and domain name
 def getZone(domain):
@@ -285,6 +297,14 @@ def getZone(domain):
         logging.error('DNSFunctions - getZone: \n%s ' % traceback.format_exc())
         return ''
 
+def getFakeZone(domain):
+    global FAKEZONEDATA
+    try:
+        zoneName = '.'.join(domain[-3:]).lower()
+        return FAKEZONEDATA[zoneName]
+    except Exception as ex:
+        logging.error('DNSFunctions - getZone: \n%s ' % traceback.format_exc())
+        return ''
 # </editor-fold>
 
 #<editor-fold desc="******************* DNS Tools/Rspoonse *******************">
@@ -321,16 +341,12 @@ def getFlags(flags):
     try:
         response_Flag = int(QR + OPCODE + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
         #response_Flag = int(QR + '0000' + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
-    except:
-        response_Flag = int(QR + '0001' + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
-        print('------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
-
-        print('OPCODE' + str(OPCODE))
-        print('QR' + str(QR))
-        print('AA' + str(AA))
-        print('TC' + str(TC))
-        print('RD' + str(RD))
-        print(str(int(QR + OPCODE + AA + TC + RD, 2)))
+    except Exception:
+        TempOPCODE = '0000' # Query
+        #OPCODE ='0001' # IQuery
+        response_Flag = int(QR + TempOPCODE + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
+        Helper.loggingError('DNSFunctions - getFlags: OPCODE:%s\n %s ' % ( str(OPCODE),traceback.format_exc()))
+        #print(str(int(QR + OPCODE + AA + TC + RD, 2)))
 
     return response_Flag
 
@@ -431,7 +447,7 @@ def getQuestionDomain_temp(data):
     return (domainparts, questiontype)
 
 #
-def getLetterCaseSawped(dmoainParts):
+def getLetterCaseSwapped(dmoainParts):
     newParts =  dmoainParts[:-3] # save all the elements but  not the last 3  including ''
     dmoainParts = dmoainParts[-3:] # get only last 3 elemnets of the list exmaple.com.
     # modify randomly only in the domain and zone name
@@ -440,10 +456,11 @@ def getLetterCaseSawped(dmoainParts):
         newParts.append(part)
     return newParts
 
+
+
 #
-def getRecs(data):
+def getRecs(zone,domain, questionType):
     try:
-        domain, questionType = getQuestionDomain(data)
         qt = ''
         if questionType == RECORD_TYPES.A.value:
             qt = 'A'
@@ -460,8 +477,6 @@ def getRecs(data):
         elif questionType == RECORD_TYPES.ANY.value:
             qt = 'ANY'
 
-        # print(domain)
-        zone = getZone(domain)
         if DEBUG is True:  # Debug mode only
             print('-------------7')
 
@@ -478,6 +493,7 @@ def getRecs(data):
             logging.error('DNSFunctions - getRecs: \n%s ' % traceback.format_exc())
 
         return ('', qt , domain, 'ERROR')
+
 
 #
 def buildQuestion(domainName, recordType):  # convert str into byte
@@ -517,7 +533,7 @@ def recordToBytes(domainName, recordType, recordTTL, recordValue):
     return recordBytes
 
 #
-def getResponse(data, addr,case_sensitive = False,withoutRequestId=False):
+def getResponse(data, addr,case_sensitive = False,adversaryMode=False,withoutRequestId=False):
     # ********************************** DNS Header
     # Transaction ID
     TransactionID_Byte = data[:2]
@@ -536,7 +552,13 @@ def getResponse(data, addr,case_sensitive = False,withoutRequestId=False):
     # Question Count, how many questions in the zone file
     QDCOUNT = RECORD_TYPES.A.value #b'\x00\x01'  # dns has one question
 
-    records, recordType, domainName, recStatus = getRecs(data[12:])
+    domain, questionType = getQuestionDomain(data[12:])
+    if adversaryMode is True:   # load the fake zone
+        zone = getFakeZone(domain)
+    else:#load the real zone
+        zone = getZone(domain)
+
+    records, recordType, domainName, recStatus = getRecs(zone=zone,domain=domain, questionType=questionType)
 
 
     # Answer Count
@@ -582,7 +604,7 @@ def getResponse(data, addr,case_sensitive = False,withoutRequestId=False):
     if case_sensitive is True and 'check_' in domain.lower():  # need to be more dynamic
         modifiedDomain = domain # without permutation
         if 're_check_' not in domain.lower(): # re_check without permutation
-            domainName = getLetterCaseSawped(domainName)
+            domainName = getLetterCaseSwapped(domainName)
             modifiedDomain = '.'.join(map(str, domainName))[:-1]
 
         printedRow,printStatus = logDNSRequest(counter=COUNTER,status=recStatus, recordType=recordType, requestId=transactionID, srcIP=srcIP, srcPort=srcPort, domain=domain, modifiedDomain=modifiedDomain, mode='none')
@@ -685,7 +707,7 @@ def getForgedResponse(data, addr, case_sensitive=True):
 
     time = Helper.getTime(TIME_FORMAT.TIME)
     if case_sensitive is True:
-        domainName = getLetterCaseSawped(domainName)
+        domainName = getLetterCaseSwapped(domainName)
         modifiedDomain = '.'.join(map(str, domainName))[:-1]
 
         printedRow, printStatus = logDNSRequest(counter=COUNTER, status=recStatus, recordType=recordType,
@@ -779,14 +801,15 @@ def generateResponseWithRequestId(response,sock,addr,times): #,expectedID=0,resp
     try:
         r = 1
         while r <= 1:
-            print("Round: " + str(r))
+            Helper.printOnScreenAlways("Round: " + str(r),MSG_TYPES.RESULT)
             requestIds = [random.randint(1, 65536) for i in range(times)]
             requestIds.sort()
             index = 0
             hafltimes= times/2
             for requestId in requestIds:  #range (1, 10000): # 1000 time should be enoght
                 index+=1
-                print('R: '+str(r)+' - '+str(index) +'- Transaction ID: ' + str(requestId))
+                Helper.printOnScreenAlways("R: %d - %d- %d" % (r,index,requestId) , MSG_TYPES.YELLOW)
+                #print('R: '+str(r)+' - '+str(index) +'- Transaction ID: ' + str(requestId))
                 TransactionID_Byte = (requestId).to_bytes(2, byteorder='big')
                 finalResponse = TransactionID_Byte + response
                 # if hafltimes == index:

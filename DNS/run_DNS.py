@@ -8,6 +8,8 @@ import logging
 import socket
 import sys
 import traceback
+import os
+import time
 
 from stem.util import term
 
@@ -31,26 +33,42 @@ FIX_PORT = True  # True # try all the possible port
 FIX_REQUESTID = False   # False  # try all the possible request ID
 NUMBER_OF_TRIES = 10000
 
+def printPortAndIP(ip,port):
+    print("\n                                            Host: %s | Port: %s \n" % (ip, port))
+
+def printNcase():
+    Helper.printOnScreenAlways("                                        Change Domain Name letter case is enabled",term.Color.GREEN)
+
+def printModifiedDate():
+    try:
+        filename = os.path.basename(__file__)
+        os.path.abspath(os.path.dirname(__file__))
+        (mode, ino, dev, nlink, uid, gid, size, atime, mtime, ctime) = os.stat(filename)
+        return time.ctime(mtime)
+    except Exception as ex:
+        Helper.printOnScreenAlways("run_DNS -printModifedDate: %s"%ex , MSG_TYPES.ERROR)
+
+
 def main(argv,IP):
     # gather Zone info and store it into memory
-    DNSFunctions.loadZone()
+    # DNSFunctions.loadZone()
     case_sensitive = False
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     opts = argv
     if opts[0] == '-s':
         sock.bind((IP, PORT))
-        print("\n                           Host: %s | Port: %s \n" % (IP, PORT))
+        printPortAndIP(IP, PORT)
         if opts.__len__() > 1:
             if opts[1] == '-Ncase':
-                Helper.printOnScreenAlways("Change Domain Name letter case is enabled",term.Color.GREEN)
+                printNcase()
                 case_sensitive = True
 
     elif opts[0] == '-l' or opts == '':
         sock.bind((IP_ADDRESS_LOCAL, PORT))
-        print("\n                           Host: %s | Port: %s \n" % (IP_ADDRESS_LOCAL, PORT))
+        printPortAndIP(IP_ADDRESS_LOCAL, PORT)
         if opts.__len__() > 1:
             if opts[1] == '-Ncase':
-                Helper.printOnScreenAlways("Change Domain Name letter case is enabled", term.Color.GREEN)
+                printNcase()
                 case_sensitive = True
 
 
@@ -66,11 +84,11 @@ def main(argv,IP):
             while 1:
                 data, addr = sock.recvfrom(512)
                 if FIX_REQUESTID is True:  ## try all the possible Port Number 1  to 65556
-                    response = DNSFunctions.getResponse(data, addr, case_sensitive=False,withoutRequestId=False)  # we get the correct response.
+                    response = DNSFunctions.getResponse(data, addr, case_sensitive=False,adversaryMode=ADVERSARY_MODE,withoutRequestId=False)  # we get the correct response.
                     DNSFunctions.generateResponseWithPortNumber(response, sock, addr, NUMBER_OF_TRIES)  # brute force all the possible port number
 
                 elif FIX_PORT is True:  ## try all the possible request IDs 1  to 65556
-                    response = DNSFunctions.getResponse(data, addr, case_sensitive=False,withoutRequestId=True)  # forge response without request ID, later we forge the ID and combine it with the whole response
+                    response = DNSFunctions.getResponse(data, addr, case_sensitive=False,adversaryMode=ADVERSARY_MODE,withoutRequestId=True)  # forge response without request ID, later we forge the ID and combine it with the whole response
                     DNSFunctions.generateResponseWithRequestId(response, sock, addr, NUMBER_OF_TRIES)  # brute force # we get the response once without Tre_id
                 #sock.sendto(response,addr)
 
@@ -81,7 +99,7 @@ def main(argv,IP):
 # TODO: need to be refactored
 def main_test():
     # gather Zone info and store it into memory
-    DNSFunctions.loadZone()
+
     print("Testing ....  ")
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     #sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -91,11 +109,11 @@ def main_test():
     # keep listening
     while 1:
         data, addr = sock.recvfrom(512)
-        response = DNSFunctions.getResponse(data, addr,case_sensitive=True)
-        sock.sendto(response, addr)
+        #response = DNSFunctions.getResponse(data, addr,case_sensitive=True)
+        #sock.sendto(response, addr)
 
         # forge port number
-        #response = DNSFunctions.getResponse(data, addr,case_sensitive = False, withoutRequestId = False)  # we get the correct response.
+        #response = DNSFunctions.getResponse(data, addr, case_sensitive=False,adversaryMode=ADVERSARY_MODE,withoutRequestId=False)  # we get the correct response.
         #DNSFunctions.generateResponseWithPortNumber(response, sock, addr, NUMBER_OF_TRIES)  # brute
 
         # forge ID
@@ -133,25 +151,32 @@ def main_test_local():
     print(str(response))
 
 if __name__ == '__main__':
+    modifiedDate =printModifiedDate()
+    DNSFunctions.loadRealZone()
 
     DNSFunctions.makeDirectories()
     Helper.initLogger(level=logging.ERROR,enableConsole=False)
-    DNSFunctions.printLogo(version=VERSION,modifyDate=MODIFY_DATE)
+    DNSFunctions.printLogo(version=VERSION,modifyDate=modifiedDate)
     DNSFunctions.killprocess(PORT)
     DNSFunctions.setDebuggingMode(DEBUG)
     #DNSFunctions.setAdversaryMode(ADVERSARY_MODE)
 
     if ADVERSARY_MODE is True:
-        Helper.printOnScreenAlways('              *****Adversary mode is activated*****', MSG_TYPES.YELLOW)
+        Helper.printOnScreenAlways('                                         ***** ADVERSARY MODE IS ACTIVATED *****', MSG_TYPES.YELLOW)
+        DNSFunctions.loadFakeZone()
     try: # on the server
         if len(sys.argv) != 1:
             ip = socket.gethostbyname(socket.gethostname())
             main(sys.argv[1:], ip)
+            #main(['-s','-Ncase'], ip)
+
         else:
-            print('ERROR: argv....')
+            #print('ERROR:i argv....')
             #main_test_local()
-            main_test()
-    except: # locally
-        print('ERROR: argv....')
+            ip = socket.gethostbyname(socket.gethostname())
+            main(['-l','-Ncase'], ip)
+            #main_test()
+    except Exception as ex: # locally
+        print('ERROR:o argv.... %s' %ex)
         #main_test_local()
         main_test()

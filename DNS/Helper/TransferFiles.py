@@ -13,7 +13,7 @@ from DNS.Helper.Helper import MSG_TYPES
 
 
 DNS_SERVERIP = '34.198.193.29'
-DNS_SERVER_PATH = 'dns_11_B'
+DNS_SERVER_PATH = 'dns_112_B'
 KEY_PATH = 'C:/pem/DNS_MSc_Thesis_amer.pem'
 
 class TransferFiles:
@@ -47,7 +47,7 @@ class TransferFiles:
 
 
     def run(self,argv):
-        Helper.printOnScreenAlways('Transferring files .....',MSG_TYPES.RESULT)
+        Helper.printOnScreenAlways('Transferring files to DNS server .....',MSG_TYPES.RESULT)
 
         print('path: ' + str(os.chdir(os.path.dirname(os.path.realpath(__file__)))))
         try:

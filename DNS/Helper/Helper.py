@@ -69,8 +69,11 @@ class Helper:
             # add the handler to the root logger
             logger = logging.getLogger('').addHandler(console)
 
-    def loggingError(fuctName, error):
+    def loggingError(error):
         logging.error(str(error))
+
+    def loggingError(functName, error):
+        logging.error(str("%s: %s" % (functName,error)))
 
     def getTime(format=TIME_FORMAT.FULL):
         date = datetime.datetime.now()
@@ -88,19 +91,14 @@ class Helper:
 class LogData():
     def __init__(self, filename, mode='none'):
         date = Helper.getTime(TIME_FORMAT.DATE)
+        fullDate = Helper.getTime(TIME_FORMAT.FULL)
         self.mode = mode
-        '''
-        self.file = 'Logs/'+filename+'_'+date+'.log'     # This is hard coded but you could make dynamic
 
-        if (os.path.exists(self.file)) != True:
-            with open(self.file, 'w+') as file:
-                file.write('Start - '+date +'\n')
-        '''
         # TODO: need refactoring - make it more abstract
         self.file = 'Logs/' + filename + '_' + date + '_counter+.txt'
         if (os.path.exists(self.file)) != True:
             with open(self.file, 'w+') as file:
-                file.write('Start - ' + date + '\n')
+                file.write('Start - ' + fullDate + '\n')
 
     def wirteIntoFile(self, raw):
         if self.mode == 'out':
