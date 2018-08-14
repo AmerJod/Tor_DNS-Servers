@@ -16,3 +16,4 @@ TORResolver/
 WebServer/JSON/
 *.pyc
 TOR/Helper/FetchFiles/
+TOR/ServerKeys/
