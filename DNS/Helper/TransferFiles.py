@@ -13,7 +13,7 @@ from DNS.Helper.Helper import MSG_TYPES
 
 
 DNS_SERVERIP = '34.198.193.29'
-DNS_SERVER_PATH = 'dns_112_B'
+DNS_SERVER_PATH = 'dns_114_B'
 KEY_PATH = 'C:/pem/DNS_MSc_Thesis_amer.pem'
 
 class TransferFiles:
@@ -45,6 +45,9 @@ class TransferFiles:
             return date_
 
 
+    def DeleteTempFiles(self):
+        # delete json and log files
+        pass
 
     def run(self,argv):
         Helper.printOnScreenAlways('Transferring files to DNS server .....',MSG_TYPES.RESULT)

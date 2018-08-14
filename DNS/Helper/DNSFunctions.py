@@ -16,10 +16,10 @@ import traceback
 from stem.util import term
 from enum import Enum
 
-from .Helper import Helper
-from .Helper import MSG_TYPES
-from .Helper import LogData
-from .Helper import TIME_FORMAT
+from Helper.Helper import Helper
+from Helper.Helper import MSG_TYPES
+from Helper.Helper import LogData
+from Helper.Helper import TIME_FORMAT
 
 JSON_REQUESTS_PATH = 'JSON/NormalRequests/NormalDNSRequestNodes'
 JSON_REQUESTS_PATH_CHECK = 'JSON/CheckingRequests/CheckingDNSRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
@@ -345,7 +345,7 @@ def getFlags(flags):
         TempOPCODE = '0000' # Query
         #OPCODE ='0001' # IQuery
         response_Flag = int(QR + TempOPCODE + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
-        Helper.loggingError('DNSFunctions - getFlags: OPCODE:%s\n %s ' % ( str(OPCODE),traceback.format_exc()))
+        Helper.loggingError('DNSFunctions - getFlags: OPCODE:%s\n %s ' % (str(OPCODE), traceback.format_exc()))
         #print(str(int(QR + OPCODE + AA + TC + RD, 2)))
 
     return response_Flag

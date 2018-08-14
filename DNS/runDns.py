@@ -22,7 +22,13 @@ def parserArgs():
 
 
 if __name__ == '__main__':
-    args = parserArgs()
-    #args="[adv=True, l=False, opt='rboth', port=53, rcase=True, s=True]"
-    print(args)
-    dnsServer.run(args)
+    try:
+        args = parserArgs()
+        #args="[adv=True, l=False, opt='rboth', port=53, rcase=True, s=True]"
+        # print(args)
+        dnsServer.run(args)
+    except Exception as ex:
+        print(" ........... Testing .........")
+        print(ex)
+        setArgs = argparse.Namespace(l=True, adversary=False, port=53, rcase=False, s=False, task='rboth')
+        dnsServer.run(setArgs)

@@ -4,27 +4,22 @@ Mini DNS server for resolving our website 'dnstestsuite.space'.
 https://bitbucket.org/AmerJoudiah/dns_project/
 Note: Still private project.
 '''
+
 import logging
 import socket
-import sys
 import traceback
 import os
 import time
-
 import argparse
-from stem.util import term
 
 from Helper import DNSFunctions
 from Helper.Helper import Helper
-
 from Helper.Helper import MODE_TYPES
 from Helper.Helper import MSG_TYPES
 from Helper.Helper import ADVERSARY_TASK_MODE
 
 
-
-
-VERSION = '1.12 b'
+VERSION = '1.14 b'
 MODIFY_DATE = '- Last modified: 11/08/2018'
 IP_ADDRESS_LOCAL = '127.0.0.1'
 IP_ADDRESS_SERVER = '172.31.16.226'
@@ -41,7 +36,7 @@ def printPortAndIP(ip,port):
     print("\n                                            Host: %s | Port: %s \n" % (ip, port))
 
 def printNcase():
-    Helper.printOnScreenAlways("                                        Change Domain Name letter case is enabled",term.Color.GREEN)
+    Helper.printOnScreenAlways("                                        Change Domain Name letter case is enabled",MSG_TYPES.YELLOW)
 
 def printModifiedDate():
     try:
@@ -61,8 +56,6 @@ def setAdversaryModetask(value):
         RANDOMIZE_REQUEST_ID = True
     elif value is ADVERSARY_TASK_MODE.RRANDOMIZE_BOTH.value:
         RANDOMIZE_BOTH = True
-
-
 
 
 def main(argv,IP):
@@ -110,7 +103,7 @@ def main(argv,IP):
 
     except Exception as ex:
         DNSFunctions.loggingError('ERROR: main ' + traceback.format_exc())
-        Helper.printOnScreenAlways("\nERROR: Terminated!!! :" + str(ex),term.Color.RED)
+        Helper.printOnScreenAlways("\nERROR: Terminated!!! :" + str(ex),MSG_TYPES.ERROR)
 
 def run(argv):
     modifiedDate = printModifiedDate()
@@ -124,14 +117,13 @@ def run(argv):
         ip = socket.gethostbyname(socket.gethostname())
     else:
         ip = IP_ADDRESS_LOCAL
-
     main(argv, ip)
 
 
 if __name__ == '__main__':
     try: # on the server
             #setArgs= {'s': True, 'l': False, 'rcase': False, 'adversary': False, 'task': 'rboth', 'port': 53}
-            setArgs = argparse.Namespace(l=True,adversary=True, port=53, rcase=False, s=False, task='rboth')
+            setArgs = argparse.Namespace(l=True,adversary=False, port=53, rcase=False, s=False, task='rboth')
             run(setArgs)
     except Exception as ex: # locally
         print('ERROR:o argv.... %s' %ex)
