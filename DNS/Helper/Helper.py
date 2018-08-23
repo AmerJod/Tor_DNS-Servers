@@ -79,8 +79,8 @@ class Helper:
     def loggingError(error):
         logging.error(str(error))
 
-    def loggingError(functName, error):
-        logging.error(str("%s: %s" % (functName,error)))
+    #def loggingError(functName, error):
+    #   logging.error(str("%s: %s" % (functName,error)))
 
     def getTime(format=TIME_FORMAT.FULL):
         date = datetime.datetime.now()

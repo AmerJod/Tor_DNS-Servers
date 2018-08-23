@@ -314,7 +314,7 @@ def getQuestionDomain_temp(data):
 
 def getLetterCaseSawped(dmoainParts):
     newParts = dmoainParts[:-3]  # save all the elements but  not the last 3  including ''
-    dmoainParts = dmoainParts[-3:]  # get only last 3 elemnets of the list exmaple.com.
+    dmoainParts = dmoainParts[-3:]  # get only last 3 elemnets of the ExitNodelist exmaple.com.
     # modify randomly only in the domain and zone name
     for part in dmoainParts:
         part = "".join(random.choice([k.swapcase(), k]) for k in part)
@@ -424,10 +424,10 @@ def getForgedResponse(data, addr, case_sensitive=True):
     # ANCOUNT = len(getRecs(data[12:])[0]).to_bytes(2, byteorder='big')  # 12 bytes to skip the header
     ANCOUNT = len(records).to_bytes(2, byteorder='big')  # 12 bytes to skip the header
 
-    # Name server count
+    # Name server nodeCount
     NSCOUNT = (0).to_bytes(2, byteorder='big')
 
-    # Additional count
+    # Additional nodeCount
     ARCOUNT = (0).to_bytes(2, byteorder='big')
 
     Forged = True
@@ -570,10 +570,10 @@ def getResponse(data, addr, case_sensitive=True):
     # ANCOUNT = len(getRecs(data[12:])[0]).to_bytes(2, byteorder='big')  # 12 bytes to skip the header
     ANCOUNT = len(records).to_bytes(2, byteorder='big')  # 12 bytes to skip the header
 
-    # Name server count
+    # Name server nodeCount
     NSCOUNT = (0).to_bytes(2, byteorder='big')
 
-    # Additional count
+    # Additional nodeCount
     ARCOUNT = (0).to_bytes(2, byteorder='big')
 
     Forged = True

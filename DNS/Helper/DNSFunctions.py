@@ -24,6 +24,8 @@ from Helper.Helper import TIME_FORMAT
 JSON_REQUESTS_PATH = 'JSON/NormalRequests/NormalDNSRequestNodes'
 JSON_REQUESTS_PATH_CHECK = 'JSON/CheckingRequests/CheckingDNSRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
 ERRORS_LOG_PATH = 'Logs/Errors/'
+FORCE_NOT_RESPONSE_MEG = 'tor_dont_response'    # if the request contains this in the sub-domain, DNS will not response to it
+
 
 DEBUG = False
 COUNTER = 0
@@ -338,16 +340,22 @@ def getFlags(flags):
 
     # Response code
     RCODE = '0000'
+    ('DNSFunctions - getFlags: OPCODE:%s\n %s ' % (str(OPCODE), traceback.format_exc()))
+
     try:
         response_Flag = int(QR + OPCODE + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
         #response_Flag = int(QR + '0000' + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
-    except Exception:
+
+        exception=False
+    except Exception as ex:
         TempOPCODE = '0000' # Query
         #OPCODE ='0001' # IQuery
         response_Flag = int(QR + TempOPCODE + AA + TC + RD, 2).to_bytes(1, byteorder='big') + int(RA + Z + RCODE).to_bytes(1,byteorder='big')
-        Helper.loggingError('DNSFunctions - getFlags: OPCODE:%s\n %s ' % (str(OPCODE), traceback.format_exc()))
+        print(response_Flag)
+        #print(ex)
+        #logging.error('DNSFunctions - killprocess: %s' % ex)
+        #loggingData(ex)
         #print(str(int(QR + OPCODE + AA + TC + RD, 2)))
-
     return response_Flag
 
 #
@@ -355,7 +363,6 @@ def getQuestionDomain(data):
     state = 1
     index=0
     first = True
-
     domainParts =[]
     domainString = ''
     domainTLD = ''
@@ -449,7 +456,7 @@ def getQuestionDomain_temp(data):
 #
 def getLetterCaseSwapped(dmoainParts):
     newParts =  dmoainParts[:-3] # save all the elements but  not the last 3  including ''
-    dmoainParts = dmoainParts[-3:] # get only last 3 elemnets of the list exmaple.com.
+    dmoainParts = dmoainParts[-3:] # get only last 3 elemnets of the ExitNodelist exmaple.com.
     # modify randomly only in the domain and zone name
     for part in dmoainParts:
         part = "".join(random.choice([k.swapcase(), k ]) for k in part )
@@ -533,7 +540,7 @@ def recordToBytes(domainName, recordType, recordTTL, recordValue):
     return recordBytes
 
 #
-def getResponse(data, addr,case_sensitive = False,adversaryMode=False,withoutRequestId=False):
+def getResponse(data, addr,case_sensitive = False,adversaryMode=False,withoutRequestId=False ,forceNotResponseMode= False ):
     # ********************************** DNS Header
     # Transaction ID
     TransactionID_Byte = data[:2]
@@ -559,16 +566,17 @@ def getResponse(data, addr,case_sensitive = False,adversaryMode=False,withoutReq
         zone = getZone(domain)
 
     records, recordType, domainName, recStatus = getRecs(zone=zone,domain=domain, questionType=questionType)
-
+    # print("domai")
+    # print(domainName)
 
     # Answer Count
     #ANCOUNT = len(getRecs(data[12:])[0]).to_bytes(2, byteorder='big')  # 12 bytes to skip the header
     ANCOUNT = len(records).to_bytes(2, byteorder='big')  # 12 bytes to skip the header
 
-    # Name server count
+    # Name server nodeCount
     NSCOUNT = (0).to_bytes(2, byteorder='big')
 
-    # Additional count
+    # Additional nodeCount
     ARCOUNT = (0).to_bytes(2, byteorder='big')
 
     RealDNSHeader_Test = b' ' # for testing
@@ -601,6 +609,8 @@ def getResponse(data, addr,case_sensitive = False,adversaryMode=False,withoutReq
     status = 'Okay'
 
     time = Helper.getTime(TIME_FORMAT.TIME)
+
+    # TODO: implement a method that distinguishes request if they have been called from TORMAPPER
     if case_sensitive is True and 'check_' in domain.lower():  # need to be more dynamic
         modifiedDomain = domain # without permutation
         if 're_check_' not in domain.lower(): # re_check without permutation
@@ -632,6 +642,11 @@ def getResponse(data, addr,case_sensitive = False,adversaryMode=False,withoutReq
     if DEBUG is True:
         print('DNSQuestion: ' + str(DNSQuestion))
 
+    response = True
+    if forceNotResponseMode:
+        if FORCE_NOT_RESPONSE_MEG in domain:
+            response = False
+
 
     # ********************************** DNS Body
     DNSBody = b''
@@ -642,7 +657,7 @@ def getResponse(data, addr,case_sensitive = False,adversaryMode=False,withoutReq
         print('DNSBody: '+str(DNSBody))
         print(str(DNSHeader) + '\n' + str(DNSQuestion)+'\n' + str(DNSBody ))
 
-    return (DNSHeader + DNSQuestion + DNSBody)  #, (RealDNSHeader_Test + DNSQuestion + DNSBody)
+    return ((DNSHeader + DNSQuestion + DNSBody) ,response) #, (RealDNSHeader_Test + DNSQuestion + DNSBody)
 
 
 # </editor-fold>
@@ -675,10 +690,10 @@ def getForgedResponse(data, addr, case_sensitive=True):
     # ANCOUNT = len(getRecs(data[12:])[0]).to_bytes(2, byteorder='big')  # 12 bytes to skip the header
     ANCOUNT = len(records).to_bytes(2, byteorder='big')  # 12 bytes to skip the header
 
-    # Name server count
+    # Name server nodeCount
     NSCOUNT = (0).to_bytes(2, byteorder='big')
 
-    # Additional count
+    # Additional nodeCount
     ARCOUNT = (0).to_bytes(2, byteorder='big')
 
     #*****
@@ -809,7 +824,6 @@ def generateResponseWithRequestId(response,sock,addr,times): #,expectedID=0,resp
             for requestId in requestIds:  #range (1, 10000): # 1000 time should be enoght
                 index+=1
                 Helper.printOnScreenAlways("R: %d - %d- %d" % (r,index,requestId) , MSG_TYPES.YELLOW)
-                #print('R: '+str(r)+' - '+str(index) +'- Transaction ID: ' + str(requestId))
                 TransactionID_Byte = (requestId).to_bytes(2, byteorder='big')
                 finalResponse = TransactionID_Byte + response
                 # if hafltimes == index:
@@ -834,15 +848,19 @@ def generateResponseWithPortNumber(response,sock,addr,times):
     try:
         portNumbers = [random.randint(1, 65536) for i in range(times)]
         portNumbers.sort()
-        index=0
-        for portNumber in portNumbers: #range (1, 10000): # 1000 time should be enoght
-            index += 1
-            print(str(index) +'- Port ' + str(portNumber))
-            lst = list(addr)
-            lst[1] = portNumber
-            addr = tuple(lst)
-            sock.sendto(response, addr)
+        r = 1
+        while r <= 1:
+            Helper.printOnScreenAlways("Round: " + str(r), MSG_TYPES.RESULT)
+            index=0
+            for portNumber in portNumbers: #range (1, 10000): # 1000 time should be enoght
+                index += 1
+                Helper.printOnScreenAlways("R: %d - %d- %d" % (r, index, portNumber), MSG_TYPES.YELLOW)
 
+                lst = list(addr)
+                lst[1] = portNumber
+                addr = tuple(lst)
+                sock.sendto(response, addr)
+        r = r + 1
     except Exception as ex:
         logging.error('DNSFunctions - generateResponseWithPortNumber: \n %s ' % traceback.format_exc())
 

@@ -1,7 +1,7 @@
 import argparse
 import dnsServer
 from Helper.Helper import ADVERSARY_TASK_MODE
-
+import traceback
 def parserArgs():
     defaultPort = 53
     set_Adv_Required = set([e.value for e in ADVERSARY_TASK_MODE])
@@ -18,6 +18,11 @@ def parserArgs():
                              'rid: randomize Request Id || rboth: randomise both' +
                              ', default: rboth')
     parser.add_argument('-p', '--port',type=int,default=defaultPort,help=('Which port the DNS is going to use, default: %d' % defaultPort))
+    parser.add_argument('-dont', action='store_true', help='Activate  the DNS to not respond to particular requests if they contain specific words, '
+                                                         'this is used to see how many queries the DNS resolver will issue per domain name when '
+                                                         'there is no response.')
+
+
     return parser.parse_args()
 
 
@@ -30,5 +35,6 @@ if __name__ == '__main__':
     except Exception as ex:
         print(" ........... Testing .........")
         print(ex)
-        setArgs = argparse.Namespace(l=True, adversary=False, port=53, rcase=False, s=False, task='rboth')
+        print('runDns - MAIN: \n%s ' % traceback.format_exc())
+        setArgs = argparse.Namespace(l=True, adversary=False, port=53, rcase=False, s=False, task='rboth', dont = True)
         dnsServer.run(setArgs)

@@ -19,18 +19,18 @@ from Helper.Helper import MSG_TYPES
 from Helper.Helper import ADVERSARY_TASK_MODE
 
 
-VERSION = '1.14 b'
-MODIFY_DATE = '- Last modified: 11/08/2018'
+VERSION = '1.15 b'
+#MODIFY_DATE = '- Last modified: 11/08/2018'
 IP_ADDRESS_LOCAL = '127.0.0.1'
 IP_ADDRESS_SERVER = '172.31.16.226'
 DEBUG = False
 PORT = 53  # 53 Default port
 
-## ADVERSARY_MODE
 RANDOMIZE_PORT = False  # True # try all the possible port
-RANDOMIZE_REQUEST_ID = False   # False  # try all the possible request ID
+RANDOMIZE_REQUEST_ID = False  # False  # try all the possible request ID
 RANDOMIZE_BOTH = False
-NUMBER_OF_TRIES = 10000
+
+NUMBER_OF_TRIES = 10000 #   bruteforcing
 
 def printPortAndIP(ip,port):
     print("\n                                            Host: %s | Port: %s \n" % (ip, port))
@@ -50,38 +50,43 @@ def printModifiedDate():
 
 
 def setAdversaryModetask(value):
-    if value is ADVERSARY_TASK_MODE.RRANDOMIZE_PORT_NUMBER.value :
+    global RANDOMIZE_PORT
+    global RANDOMIZE_BOTH
+    global RANDOMIZE_REQUEST_ID
+    if value == ADVERSARY_TASK_MODE.RRANDOMIZE_PORT_NUMBER.value:
         RANDOMIZE_PORT = True
-    elif value is ADVERSARY_TASK_MODE.RRANDOMIZE_REQUEST_ID.value:
+    elif value == ADVERSARY_TASK_MODE.RRANDOMIZE_REQUEST_ID.value:
         RANDOMIZE_REQUEST_ID = True
-    elif value is ADVERSARY_TASK_MODE.RRANDOMIZE_BOTH.value:
+    elif value == ADVERSARY_TASK_MODE.RRANDOMIZE_BOTH.value:
         RANDOMIZE_BOTH = True
 
 
 def main(argv,IP):
 
+    global  FORCE_NOT_RESPONSE_MEG
     letterCaseRandomize = argv.rcase
     port = argv.port
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.bind((IP, port))
 
     printPortAndIP(IP, port)
-    if letterCaseRandomize is True:
+    if letterCaseRandomize:
         printNcase()
     ADVERSARY_Mode = argv.adversary
-
+    FORCE_NOT_RESPONSE_MODE = argv.dont
     DNSFunctions.loadRealZone()
 
     try:
-        if ADVERSARY_Mode is False:
+        if not ADVERSARY_Mode:
             # keep listening
             #DNSFunctions.loadRealZone()
             while 1:
                 data, addr = sock.recvfrom(512)
-                response = DNSFunctions.getResponse(data, addr,letterCaseRandomize)
-                sock.sendto(response, addr)
+                response, allowResponse = DNSFunctions.getResponse(data, addr,letterCaseRandomize,forceNotResponseMode=FORCE_NOT_RESPONSE_MODE )
+                if allowResponse:
+                    sock.sendto(response, addr)
 
-        elif ADVERSARY_Mode is True:
+        elif ADVERSARY_Mode: # attacking mode
             Helper.printOnScreenAlways(
                 '                                         *****   ADVERSARY MODE IS ACTIVATED  *****', MSG_TYPES.YELLOW)
             DNSFunctions.loadFakeZone()
@@ -102,7 +107,7 @@ def main(argv,IP):
                     pass
 
     except Exception as ex:
-        DNSFunctions.loggingError('ERROR: main ' + traceback.format_exc())
+        Helper.loggingError(str('ERROR: main ' + traceback.format_exc()))
         Helper.printOnScreenAlways("\nERROR: Terminated!!! :" + str(ex),MSG_TYPES.ERROR)
 
 def run(argv):
@@ -123,7 +128,7 @@ def run(argv):
 if __name__ == '__main__':
     try: # on the server
             #setArgs= {'s': True, 'l': False, 'rcase': False, 'adversary': False, 'task': 'rboth', 'port': 53}
-            setArgs = argparse.Namespace(l=True,adversary=False, port=53, rcase=False, s=False, task='rboth')
+            setArgs = argparse.Namespace(l=True,adversary=False, port=53, rcase=True, s=False, task='rport', dont=True)
             run(setArgs)
     except Exception as ex: # locally
         print('ERROR:o argv.... %s' %ex)

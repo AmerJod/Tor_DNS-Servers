@@ -7,9 +7,9 @@
         "rname": "admin.dnstestsuite.space.",
         "serial": "{time}",
         "refresh": 30,
-        "retry": 600,
-        "expire": 60480,
-        "minimum": 8640
+        "retry": 6000,
+        "expire": 600480,
+        "minimum": 86400
     },
     "ns": [
         { "host": "ns2.dnstestsuite.space." },
