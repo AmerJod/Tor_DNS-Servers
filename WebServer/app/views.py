@@ -9,7 +9,7 @@ from Helper.Helper import Helper
 from Helper.Helper import TIME_FORMAT
 
 JsonRequestsPATH = 'JSON/NormalRequests/HTTPRequestNodes'
-JsonRequestsPATHCheck = 'JSON/CheckingRequests/HTTPCheckingRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
+JsonRequestsPATHCheck = 'JSON/CheckingRequests/HTTPCheckingRequestNodes' # store all the sendRequests about checkoing if the dns supports 0x20 code
 
 
 @app.route('/', methods=['GET', 'POST'])
