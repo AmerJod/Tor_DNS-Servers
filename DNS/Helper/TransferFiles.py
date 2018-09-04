@@ -13,7 +13,7 @@ from DNS.Helper.Helper import MSG_TYPES
 
 
 DNS_SERVERIP = '34.198.193.29'
-DNS_SERVER_PATH = 'dns_114_B'
+DNS_SERVER_PATH = 'dns_115_B'
 KEY_PATH = 'C:/pem/DNS_MSc_Thesis_amer.pem'
 
 class TransferFiles:

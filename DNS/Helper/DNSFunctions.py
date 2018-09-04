@@ -22,9 +22,9 @@ from Helper.Helper import LogData
 from Helper.Helper import TIME_FORMAT
 
 JSON_REQUESTS_PATH = 'JSON/NormalRequests/NormalDNSRequestNodes'
-JSON_REQUESTS_PATH_CHECK = 'JSON/CheckingRequests/CheckingDNSRequestNodes' # store all the request about checkoing if the dns supports 0x20 code
+JSON_REQUESTS_PATH_CHECK = 'JSON/CheckingRequests/CheckingDNSRequestNodes' # store all the sendRequests about checkoing if the dns supports 0x20 code
 ERRORS_LOG_PATH = 'Logs/Errors/'
-FORCE_NOT_RESPONSE_MEG = 'tor_dont_response'    # if the request contains this in the sub-domain, DNS will not response to it
+FORCE_NOT_RESPONSE_MEG = 'tor_dont_response'    # if the sendRequests contains this in the sub-domain, DNS will not response to it
 
 
 DEBUG = False
@@ -43,7 +43,7 @@ class RECORD_TYPES(Enum):
     ANY     = b'\x00\xff'
 
 # class TASK_MODE(Enum):
-#     request = '-out'
+#     sendRequests = '-out'
 #     TorconnectionChecking = '-none'
 #
 def setDebuggingMode(debug):
@@ -60,7 +60,7 @@ def loggingData(value):
 
 
 
-# Log all the incoming DNS request and return the logged row as string
+# Log all the incoming DNS sendRequests and return the logged row as string
 def logDNSRequest(counter,status, recordType, requestId, srcIP, srcPort, domain, modifiedDomain='', mode='none'):
     """Help for the bar method of Foo classes"""
     date = Helper.getTime(TIME_FORMAT.FULL)
@@ -320,7 +320,7 @@ def getFlags(flags):
     # Second byte contains:  RA: 1 bit | Z: 3 bits  | RCODE: 4 bit
     byte2 = bytes(flags[1:2])
 
-    QR = '1'  # QR: indicates whether the packet is a request (0) or a response (1).
+    QR = '1'  # QR: indicates whether the packet is a sendRequests (0) or a response (1).
     # OPCODE
     OPCODE = ''
     for bit in range(1, 5):
@@ -610,7 +610,7 @@ def getResponse(data, addr,case_sensitive = False,adversaryMode=False,withoutReq
 
     time = Helper.getTime(TIME_FORMAT.TIME)
 
-    # TODO: implement a method that distinguishes request if they have been called from TORMAPPER
+    # TODO: implement a method that distinguishes sendRequests if they have been called from TORMAPPER
     if case_sensitive is True and 'check_' in domain.lower():  # need to be more dynamic
         modifiedDomain = domain # without permutation
         if 're_check_' not in domain.lower(): # re_check without permutation
@@ -814,16 +814,16 @@ def getForgedResponse(data, addr, case_sensitive=True):
 #   generate Request Id
 def generateResponseWithRequestId(response,sock,addr,times): #,expectedID=0,resp=''):
     try:
-        r = 1
-        while r <= 1:
-            Helper.printOnScreenAlways("Round: " + str(r),MSG_TYPES.RESULT)
+        round_ = 1
+        while round_ <= 1:
+            Helper.printOnScreenAlways("Round: " + str(round_),MSG_TYPES.RESULT)
             requestIds = [random.randint(1, 65536) for i in range(times)]
             requestIds.sort()
             index = 0
             hafltimes= times/2
             for requestId in requestIds:  #range (1, 10000): # 1000 time should be enoght
                 index+=1
-                Helper.printOnScreenAlways("R: %d - %d- %d" % (r,index,requestId) , MSG_TYPES.YELLOW)
+                Helper.printOnScreenAlways("R: %d - %d- %d" % (round_ ,index,requestId) , MSG_TYPES.YELLOW)
                 TransactionID_Byte = (requestId).to_bytes(2, byteorder='big')
                 finalResponse = TransactionID_Byte + response
                 # if hafltimes == index:
@@ -839,7 +839,7 @@ def generateResponseWithRequestId(response,sock,addr,times): #,expectedID=0,resp
                 # print('Response :)')
                 # print(str(response))
                 sock.sendto(finalResponse, addr)
-            r = r+1
+            round_ = round_ + 1
     except Exception as ex:
         logging.error('DNSFunctions - generateResponseWithRequestId:\n %s ' % traceback.format_exc())
 
@@ -848,21 +848,20 @@ def generateResponseWithPortNumber(response,sock,addr,times):
     try:
         portNumbers = [random.randint(1, 65536) for i in range(times)]
         portNumbers.sort()
-        r = 1
-        while r <= 1:
-            Helper.printOnScreenAlways("Round: " + str(r), MSG_TYPES.RESULT)
+        round_ = 1
+        while round_ <= 1:
+            Helper.printOnScreenAlways("Round: " + str(round_), MSG_TYPES.RESULT)
             index=0
             for portNumber in portNumbers: #range (1, 10000): # 1000 time should be enoght
                 index += 1
-                Helper.printOnScreenAlways("R: %d - %d- %d" % (r, index, portNumber), MSG_TYPES.YELLOW)
+                Helper.printOnScreenAlways("R: %d - %d- %d" % (round_, index, portNumber), MSG_TYPES.YELLOW)
 
                 lst = list(addr)
                 lst[1] = portNumber
                 addr = tuple(lst)
                 sock.sendto(response, addr)
-        r = r + 1
+        round_ = round_ + 1
     except Exception as ex:
         logging.error('DNSFunctions - generateResponseWithPortNumber: \n %s ' % traceback.format_exc())
-
 
 # </editor-fold>

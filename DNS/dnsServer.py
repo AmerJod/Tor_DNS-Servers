@@ -36,7 +36,7 @@ def printPortAndIP(ip,port):
     print("\n                                            Host: %s | Port: %s \n" % (ip, port))
 
 def printNcase():
-    Helper.printOnScreenAlways("                                        Change Domain Name letter case is enabled",MSG_TYPES.YELLOW)
+    Helper.printOnScreenAlways("                          *****   Randomise Domain Name Letters Capitalisation is ACTIVATED   *****",MSG_TYPES.YELLOW)
 
 def printModifiedDate():
     try:
@@ -74,12 +74,15 @@ def main(argv,IP):
         printNcase()
     ADVERSARY_Mode = argv.adversary
     FORCE_NOT_RESPONSE_MODE = argv.dont
+    if FORCE_NOT_RESPONSE_MODE:
+        Helper.printOnScreenAlways(
+            '                                      *****   NO RESPONSE MODE  IS ACTIVATED  *****', MSG_TYPES.YELLOW)
     DNSFunctions.loadRealZone()
-
     try:
         if not ADVERSARY_Mode:
             # keep listening
             #DNSFunctions.loadRealZone()
+
             while 1:
                 data, addr = sock.recvfrom(512)
                 response, allowResponse = DNSFunctions.getResponse(data, addr,letterCaseRandomize,forceNotResponseMode=FORCE_NOT_RESPONSE_MODE )
@@ -88,13 +91,12 @@ def main(argv,IP):
 
         elif ADVERSARY_Mode: # attacking mode
             Helper.printOnScreenAlways(
-                '                                         *****   ADVERSARY MODE IS ACTIVATED  *****', MSG_TYPES.YELLOW)
+                '                                     *****   ADVERSARY MODE IS ACTIVATED  *****', MSG_TYPES.YELLOW)
             DNSFunctions.loadFakeZone()
             setAdversaryModetask(argv.task)
             # keep listening
             while 1:
                 data, addr = sock.recvfrom(512)
-
                 if RANDOMIZE_PORT is True:  ## try all the possible Port Number 1  to 65556
                     response = DNSFunctions.getResponse(data, addr, case_sensitive=False,adversaryMode=ADVERSARY_Mode,withoutRequestId=False)  # we get the correct response.
                     DNSFunctions.generateResponseWithPortNumber(response, sock, addr, NUMBER_OF_TRIES)  # brute force all the possible port number
@@ -104,6 +106,9 @@ def main(argv,IP):
                     DNSFunctions.generateResponseWithRequestId(response, sock, addr, NUMBER_OF_TRIES)  # brute force # we get the response once without Tre_id
 
                 elif RANDOMIZE_BOTH:
+                    # response = DNSFunctions.getResponse(data, addr, case_sensitive=False, adversaryMode=ADVERSARY_Mode,
+                    # withoutRequestId=True)  # forge response without request ID, later we forge the ID and combine it with the whole response
+                    # DNSFunctions.generat
                     pass
 
     except Exception as ex:
