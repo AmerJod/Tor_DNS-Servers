@@ -8,9 +8,14 @@ import datetime
 import os
 from enum import Enum
 from MoveFiles import MoveFiles
+from Helper import Helper
+from Helper import MSG_TYPES
+
 
 DNS_SERVERIP = '34.198.193.29'
 WEB_SERVERIP = '52.20.33.59'
+DNS_SERVER_KEY = "C:/pem/DNS_MSc_Thesis_amer.pem"
+WEB_SERVER_KEY = "C:/pem/DNS_MSc_Thesis_amer.pem"
 
 class FETCHFROM_OPT(Enum):
     FromDNS = 'scp -r -i scp -r -i %s ' + 'ubuntu@%s' % DNS_SERVERIP + ':/home/ubuntu/%s "%s" '
@@ -27,12 +32,12 @@ class FETCHFILE_OPT(Enum):
 
 
 class FetchFiles:
-    DnsServerPath = 'dns_1_Betav1'
+    DnsServerPath = 'dns_114_B'
     WebServerPath = 'web402'
 
     def __init__(self, dnsPath='none',webPath='none'):
         self.mode = ''
-        self.Key = "C:/pem/DNS_MSc_Thesis_amer.pem"
+        self.Key = DNS_SERVER_KEY
         if dnsPath == 'none':
             self.DnsPath = self.DnsServerPath
         else:
@@ -52,7 +57,7 @@ class FetchFiles:
 
     #   fetch files from our DNS server - all files or just logs.
     def fetchFromDNS(self,folderName='none', mode = FETCHFILE_OPT.Logs.value):
-        print('Fetching files....')
+        Helper.printOnScreenAlways('Fetching DNS files....',MSG_TYPES.YELLOW)
         try:
             if folderName == 'none':
                 folderName = self.StoreDNSFilesPath
@@ -67,13 +72,13 @@ class FetchFiles:
 
             com = ( com % (self.Key,self.DnsPath,dict))
             os.system(com)
-            print('Fetching file is done.')
+            Helper.printOnScreenAlways('Fetching file is done.',MSG_TYPES.RESULT)
         except Exception as ex:
             print(ex)
 
     #   fetch files from our Web server - all files or just logs.
     def fetchFromServer(self,folderName='none',mode=FETCHFILE_OPT.Logs.value):
-        print('Fetching files....')
+        Helper.printOnScreenAlways('Fetching WEb server files....',MSG_TYPES.YELLOW)
         try:
             if folderName == 'none':
                 folderName = self.StoreWebFilesPath
@@ -87,7 +92,7 @@ class FetchFiles:
 
             com = (com % (self.Key,self.WebPath,dict))
             os.system(com)
-            print('Moving file is done.')
+            Helper.printOnScreenAlways('Fetching file is done.', MSG_TYPES.RESULT)
         except Exception as ex:
             print(ex)
 
@@ -160,7 +165,6 @@ class FetchFiles:
 if __name__ == '__main__':  # for debugging purpose
     argv= sys.argv
     fetch = FetchFiles()
-
     fetch.run(['','-dns','-fetch', '-all'])
     #fetch.removeEmptyDirectories()
 

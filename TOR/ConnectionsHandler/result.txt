@@ -2,3 +2,2874 @@
 1- Starting Tor, connecting to: 85.25.44.141
 Fingerprint: 2067C8190A34529361CEA74FC2C92C7DBCCB074F
 Connected, Checking...
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+re-Connected Successfully to : re_check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Connected Successfully to : re_check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+re-Connected Successfully to : re_check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+re-Connected Successfully to : re_check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+re-Failed Checking to : re_check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Failed Checking to : check_195-123-224-108.dnstestsuite.space/check
+re-Failed Checking to : re_check_195-123-224-108.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+re-Failed Checking to : re_check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Failed Checking to : check_195-123-224-108.dnstestsuite.space/check
+re-Failed Checking to : re_check_195-123-224-108.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+re-Failed Checking to : re_check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Failed Checking to : check_195-123-224-108.dnstestsuite.space/check
+re-Failed Checking to : re_check_195-123-224-108.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+re-Failed Checking to : re_check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Failed Checking to : check_195-123-224-108.dnstestsuite.space/check
+re-Failed Checking to : re_check_195-123-224-108.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+re-Failed Checking to : re_check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Failed Checking to : check_195-123-224-108.dnstestsuite.space/check
+re-Failed Checking to : re_check_195-123-224-108.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+re-Failed Checking to : re_check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Failed Checking to : check_195-123-224-108.dnstestsuite.space/check
+re-Failed Checking to : re_check_195-123-224-108.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Connected Successfully to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Connected Successfully to : check_195-123-224-108.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Connected Successfully to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Connected Successfully to : check_195-123-224-108.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Connected Successfully to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Connected Successfully to : check_195-123-224-108.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+
+1- Starting Tor, connecting to: 173.71.214.155
+Fingerprint: C430811EECD20A1BB268D0A855324359D908F45B
+
+1- Starting Tor, connecting to: 173.71.214.155
+Fingerprint: C430811EECD20A1BB268D0A855324359D908F45B
+
+3- Starting Tor, connecting to: 173.71.214.155
+Fingerprint: C430811EECD20A1BB268D0A855324359D908F45B
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Connected Successfully to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.71.214.155
+Fingerprint: C430811EECD20A1BB268D0A855324359D908F45B
+
+1- Starting Tor, connecting to: 173.71.214.155
+Fingerprint: C430811EECD20A1BB268D0A855324359D908F45B
+
+1- Starting Tor, connecting to: 173.71.214.155
+Fingerprint: C430811EECD20A1BB268D0A855324359D908F45B
+
+1- Starting Tor, connecting to: 163.172.151.47
+Fingerprint: CB7DB681576DCB437E23B4589B216F13AB6A5503
+Connected, Checking...
+Connected Successfully to : check_163-172-151-47.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 46.166.129.156
+Fingerprint: 0701534764CE5FFC37DEBBFCA5AB3A9FB6EF9C5F
+Connected, Checking...
+Connected Successfully to : check_46-166-129-156.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 190.210.98.90
+Fingerprint: 2027A1BAF0D9FBD7E2B5734789D71EA9E90C1B81
+Connected, Checking...
+Failed Checking to : check_190-210-98-90.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 173.71.214.155
+Fingerprint: C430811EECD20A1BB268D0A855324359D908F45B
+
+1- Starting Tor, connecting to: 95.130.9.90
+Fingerprint: CCA55472A2222BACB1B891035258C21790CCA40B
+Connected, Checking...
+Connected Successfully to : check_95-130-9-90.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 51.255.202.66
+Fingerprint: E1637B6812B5B272EBAEF855D0D7182E17D33820
+Connected, Checking...
+Connected Successfully to : check_51-255-202-66.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+Failed Checking to : check_46-183-221-155.dnstestsuite.space/check
+re-Connected Successfully to : re_check_46-183-221-155.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 178.238.237.44
+Fingerprint: 90F6115AC2955B2675A04A5EEA2F4D79D550BAD1
+Connected, Checking...
+Connected Successfully to : check_178-238-237-44.dnstestsuite.space/check
+
+5- Starting Tor, connecting to: 192.160.102.170
+Fingerprint: 557ACEC850F54EEE65839F83CACE2B0825BE811E
+Connected, Checking...
+Connected Successfully to : check_192-160-102-170.dnstestsuite.space/check
+
+6- Starting Tor, connecting to: 139.99.96.114
+Fingerprint: D71E2BB7859D0D0DAE5CA3677176C940446E077A
+Connected, Checking...
+Connected Successfully to : check_139-99-96-114.dnstestsuite.space/check
+
+--------------------------
+
+--------------------------
+Finished in  85.42 seconds
+Found 6 Exit nodes:
+   6: were connected successfully
+   0: were connected successfully, but checking failed.
+   0: were re-connected successfully
+   0: were re-connected successfully, but checking failed too.
+   0: failed
+
+--------------------------
+Checking Success rate:   100.0% 
+Checking Failed rate:    0.0% 
+Failed Connections rate: 0.0% 
+
+1- Starting Tor, connecting to: 216.239.90.19
+Fingerprint: C65D3E1BA27F0F39C2F84CE31D20559BF2A36A4F
+Connected, Checking...
+Connected Successfully to : check_216-239-90-19.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 198.50.191.95
+Fingerprint: 39F096961ED2576975C866D450373A9913AFDC92
+Connected, Checking...
+Failed Checking to : check_198-50-191-95.dnstestsuite.space/check
+
+3- Starting Tor, connecting to:  46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+Failed Checking to : check_ 46-183-221-155.dnstestsuite.space/check
+
+3- Starting Tor, connecting to:  46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+Failed Checking to : check_ 46-183-221-155.dnstestsuite.space/check
+
+3- Starting Tor, connecting to:  46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+
+3- Starting Tor, connecting to:  46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+
+3- Starting Tor, connecting to:  46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+Failed Checking to : check_46-183-221-155.dnstestsuite.space/check
+
+3- Starting Tor, connecting to:  46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+
+3- Starting Tor, connecting to:  46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+Failed Checking to : check_46-183-221-155.dnstestsuite.space/check
+
+3- Starting Tor, connecting to:  46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+Failed Checking to : check_46-183-221-155.dnstestsuite.space/check
+re-Connected Successfully to : re_check_46-183-221-155.dnstestsuite.space/check
+
+3- Starting Tor, connecting to:  46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+Connected Successfully to : check_46-183-221-155.dnstestsuite.space/check
+
+3- Starting Tor, connecting to:  46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+Connected Successfully to : check_46-183-221-155.dnstestsuite.space/check
+
+3- Starting Tor, connecting to:  46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+Connected Successfully to : check_46-183-221-155.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Connected Successfully to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Connected Successfully to : check_195-123-224-108.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.71.214.155
+Fingerprint: C430811EECD20A1BB268D0A855324359D908F45B
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.71.214.155
+Fingerprint: C430811EECD20A1BB268D0A855324359D908F45B
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to:  46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+Connected Successfully to : check_46-183-221-155.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Connected Successfully to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Connected Successfully to : check_195-123-224-108.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.71.214.155
+Fingerprint: C430811EECD20A1BB268D0A855324359D908F45B
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Failed Checking to : check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.71.214.155
+Fingerprint: C430811EECD20A1BB268D0A855324359D908F45B
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to:  46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+
+1- Starting Tor, connecting to: 185.10.68.128
+Fingerprint: 167EC4922FD5921FF93E0CEF1D409D2EA7E71E66
+Connected, Checking...
+Failed Checking to : check_185-10-68-128.dnstestsuite.space/check
+re-Connected Successfully to : re_check_185-10-68-128.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 195.201.4.207
+Fingerprint: 8D1AB2B4E7BE006A586CC4A7825AEC5B00F68E1C
+Connected, Checking...
+Connected Successfully to : check_195-201-4-207.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 591695B06C695ADA7C5FE31BF40A1DE82988E8E6
+
+1- Starting Tor, connecting to: 86.104.15.15
+Fingerprint: 9E3845093ECDB1C46974540F45190A82E0738B3D
+Connected, Checking...
+Failed Checking to : check_86-104-15-15.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 128.199.47.160
+Fingerprint: 6B5100C976C038DD63876338D6EA82A5FB6D0AAB
+
+1- Starting Tor, connecting to: 5.79.86.15
+Fingerprint: 38B3A32A8186413A9AC2A020890E9DEB07A75069
+Connected, Checking...
+Connected Successfully to : 672_check_5-79-86-15.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+Failed Checking to : 922_check_46-183-221-155.dnstestsuite.space/check
+re-Connected Successfully to : 922_re_check_46-183-221-155.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 185.200.123.20
+Fingerprint: 28F8F0AEE8E8673BE74CF27E69D5B9092FEE59D1
+Connected, Checking...
+Connected Successfully to : 223_check_185-200-123-20.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 160.202.163.46
+Fingerprint: 4A3487CCE8BF533782C7A4CCED66E40FF3D23DA1
+Connected, Checking...
+Connected Successfully to : 780_check_160-202-163-46.dnstestsuite.space/check
+
+5- Starting Tor, connecting to: 195.176.3.24
+Fingerprint: E006EA04C696BBD6E35407538131305FF3CB8C16
+Connected, Checking...
+Connected Successfully to : 132_check_195-176-3-24.dnstestsuite.space/check
+
+6- Starting Tor, connecting to: 103.234.220.195
+Fingerprint: 5099AA94537F2ECEB5E4F2B05E142BEC138076DA
+Connected, Checking...
+Connected Successfully to : 220_check_103-234-220-195.dnstestsuite.space/check
+
+7- Starting Tor, connecting to: 173.255.229.8
+Fingerprint: 9883F316C4AC98650E878136C591990FF8702340
+Connected, Checking...
+Failed Checking to : 212_check_173-255-229-8.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 192.241.79.175
+Fingerprint: DA6CB6C05F4A404184FC3A85FDB83F935C6620DC
+Connected, Checking...
+Connected Successfully to : 982_check_192-241-79-175.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 199.249.223.69
+Fingerprint: 7FA8E7E44F1392A4E40FFC3B69DB3B00091B7FD3
+Connected, Checking...
+Connected Successfully to : 463_check_199-249-223-69.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 193.90.12.116
+Fingerprint: 01A0FC0A1A118E1D7B178E239654080D5CFE63F8
+Connected, Checking...
+Connected Successfully to : 48_check_193-90-12-116.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 162.247.74.199
+Fingerprint: B34CC9056250847D1980F08285B01CF0B718C0B6
+Connected, Checking...
+
+3- Starting Tor, connecting to: 46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+Failed Checking to : 606_check_46-183-221-155.dnstestsuite.space/check
+re-Connected Successfully to : 606_re_check_46-183-221-155.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.255.229.8
+Fingerprint: 9883F316C4AC98650E878136C591990FF8702340
+Connected, Checking...
+Failed Checking to : 23_check_173-255-229-8.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.255.229.8
+Fingerprint: 9883F316C4AC98650E878136C591990FF8702340
+Connected, Checking...
+Failed Checking to : 424_check_173-255-229-8.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 51.15.209.128
+Fingerprint: 7B1807281CC74E54CC2144B87A78F539DEA1E729
+Connected, Checking...
+Connected Successfully to : 6409_check_51-15-209-128.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 199.249.223.40
+Fingerprint: B0CD9F9B5B60651ADC5919C0F1EAA87DBA1D9249
+Connected, Checking...
+Connected Successfully to : 4163_check_199-249-223-40.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 145.239.229.118
+Fingerprint: E9C1CE0DC116385018531F5827F7076C66C09D46
+Connected, Checking...
+
+1- Starting Tor, connecting to: 2.87.14.162
+Fingerprint: F8C85D9CAD3AC9470F1BAB0BE3585FCF6AE38B36
+Connected, Checking...
+
+1- Starting Tor, connecting to: 25.81.192.181
+Fingerprint: 1D04883C517D810352F2F2BEEA2B15D01024A051
+
+1- Starting Tor, connecting to: 199.249.223.77
+Fingerprint: CC4A3AE960E3617F49BF9887B79186C14CBA6813
+Connected, Checking...
+Connected Successfully to : 3983_check_199-249-223-77.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 104.223.123.101
+Fingerprint: 02A627FA195809A3ABE031B7864CCA7A310F1D44
+Connected, Checking...
+Connected Successfully to : 5000_check_104-223-123-101.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 5.189.188.111
+Fingerprint: D25540C0C18585836FDF1DEE4BBA3FD8949138A1
+Connected, Checking...
+Connected Successfully to : 5482_check_5-189-188-111.dnstestsuite.space/check
+
+--------------------------
+
+--------------------------
+Finished in  5.71 seconds
+Found 1 Exit nodes:
+   1: were connected successfully
+   0: were connected successfully, but checking failed.
+   0: were re-connected successfully
+   0: were re-connected successfully, but checking failed too.
+   0: failed
+
+--------------------------
+Checking Success rate:   100.0% 
+Checking Failed rate:    0.0% 
+Failed Connections rate: 0.0% 
+
+1- Starting Tor, connecting to: 167.114.34.150
+Fingerprint: DEB0A002E0E5FDD8DA061F588C77C5D2264D5DA3
+
+1- Starting Tor, connecting to: 163.172.223.132
+Fingerprint: 5D001279DDEF47F8A8BFE577F4B02759D4E66206
+Connected, Checking...
+
+--------------------------
+
+--------------------------
+Finished in  44.23 seconds
+Found 1 Exit nodes:
+   0: were connected successfully
+   0: were connected successfully, but checking failed.
+   0: were re-connected successfully
+   0: were re-connected successfully, but checking failed too.
+   0: failed
+
+--------------------------
+Checking Success rate:   0.0% 
+Checking Failed rate:    0.0% 
+Failed Connections rate: 0.0% 
+
+1- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 591695B06C695ADA7C5FE31BF40A1DE82988E8E6
+
+1- Starting Tor, connecting to: 213.95.149.22
+Fingerprint: 7574975BA76DE0726231FC916DD70B09B3824CE5
+Connected, Checking...
+
+1- Starting Tor, connecting to: 46.165.254.166
+Fingerprint: F8BEB0F7AACC4F3EA6FF2C1FC19A9BD753887355
+Connected, Checking...
+Connected Successfully to : 3453_check_46-165-254-166.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+Connected Successfully to : 8688_check_46-183-221-155.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 92.195.107.176
+Fingerprint: 7016E939A2DD6EF2FB66A33F1DD45357458B737F
+Connected, Checking...
+Connected Successfully to : 1587_check_92-195-107-176.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 92.195.107.176
+Fingerprint: 7016E939A2DD6EF2FB66A33F1DD45357458B737F
+
+3- Starting Tor, connecting to: 92.195.107.176
+Fingerprint: 7016E939A2DD6EF2FB66A33F1DD45357458B737F
+Connected, Checking...
+
+3- Starting Tor, connecting to: 92.195.107.176
+Fingerprint: 7016E939A2DD6EF2FB66A33F1DD45357458B737F
+Connected, Checking...
+Failed Checking to : 2124_check_92-195-107-176.dnstestsuite.space/check
+re-Connected Successfully to : 2124_re_check_92-195-107-176.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 92.195.107.176
+Fingerprint: 7016E939A2DD6EF2FB66A33F1DD45357458B737F
+Connected, Checking...
+Failed Checking to : 543_check_92-195-107-176.dnstestsuite.space/check
+re-Connected Successfully to : 543_re_check_92-195-107-176.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 92.195.107.176
+Fingerprint: 7016E939A2DD6EF2FB66A33F1DD45357458B737F
+Connected, Checking...
+Failed Checking to : 4516_check_92-195-107-176.dnstestsuite.space/check
+re-Connected Successfully to : 4516_re_check_92-195-107-176.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 185.100.84.82
+Fingerprint: 7D05A38E39FC5D29AFE6BE487B9B4DC9E635D09E
+Connected, Checking...
+Failed Checking to : 3706_check_185-100-84-82.dnstestsuite.space/check
+re-Checking Successfully to : 3706_re_check_185-100-84-82.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 46.243.189.102
+Fingerprint: 97089FA0408E8D2BCB9ED6389C96E84EA4E16393
+Connection failed! - Timed out
+Failed Checking to : 8535_check_46-243-189-102.dnstestsuite.space/check
+re-Checking Successfully to : 8535_re_check_46-243-189-102.dnstestsuite.space/check
+
+--------------------------
+
+--------------------------
+Finished in  7.46 seconds
+Found 2 Exit nodes:
+   0: were connected successfully
+   0: were connected successfully, but checking failed.
+   0: were re-connected successfully
+   0: were re-connected successfully, but checking failed too.
+   0: failed
+
+--------------------------
+Checking Success rate:   0.0% 
+Checking Failed rate:    0.0% 
+Failed Connections rate: 0.0% 
+
+1- Starting Tor, connecting to: 144.217.254.208
+Fingerprint: 6B4ABE3FA1D4D0D4AEF2FD6C535891333591D06E
+
+1- Starting Tor, connecting to: 142.44.232.99
+Fingerprint: D9B1E08CC91F7F42EEE5578EA8B069C0F09DE5C3
+Connected, Checking...
+Failed Checking to : 126_check_142-44-232-99.dnstestsuite.space/check
+re-Checking Successfully to : 126_re_check_142-44-232-99.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 62.210.129.246
+Fingerprint: 79E169B25E4C7CE99584F6ED06F379478F23E2B8
+Connection failed! - Timed out
+Failed Checking to : 807_check_62-210-129-246.dnstestsuite.space/check
+re-Checking Successfully to : 807_re_check_62-210-129-246.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 40.69.62.87
+Fingerprint: 05B6F892B62C3CBF8574E1258E6FDE29CE04E1B1
+Connected, Checking...
+
+2- Starting Tor, connecting to: 103.3.61.114
+Fingerprint: 286E97813B6AAF907E23A1C37830BBFF72E107F0
+Connection failed! - Timed out
+
+1- Starting Tor, connecting to: 176.119.28.45
+Fingerprint: 285F1ED9E1F47DDC3CC0188F67E84FE6702DB6DB
+Connected, Checking...
+Failed Checking to : 650_check_176-119-28-45.dnstestsuite.space/check
+re-Checking Successfully to : 650_re_check_176-119-28-45.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 46.20.35.114
+Fingerprint: 248054A808AD2BE84B6DC75D5AE540BA609C4AC8
+Connection failed! - Timed out
+Failed Checking to : 8950_check_46-20-35-114.dnstestsuite.space/check
+re-Checking Successfully to : 8950_re_check_46-20-35-114.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 178.17.170.194
+Fingerprint: 08F1E380B2811D795A8B024E7FE21008ABFC9462
+Connected, Checking...
+Failed Checking to : 8960_check_178-17-170-194.dnstestsuite.space/check
+re-Checking Successfully to : 8960_re_check_178-17-170-194.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 199.249.223.49
+Fingerprint: 36D68478366CB8627866757EBCE7FB3C17FC1CB8
+Connection failed! - Timed out
+Failed Checking to : 7116_check_199-249-223-49.dnstestsuite.space/check
+re-Checking Successfully to : 7116_re_check_199-249-223-49.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 204.85.191.31
+Fingerprint: C59E079437340E3AD14E6785C0A91A5B6F328566
+Connected, Checking...
+Failed Checking to : 9508_check_204-85-191-31.dnstestsuite.space/check
+re-Checking Successfully to : 9508_re_check_204-85-191-31.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 82.118.242.128
+Fingerprint: D04E2914EB0A7B7328C1C7E3C1EBA01F50FBE2D3
+Connection failed! - Timed out
+Failed Checking to : 7322_check_82-118-242-128.dnstestsuite.space/check
+re-Checking Successfully to : 7322_re_check_82-118-242-128.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 185.100.86.167
+Fingerprint: A39E63BF03742663C3945E774C71AD3B6DB935C5
+
+1- Starting Tor, connecting to: 204.85.191.30
+Fingerprint: 7C0AA4E3B73E407E9F5FEB1912F8BE26D8AA124D
+Connected, Checking...
+Failed Checking to : 4133_check_204-85-191-30.dnstestsuite.space/check
+re-Checking Successfully to : 4133_re_check_204-85-191-30.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 198.98.48.93
+Fingerprint: 59C54B21CC1C9BD394ED3CCB75495B0C304F17D2
+Connection failed! - Timed out
+Failed Checking to : 6370_check_198-98-48-93.dnstestsuite.space/check
+re-Checking Successfully to : 6370_re_check_198-98-48-93.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 198.199.90.51
+Fingerprint: A8C4B84E9A19295DFABD38D30BA21A65E478A8E0
+Connection failed! - Timed out
+Failed Checking to : 7215_check_198-199-90-51.dnstestsuite.space/check
+re-Checking Successfully to : 7215_re_check_198-199-90-51.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 185.220.101.12
+Fingerprint: EC1997D51892E4607C68E800549A1E7E4694005A
+Connection failed! - Timed out
+Failed Checking to : 3184_check_185-220-101-12.dnstestsuite.space/check
+re-Checking Successfully to : 3184_re_check_185-220-101-12.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 199.249.223.74
+Fingerprint: 5F4CD12099AF20FAF9ADFDCEC65316A376D0201C
+Connected, Checking...
+Connected Successfully to : 6719_check_199-249-223-74.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 212.81.199.159
+Fingerprint: 50EC3EFB823B378A01D0F54903560149C172CE7D
+Connection failed! - Timed out
+Connected Successfully to : 5013_check_212-81-199-159.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 5.199.130.188
+Fingerprint: E9289AF85E5EDEC87FD741AB5E4A62D2AF796F01
+Connection failed! - Timed out
+Connected Successfully to : 7279_check_5-199-130-188.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 142.4.211.52
+Fingerprint: 018EDBBE4752918A293C8D2BE8ADEC9428924A15
+Connection failed! - Timed out
+Connected Successfully to : 4826_check_142-4-211-52.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+2- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 591695B06C695ADA7C5FE31BF40A1DE82988E8E6
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 193.90.12.115
+Fingerprint: 9F95F042409E36FCF7986E445AE378E43FBEBE6A
+Connection failed! - Timed out
+
+4- Starting Tor, connecting to: 51.15.49.134
+Fingerprint: ACDDC33428080D906C86357651D12DC49C460F4B
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Failed Checking to : 5841_check_23-129-64-103.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Failed Checking to : 4833_check_23-129-64-103.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Failed Checking to : 4645_check_173-246-38-148.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Failed Checking to : 6395_check_23-129-64-103.dnstestsuite.space/check
+re-Checking Failed to : 6395_re_check_23-129-64-103.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+Failed Checking to : 2320_check_173-246-38-148.dnstestsuite.space/check
+re-Checking Failed to : 2320_re_check_173-246-38-148.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Failed Checking : 7460_check_23-129-64-103.dnstestsuite.space/check
+re-Checking Failed to : 7460_re_check_23-129-64-103.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Failed Checking : 5622_check_173-246-38-148.dnstestsuite.space/check
+re-Checking Failed to : 5622_re_check_173-246-38-148.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 5.61.34.63
+Fingerprint: CD9798DD2706E72DE1D27B3AAD067BCC7667137D
+Connected, Checking...
+Failed Checking : 3160_check_5-61-34-63.dnstestsuite.space/check
+re-Checking Failed to : 3160_re_check_5-61-34-63.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 176.123.9.144
+Fingerprint: 53CDD268FAD52B0236A4E7F4784259A41C6E3414
+
+1- Starting Tor, connecting to: 149.202.238.204
+Fingerprint: AE271FF27CE9D274674BD8542B5F82310B02E02F
+Connected, Checking...
+Failed Checking : 590_check_149-202-238-204.dnstestsuite.space/check
+re-Checking Failed to : 590_re_check_149-202-238-204.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 95.165.133.22
+Fingerprint: 0A9B6EDD772D28A1EB5F45033BAFC9BF74EA8053
+Connected, Checking...
+Failed Checking : 2656_check_95-165-133-22.dnstestsuite.space/check
+re-Checking Failed to : 2656_re_check_95-165-133-22.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 109.128.136.87
+Fingerprint: 9043FC0AD0DC87AEF8CC3515C9711CBDD94E2C6E
+Connected, Checking...
+Failed Checking : 5069_check_109-128-136-87.dnstestsuite.space/check
+re-Checking Failed to : 5069_re_check_109-128-136-87.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 89.46.223.83
+Fingerprint: 0A4801688364968A6C90F3B0D71C86961AD972C3
+Connected, Checking...
+Failed Checking : 1505_check_89-46-223-83.dnstestsuite.space/check
+re-Checking Failed to : 1505_re_check_89-46-223-83.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 94.230.208.148
+Fingerprint: 1BDBE9C0F7034E6789A9BF7BED82BE2045F0F5B7
+Connected, Checking...
+Failed Checking : 4519_check_94-230-208-148.dnstestsuite.space/check
+re-Checking Failed : 4519_re_check_94-230-208-148.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 185.10.68.38
+Fingerprint: EFEE12BD935AE27BAF97F665C2AC278E2E4D4A42
+Connected, Checking...
+
+1- Starting Tor, connecting to: 192.155.95.222
+Fingerprint: 68FE1B7511B5956D81DDDD23B30B49828DF36D21
+Connected, Checking...
+Failed Checking : 6335_check_192-155-95-222.dnstestsuite.space/check
+re-Checking Failed : 6335_re_check_192-155-95-222.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 46.98.197.79
+Fingerprint: F582FA128F49278AF5F0D5C5707AA9E250C0DC4B
+
+1- Starting Tor, connecting to: 80.67.172.162
+Fingerprint: 8E6EDA78D8E3ABA88D877C3E37D6D4F0938C7B9F
+Connected, Checking...
+Failed Checking : 6251_check_80-67-172-162.dnstestsuite.space/check
+re-Checking Failed : 6251_re_check_80-67-172-162.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 176.126.252.12
+Fingerprint: 379FB450010D17078B3766C2273303C358C3A442
+Connected, Checking...
+Failed Checking : 1618_check_176-126-252-12.dnstestsuite.space/check
+re-Checking Failed : 1618_re_check_176-126-252-12.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 5.9.158.75
+Fingerprint: D11D11877769B9E617537B4B46BFB92B443DE33D
+Connected, Checking...
+Failed Checking : 3678_check_5-9-158-75.dnstestsuite.space/check
+re-Checking Failed : 3678_re_check_5-9-158-75.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 54.36.222.37
+Fingerprint: 51B35EEA2E94F594968C5FAC86F2A6EA6591C0CA
+Connected, Checking...
+Failed Checking : 9145_check_54-36-222-37.dnstestsuite.space/check
+re-Checking Failed : 9145_re_check_54-36-222-37.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 46.4.144.81
+Fingerprint: B9F3623690227FCFDB0D7D63AA1B6E3CC4A74338
+Connected, Checking...
+
+2- Starting Tor, connecting to: 31.220.42.86
+Fingerprint: FA2C5687EC434A31012B732C8C8F817E8C65E28B
+Connected, Checking...
+
+3- Starting Tor, connecting to: 199.249.223.49
+Fingerprint: 36D68478366CB8627866757EBCE7FB3C17FC1CB8
+Connected, Checking...
+
+4- Starting Tor, connecting to: 139.99.130.178
+Fingerprint: 867B95CACD64653FEEC4D2CEFC5C49B4620307A7
+Connected, Checking...
+
+1- Starting Tor, connecting to: 80.240.24.102
+Fingerprint: 81918D82F2CC3F13942D33347C5781281AD6AEDA
+
+1- Starting Tor, connecting to: 163.172.171.163
+Fingerprint: AC1797B64DDD3CB9F1B9B248BA5493275E5F8E40
+Connected, Checking...
+
+2- Starting Tor, connecting to: 66.222.153.25
+Fingerprint: 53680D4D82BC0D5CB8CC9547C2A027120B7A06D1
+Connected, Checking...
+
+3- Starting Tor, connecting to: 193.19.118.171
+Fingerprint: C6A8532C0A617EFC7F50E5C51125E8EBBE536102
+Connected, Checking...
+
+4- Starting Tor, connecting to: 109.69.67.17
+Fingerprint: EF9C4611FAA7C21155A8BA2A721DDC3D27816035
+Connected, Checking...
+
+1- Starting Tor, connecting to: 176.123.8.227
+Fingerprint: 02ED6BEA9FBAA72048726D70BC2C34DF70261D02
+Connected, Checking...
+Failed Checking : 1064_check_176-123-8-227.dnstestsuite.space/check
+re-Checking Failed : 1064_re_check_176-123-8-227.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 185.147.237.8
+Fingerprint: 3446DEA4E38336B8AF4CB1BAF2CD3C284A423761
+Connected, Checking...
+Failed Checking : 6424_check_185-147-237-8.dnstestsuite.space/check
+re-Checking Failed : 6424_re_check_185-147-237-8.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 137.74.169.241
+Fingerprint: 887E2B73EDA109C09ADEBD6B1E788FDF620646B7
+Connected, Checking...
+Failed Checking : 9562_check_137-74-169-241.dnstestsuite.space/check
+re-Checking Failed : 9562_re_check_137-74-169-241.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 64.27.17.140
+Fingerprint: 664420DB8393F474E948A4415FDFEF03DE1505D2
+Connected, Checking...
+Failed Checking : 5959_check_64-27-17-140.dnstestsuite.space/check
+re-Checking Failed : 5959_re_check_64-27-17-140.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 103.8.79.229
+Fingerprint: 67F054F141FFF97DF52F6F88D7ABAD9EFBF31173
+Connected, Checking...
+
+2- Starting Tor, connecting to: 185.100.87.206
+Fingerprint: 93FAB6F91C2EF33D0ACEEF7448177FCA2CEB99A0
+Connected, Checking...
+
+3- Starting Tor, connecting to: 199.249.223.74
+Fingerprint: 5F4CD12099AF20FAF9ADFDCEC65316A376D0201C
+Connected, Checking...
+
+4- Starting Tor, connecting to: 198.98.61.36
+Fingerprint: 18E3A51E779560063D22E5069349E137BF1422B2
+Connected, Checking...
+
+1- Starting Tor, connecting to: 88.77.186.118
+Fingerprint: B6D4B2E44405512213FAB0F5CF45E0AD418822C4
+Connected, Checking...
+
+2- Starting Tor, connecting to: 64.137.221.225
+Fingerprint: FFE8F698DC3B8E5E3F76DC296881DB73B5D47E0A
+Connected, Checking...
+
+3- Starting Tor, connecting to: 201.80.40.186
+Fingerprint: 03F68AB569154C4B995E7F36528322079E4829B9
+Connected, Checking...
+
+4- Starting Tor, connecting to: 84.3.10.87
+Fingerprint: C6EB199FE28BE05529710B97D1874D0BE3B7FAF9
+Connected, Checking...
+
+1- Starting Tor, connecting to: 37.187.7.74
+Fingerprint: 61521C04165DED7642E06544DF3FC2A9448D8406
+Connected, Checking...
+
+2- Starting Tor, connecting to: 91.92.109.119
+Fingerprint: 7D1900132199AD80F3D3E151ECD9B8CF0756403B
+Connected, Checking...
+
+3- Starting Tor, connecting to: 145.239.82.204
+Fingerprint: 5907678795F77C9B18C0C983C3930FF7255C08C1
+Connected, Checking...
+
+4- Starting Tor, connecting to: 185.56.80.242
+Fingerprint: D8FF84E5E29A92F09F8263D4662627ECC479B108
+Connected, Checking...
+
+1- Starting Tor, connecting to: 51.38.110.161
+Fingerprint: D15A51CA2A2F0B3534C2F20171974F82B8576AA4
+Connected, Checking...
+Failed Checking : 4035_check_51-38-110-161.dnstestsuite.space/check
+re-Checking Failed : 4035_re_check_51-38-110-161.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 87.118.116.12
+Fingerprint: 4A3B874F0187F2CF0DA3C8F76063B070F9F7A14F
+Connected, Checking...
+Failed Checking : 1792_check_87-118-116-12.dnstestsuite.space/check
+re-Checking Failed : 1792_re_check_87-118-116-12.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 185.107.47.171
+Fingerprint: A6B0521C4C1FB91FB66398AAD523AD773E82E77E
+Connected, Checking...
+Failed Checking : 5758_check_185-107-47-171.dnstestsuite.space/check
+re-Checking Failed : 5758_re_check_185-107-47-171.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 80.68.92.225
+Fingerprint: 77B829E5628712BD3D639242B9A0B40DDCB6B871
+
+1- Starting Tor, connecting to: 185.125.33.242
+Fingerprint: 7B484E83BAAD77F9159A09DC34A8DE9495FF3C03
+Connected, Checking...
+Failed Checking : 7355_check_185-125-33-242.dnstestsuite.space/check
+re-Checking Failed : 7355_re_check_185-125-33-242.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 185.14.29.189
+Fingerprint: CF97FB2737C63A2C00E81208355FD58BF61A8D26
+
+1- Starting Tor, connecting to: 46.226.108.26
+Fingerprint: 38CDF1746905D29F0E8B9D96AAB395DB580F2727
+Connected, Checking...
+
+2- Starting Tor, connecting to: 145.239.229.118
+Fingerprint: E9C1CE0DC116385018531F5827F7076C66C09D46
+Connected, Checking...
+
+1- Starting Tor, connecting to: 77.247.181.164
+Fingerprint: 204DFD2A2C6A0DC1FA0EACB495218E0B661704FD
+Connected, Checking...
+Failed Checking : 308_check_77-247-181-164.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 46.166.129.156
+Fingerprint: 0701534764CE5FFC37DEBBFCA5AB3A9FB6EF9C5F
+
+1- Starting Tor, connecting to: 67.1.164.83
+Fingerprint: 3875C9C843D33762FA733BCAF128F26A10BC75E7
+Connected, Checking...
+Failed Checking : 7731_check_67-1-164-83.dnstestsuite.space/check
+re-Checking Failed : 7731_re_check_67-1-164-83.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 173.14.173.227
+Fingerprint: 27A5FD22519F0AF83927CEF1304EE19484247582
+Connected, Checking...
+Failed Checking : 9808_check_173-14-173-227.dnstestsuite.space/check
+re-Checking Failed : 9808_re_check_173-14-173-227.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 176.10.99.201
+Fingerprint: 3C5915348D731505C48112F4F03235FDE7B8C837
+Connected, Checking...
+Failed Checking : 6658_check_176-10-99-201.dnstestsuite.space/check
+re-Checking Failed : 6658_re_check_176-10-99-201.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 46.166.129.156
+Fingerprint: 0701534764CE5FFC37DEBBFCA5AB3A9FB6EF9C5F
+
+1- Starting Tor, connecting to: 185.200.120.26
+Fingerprint: 680BC753331140E7FF42BDA50221E1636CA9055C
+Connected, Checking...
+Connected Successfully to : 9928_check_185-200-120-26.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 185.83.215.29
+Fingerprint: 33F9E8AD698E644C042D5A2EA8B43B8D4B46F2F1
+Connected, Checking...
+Failed Checking : 9141_check_185-83-215-29.dnstestsuite.space/check
+re-Checking Successfully to : 9141_re_check_185-83-215-29.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 141.255.162.35
+Fingerprint: 7743A57C42B851FA495D4F26B5B4CA924A3F673E
+Connected, Checking...
+Connected Successfully to : 5265_check_141-255-162-35.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 87.118.122.51
+Fingerprint: 195712E96FD1C1B18D14D09E9E4E7A6416E23B2C
+Connected, Checking...
+Connected Successfully to : 3437_check_87-118-122-51.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 64.137.242.29
+Fingerprint: 6ED1509C5DF83DBD896CE617E87550A682A5741D
+Connected, Checking...
+Connected Successfully to : 4988_check_64-137-242-29.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 92.222.22.113
+Fingerprint: 3B4FA23831CC69C136418B0305381A5103A3B470
+Connected, Checking...
+
+3- Starting Tor, connecting to: 196.52.84.34
+Fingerprint: 649867D9615039AF21834B7BAAE8465B56A7201C
+
+1- Starting Tor, connecting to: 185.14.29.189
+Fingerprint: CF97FB2737C63A2C00E81208355FD58BF61A8D26
+
+1- Starting Tor, connecting to: 81.170.171.2
+Fingerprint: EE1E2DF2F5B99E3B666F96C4F5AD129CC346B3E0
+
+1- Starting Tor, connecting to: 176.8.205.35
+Fingerprint: 086DCB801CAE9AEB361127E9B275C4999B343773
+
+1- Starting Tor, connecting to: 82.221.139.25
+Fingerprint: 549A5E85D6BCF476BF7A03A8823E7745DD319C17
+Connected, Checking...
+Connected Successfully to : 5388_check_82-221-139-25.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 209.126.101.29
+Fingerprint: 42645860028723FD57B5694E74C38C956E3476BE
+Connected, Checking...
+Connected Successfully to : 4976_check_209-126-101-29.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 199.249.223.49
+Fingerprint: 36D68478366CB8627866757EBCE7FB3C17FC1CB8
+Connected, Checking...
+Connected Successfully to : 2947_check_199-249-223-49.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 160.202.162.186
+Fingerprint: 1EE15139F389FDA24400239607CB4C0BE5DD8C76
+Connected, Checking...
+Connected Successfully to : 5460_check_160-202-162-186.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Failed Checking : 9017_check_23-129-64-103.dnstestsuite.space/check
+re-Checking Failed : 9017_re_check_23-129-64-103.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Failed Checking : 691_check_173-246-38-148.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Checking Failed : 5773_check_23-129-64-103.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Checking Failed : 178_check_173-246-38-148.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Checking Failed : 5577_check_23-129-64-103.dnstestsuite.space/check
+re-Checking Failed : 5577_re_check_23-129-64-103.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Checking Failed : 7180_check_23-129-64-103.dnstestsuite.space/check
+re-Checking Failed : 7180_re_check_23-129-64-103.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Checking Failed : 8695_check_173-246-38-148.dnstestsuite.space/check
+re-Checking Failed : 8695_re_check_173-246-38-148.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Checking Failed : 5171_check_23-129-64-103.dnstestsuite.space/check
+re-Checking Failed : 5171_re_check_23-129-64-103.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Checking Failed : 8181_check_173-246-38-148.dnstestsuite.space/check
+re-Checking Failed : 8181_re_check_173-246-38-148.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Connected Successfully to : 3917_check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Connected Successfully to : 2336_check_195-123-224-108.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 66.110.216.10
+Fingerprint: D94BB842EAAFCB236B7E49EF4DF2D48FF6FFAA6B
+Connected, Checking...
+Connected Successfully to : 1722_check_66-110-216-10.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 185.200.123.8
+Fingerprint: 96DF4DD210A6E9B1F861C97BBFD1349C5E4F7611
+Connected, Checking...
+Connected Successfully to : 9425_check_185-200-123-8.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.212.244.116
+Fingerprint: 55403B9653A81F68C39787E000BD9F97E1F3B250
+Connected, Checking...
+Connected Successfully to : 1055_check_173-212-244-116.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 46.36.38.57
+Fingerprint: FF0F3170FF1FE4772FE16D7DA445C64FF3AFCD18
+Connected, Checking...
+Checking Failed : 806_check_46-36-38-57.dnstestsuite.space/check
+re-Checking Failed : 806_re_check_46-36-38-57.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 84.3.10.87
+Fingerprint: C6EB199FE28BE05529710B97D1874D0BE3B7FAF9
+Connected, Checking...
+Connected Successfully to : 4282_check_84-3-10-87.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 171.25.193.20
+Fingerprint: DD8BD7307017407FCC36F8D04A688F74A0774C02
+Connected, Checking...
+Checking Failed : 2851_check_171-25-193-20.dnstestsuite.space/check
+re-Checking Failed : 2851_re_check_171-25-193-20.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 5.2.77.146
+Fingerprint: FAF09B35EB9B890C44C36392100C52B7F2326DD4
+Connected, Checking...
+Connected Successfully to : 9678_check_5-2-77-146.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 84.200.50.18
+Fingerprint: 3B73B45B47B8E0E44CBBA214FEBCC2F217855949
+Connected, Checking...
+Connected Successfully to : 8759_check_84-200-50-18.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 66.155.4.213
+Fingerprint: 2592B063128FBE6C09ECC148122D0F41A59F5322
+Connected, Checking...
+
+1- Starting Tor, connecting to: 51.15.49.134
+Fingerprint: ACDDC33428080D906C86357651D12DC49C460F4B
+
+1- Starting Tor, connecting to: 193.110.157.151
+Fingerprint: 9BEA0C19942928B1ABE66E7FFDF0B4762F452830
+Connected, Checking...
+
+1- Starting Tor, connecting to: 37.187.7.74
+Fingerprint: 61521C04165DED7642E06544DF3FC2A9448D8406
+Connected, Checking...
+
+1- Starting Tor, connecting to: 79.134.234.247
+Fingerprint: 78508E195A08E9817A01B70A9128F61CC53EA087
+
+1- Starting Tor, connecting to: 46.165.254.166
+Fingerprint: F8BEB0F7AACC4F3EA6FF2C1FC19A9BD753887355
+Connected, Checking...
+
+1- Starting Tor, connecting to: 91.219.237.244
+Fingerprint: 92ECC9E0E2AF81BB954719B189AC362E254AD4A5
+Connected, Checking...
+
+1- Starting Tor, connecting to: 91.219.236.210
+Fingerprint: E09A6E1F05E25EBB39E55D49DDAA595D271F812D
+Connected, Checking...
+
+1- Starting Tor, connecting to: 173.255.229.8
+Fingerprint: 9883F316C4AC98650E878136C591990FF8702340
+Connected, Checking...
+
+1- Starting Tor, connecting to: 89.201.47.223
+Fingerprint: 20A4011EE65DE5092E38E58563640DCA86DA74DD
+
+1- Starting Tor, connecting to: 46.182.19.219
+Fingerprint: B2F92F0809BFE74B21E084C1BE7ECC7653EF5A3F
+Connected, Checking...
+
+1- Starting Tor, connecting to: 89.187.143.31
+Fingerprint: DC8C6A73424257A8A7ABC60088F710AA5403B3F6
+
+1- Starting Tor, connecting to: 185.107.47.171
+Fingerprint: A6B0521C4C1FB91FB66398AAD523AD773E82E77E
+Connected, Checking...
+
+1- Starting Tor, connecting to: 197.231.221.211
+Fingerprint: BC630CBBB518BE7E9F4E09712AB0269E9DC7D626
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.112.146.138
+Fingerprint: 445A89AA4600A5267FCDEE58C362A636366F6FEB
+Connected, Checking...
+
+1- Starting Tor, connecting to: 209.141.51.150
+Fingerprint: 0510759CDCB5093E1C79E627F440F3A3A881FB89
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.220.101.20
+Fingerprint: 619349D82424C601CAEB94161A4CF778993DAEE7
+Connected, Checking...
+
+1- Starting Tor, connecting to: 193.90.12.117
+Fingerprint: 38E7B0B9E90CDAB04958950C4E3BE822B1FB6A32
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.100.87.207
+Fingerprint: C8AB1B2AF0CBAAE3611A814B4C7D38DCE0CBFEB4
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.80.216.93
+Fingerprint: 0CE8437E8BD870EBAC5136382FBA13A3C3C27481
+Connected, Checking...
+
+1- Starting Tor, connecting to: 89.187.143.81
+Fingerprint: C0F508ADA14AE7EA9F8F6650AF149B8DFC35B598
+Connected, Checking...
+
+1- Starting Tor, connecting to: 62.72.82.222
+Fingerprint: 843C4F774DA2653DADBA5B847A33CC646995F6A1
+Connected, Checking...
+
+1- Starting Tor, connecting to: 91.219.236.210
+Fingerprint: E09A6E1F05E25EBB39E55D49DDAA595D271F812D
+Connected, Checking...
+
+1- Starting Tor, connecting to: 89.31.96.168
+Fingerprint: 22F74E176F803499D4F80D9CE7D325883A8C0E45
+
+1- Starting Tor, connecting to: 178.17.174.200
+Fingerprint: 2D49918CDCCBE1A84A5AA9A4200DD612321DDAB0
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.220.100.252
+Fingerprint: 6BCB964AB74E23F8986BDA905697D3A6BE08AF28
+
+1- Starting Tor, connecting to: 104.223.123.99
+Fingerprint: D4010FAD096CFB59278015F711776D8CCB2735EC
+Connected, Checking...
+
+1- Starting Tor, connecting to: 172.245.19.14
+Fingerprint: B1C031ED3AC5E7CC9C0BC008B340F60E41EE4CF5
+Connected, Checking...
+
+1- Starting Tor, connecting to: 194.68.44.88
+Fingerprint: 7470E91A9C69B2120BC6D881D98B3FD9C8AC850B
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.227.68.78
+Fingerprint: CD7B3EFFB0BEE35A57A3AE7646DFBCD9B0BD9E76
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.107.94.233
+Fingerprint: F60E5855637CF4109508FFD0EBE13983F166961B
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.220.101.1
+Fingerprint: 28F4F392F8F19E3FBDE09616D9DB8143A1E2DDD3
+Connected, Checking...
+
+1- Starting Tor, connecting to: 217.100.113.174
+Fingerprint: 1E1EC13E475A8882860E87F1EE250BC9DF4E5246
+Connected, Checking...
+
+1- Starting Tor, connecting to: 103.27.124.82
+Fingerprint: FCD58A1BDE2093630E454D3A1E221084D5EBCFEE
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.10.68.76
+Fingerprint: E630CC72ADB895F8A398502415633E52617035C7
+Connected, Checking...
+
+1- Starting Tor, connecting to: 139.99.173.172
+Fingerprint: F8E2F1F1C1D614DF91F1A5F7B240DC4F516817FF
+Connected, Checking...
+
+1- Starting Tor, connecting to: 54.39.119.67
+Fingerprint: 4C5B195DB7ACEA87F06317CD71F2C0EF73889C17
+
+1- Starting Tor, connecting to: 46.229.237.87
+Fingerprint: F299DE156C4CB8E4E72440F2E4950D6EFC91844C
+Connected, Checking...
+
+1- Starting Tor, connecting to: 142.44.154.169
+Fingerprint: 398141161F28DFC68CE1B8AC47A13F397F966596
+Connected, Checking...
+
+1- Starting Tor, connecting to: 93.174.93.133
+Fingerprint: 0173A7A8BA9D32043641B69726D32A9ADFE26D16
+Connected, Checking...
+
+1- Starting Tor, connecting to: 95.130.9.210
+Fingerprint: AA1A99FB516B9060BC1272019B5AEDD16A597094
+Connected, Checking...
+
+1- Starting Tor, connecting to: 64.27.17.140
+Fingerprint: 664420DB8393F474E948A4415FDFEF03DE1505D2
+Connected, Checking...
+
+1- Starting Tor, connecting to: 80.82.70.116
+Fingerprint: 4B5EEA88318698885B586286270449469949D514
+Connected, Checking...
+
+1- Starting Tor, connecting to: 192.42.116.27
+Fingerprint: 9E624E0E5EBA3156BFDA98AC703BCFF95E9A2FF6
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.200.123.7
+Fingerprint: 46D664AB40740EE1C6B039C7A550AEC0DBB12FB4
+Connected, Checking...
+
+1- Starting Tor, connecting to: 204.85.191.30
+Fingerprint: 7C0AA4E3B73E407E9F5FEB1912F8BE26D8AA124D
+Connected, Checking...
+
+1- Starting Tor, connecting to: 46.229.237.87
+Fingerprint: F299DE156C4CB8E4E72440F2E4950D6EFC91844C
+Connected, Checking...
+
+1- Starting Tor, connecting to: 139.162.124.207
+Fingerprint: 7578E70D098E41E38D9B7F1FD2791391F1A228A4
+Connected, Checking...
+
+1- Starting Tor, connecting to: 93.174.93.133
+Fingerprint: 0173A7A8BA9D32043641B69726D32A9ADFE26D16
+Connected, Checking...
+
+1- Starting Tor, connecting to: 213.136.71.21
+Fingerprint: A1DC595376F2BCDE2A541466066A5B286F005D29
+Connected, Checking...
+
+1- Starting Tor, connecting to: 54.39.119.66
+Fingerprint: 95D7A346A41608343B9A559B0541256852655CE1
+Connected, Checking...
+
+1- Starting Tor, connecting to: 45.79.144.222
+Fingerprint: B54ECFBB1F41D01970E9F74F7164BDF5158172F2
+Connected, Checking...
+
+1- Starting Tor, connecting to: 51.38.162.232
+Fingerprint: CAAA8F6D6CCBA2C5A542E40066EBFA0D846592AE
+Connected, Checking...
+
+1- Starting Tor, connecting to: 37.233.102.65
+Fingerprint: A807254E0EC8F6F5569BC98EC06DC4E9514BE6B2
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.56.80.242
+Fingerprint: D8FF84E5E29A92F09F8263D4662627ECC479B108
+Connected, Checking...
+
+1- Starting Tor, connecting to: 89.144.12.17
+Fingerprint: 46E2382EDC93EDDCF15B75BD0C52DB3E23301978
+Connected, Checking...
+
+1- Starting Tor, connecting to: 199.87.154.255
+Fingerprint: 734EDDC2C04B1C0184178167ABD23AE85413212F
+Connected, Checking...
+
+1- Starting Tor, connecting to: 78.130.128.106
+Fingerprint: 897A67DBCD7E9D5C3B5FD19349433E2263A01D08
+Connected, Checking...
+
+1- Starting Tor, connecting to: 193.169.145.194
+Fingerprint: 166985A84230B5F9A78C970736AE944B413930D7
+Connected, Checking...
+
+1- Starting Tor, connecting to: 199.249.223.64
+Fingerprint: 9F2856F6D2B89AD4EF6D5723FAB167DB5A53519A
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.220.101.46
+Fingerprint: 25526E61B8BC22B662E3D4A50504021CC3D9873D
+Connected, Checking...
+
+1- Starting Tor, connecting to: 188.165.59.43
+Fingerprint: 426C34EC356E885CFA1458C47C033F53CF9649A9
+Connected, Checking...
+
+1- Starting Tor, connecting to: 80.67.172.162
+Fingerprint: 8E6EDA78D8E3ABA88D877C3E37D6D4F0938C7B9F
+Connected, Checking...
+
+1- Starting Tor, connecting to: 199.249.223.71
+Fingerprint: B6320E44A230302C7BF9319E67597A9B87882241
+Connected, Checking...
+
+1- Starting Tor, connecting to: 77.247.181.164
+Fingerprint: 204DFD2A2C6A0DC1FA0EACB495218E0B661704FD
+Connected, Checking...
+
+1- Starting Tor, connecting to: 46.36.38.57
+Fingerprint: FF0F3170FF1FE4772FE16D7DA445C64FF3AFCD18
+Connected, Checking...
+Checking Failed : 82_check_46-36-38-57.dnstestsuite.space/check
+re-Checking Failed : 82_re_check_46-36-38-57.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 54.38.120.216
+Fingerprint: E693EF849A286177F1ECAB5B34A1C42A1510979F
+Connected, Checking...
+Checking Failed : 2828_check_54-38-120-216.dnstestsuite.space/check
+re-Checking Failed : 2828_re_check_54-38-120-216.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 144.217.64.46
+Fingerprint: D67104011D8A39FB4043273C341BD583286219B0
+Connected, Checking...
+Checking Failed : 3264_check_144-217-64-46.dnstestsuite.space/check
+re-Checking Failed : 3264_re_check_144-217-64-46.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 104.223.123.100
+Fingerprint: 7016E939A2DD6EF2FB66A33F1DD45357458B737F
+Connected, Checking...
+Checking Failed : 9611_check_104-223-123-100.dnstestsuite.space/check
+re-Checking Failed : 9611_re_check_104-223-123-100.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 185.220.101.28
+Fingerprint: 609E598FB6A00BCF7872906B602B705B64541C50
+Connected, Checking...
+Connected Successfully to : 1489_check_185-220-101-28.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 173.239.79.210
+Fingerprint: 08EBE0BD789D2C51E9A148FA486EDAD8DA0A4713
+
+1- Starting Tor, connecting to: 77.81.247.72
+Fingerprint: 1532A36172C70012B1057FBBFAFE2734EDBF4A3B
+Connected, Checking...
+Connected Successfully to : 2387_check_77-81-247-72.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 193.150.121.66
+Fingerprint: 4B46019F4B5ABCAA7E3B63F7E627C4CD49CA6D97
+Connected, Checking...
+Connected Successfully to : 9646_check_193-150-121-66.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 160.202.162.186
+Fingerprint: 1EE15139F389FDA24400239607CB4C0BE5DD8C76
+Connected, Checking...
+Connected Successfully to : 9543_check_160-202-162-186.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 45.62.251.245
+Fingerprint: 7DEEFA1530720986C2886BB09155ACCE1072AE36
+Connected, Checking...
+Connected Successfully to : 8738_check_45-62-251-245.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 193.107.85.62
+Fingerprint: 5C7B44436D92CBC75D644BA33BFCE32BEBBFED23
+Connected, Checking...
+Connected Successfully to : 5267_check_193-107-85-62.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 204.194.29.4
+Fingerprint: 78C7C299DB4C4BD119A22B87B57D5AF5F3741A79
+Connected, Checking...
+Connected Successfully to : 6017_check_204-194-29-4.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 192.42.116.14
+Fingerprint: 9E0058300401F6687EAE59F9FE82DB89230344C1
+Connected, Checking...
+Connected Successfully to : 4581_check_192-42-116-14.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 217.147.169.49
+Fingerprint: 3A8A3C7A58F3B74BEA457BA2C9D77CCBC49BB453
+Connected, Checking...
+Connected Successfully to : 9893_check_217-147-169-49.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 51.38.110.162
+Fingerprint: C1C9D7E700E9251FB4BA958D352CDFBCB6ABF801
+
+1- Starting Tor, connecting to: 185.125.33.114
+Fingerprint: D1E99DE1E29E05D79F0EF9E083D18229867EA93C
+Connected, Checking...
+Connected Successfully to : 1263_check_185-125-33-114.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 162.247.74.204
+Fingerprint: 501B3DBF250B094A05CA5DBC424AD4C3D46721A2
+Connected, Checking...
+Connected Successfully to : 2891_check_162-247-74-204.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 195.176.3.19
+Fingerprint: BF1B662D1DA4E55F700C130AC58574B47FB7EB8E
+Connected, Checking...
+Connected Successfully to : 3318_check_195-176-3-19.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 87.122.234.10
+Fingerprint: 4905E69CD357D5EE337F408A6729C1A9343D217C
+Connected, Checking...
+
+1- Starting Tor, connecting to: 111.90.141.83
+Fingerprint: A655EE8FB5EA0AB4FA52F819620619F556BB793B
+Connected, Checking...
+Connected Successfully to : 6591_check_111-90-141-83.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 185.56.80.242
+Fingerprint: D4E49B296490283DBD55665F10431284E92E3306
+Connected, Checking...
+Connected Successfully to : 2788_check_185-56-80-242.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 109.228.51.164
+Fingerprint: 51AE5656C81CD417479253A6363A123A007A2233
+Connected, Checking...
+
+1- Starting Tor, connecting to: 45.33.48.204
+Fingerprint: 46472C16B65B17831B4ED1B9C285788597E51C4C
+Connected, Checking...
+Connected Successfully to : 5202_check_45-33-48-204.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 95.141.35.15
+Fingerprint: C38012F8EDFCC4F78D5EA7FDAEDFB624757C2853
+Connected, Checking...
+
+1- Starting Tor, connecting to: 142.44.232.99
+Fingerprint: D9B1E08CC91F7F42EEE5578EA8B069C0F09DE5C3
+Connected, Checking...
+
+1- Starting Tor, connecting to: 62.212.73.141
+Fingerprint: 63D260D21EF5EE1B8BA379905BD8E88FE40EB207
+Connected, Checking...
+Checking Failed : 507_check_62-212-73-141.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 46.29.248.238
+Fingerprint: 7452E7D19ACD2C39DE10C0207032E6BC05DB78F2
+Connected, Checking...
+Connected Successfully to : 523_check_46-29-248-238.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 185.10.68.152
+Fingerprint: 00CA70CAF075FDFFB59CCB724BE4076BAC20C0B5
+Connected, Checking...
+
+1- Starting Tor, connecting to: 195.176.3.19
+Fingerprint: B5CED6834BEE8E38D2C62F00CCB6715F0440DA21
+Connected, Checking...
+Connected Successfully to : 6833_check_195-176-3-19.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 95.165.143.112
+Fingerprint: 1C1C275B8E9F8D0824424DDFABCA488BA24756B0
+Connected, Checking...
+Checking Failed : 9354_check_95-165-143-112.dnstestsuite.space/check
+re-Checking Failed : 9354_re_check_95-165-143-112.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 185.220.101.27
+Fingerprint: FDA70EC93DB01E3CB418CB6943B0C68464B18B4C
+Connected, Checking...
+Connected Successfully to : 170_check_185-220-101-27.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 79.142.76.251
+Fingerprint: 6FA6E86A5A32A0BA14FAB573A97105336C258553
+Connected, Checking...
+Connected Successfully to : 1698_check_79-142-76-251.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 178.17.166.147
+Fingerprint: E5FD79FA1D6A402F37F32AAC823CF622E7171797
+Connected, Checking...
+Connected Successfully to : 4588_check_178-17-166-147.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 199.87.154.255
+Fingerprint: 734EDDC2C04B1C0184178167ABD23AE85413212F
+Connected, Checking...
+Connected Successfully to : 8333_check_199-87-154-255.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 173.212.244.116
+Fingerprint: 55403B9653A81F68C39787E000BD9F97E1F3B250
+Connected, Checking...
+Connected Successfully to : 7486_check_173-212-244-116.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 195.123.237.251
+Fingerprint: 2CE6C5DDB5163A2B6400FB96BD10C6050FB43AF7
+Connected, Checking...
+Checking Failed : 2390_check_195-123-237-251.dnstestsuite.space/check
+re-Checking Failed : 2390_re_check_195-123-237-251.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 103.234.220.195
+Fingerprint: 5099AA94537F2ECEB5E4F2B05E142BEC138076DA
+Connected, Checking...
+Connected Successfully to : 1774_check_103-234-220-195.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 176.123.8.225
+Fingerprint: B2A41B3EDC1BDDE4B5C01AF7AFC7BA3750E78363
+
+1- Starting Tor, connecting to: 95.130.10.69
+Fingerprint: 49B7F9E64FC3FE7580AA64EB236090B2AF6DB049
+Connected, Checking...
+Connected Successfully to : 7157_check_95-130-10-69.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 210.140.10.24
+Fingerprint: 3E60A9010E2BF8E9387FAB6C3F939A29DA6BB1D8
+Connected, Checking...
+Checking Failed : 9813_check_210-140-10-24.dnstestsuite.space/check
+re-Checking Failed : 9813_re_check_210-140-10-24.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 139.99.96.114
+Fingerprint: D71E2BB7859D0D0DAE5CA3677176C940446E077A
+Connected, Checking...
+Connected Successfully to : 1144_check_139-99-96-114.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 103.27.124.82
+Fingerprint: FCD58A1BDE2093630E454D3A1E221084D5EBCFEE
+Connected, Checking...
+Connected Successfully to : 6567_check_103-27-124-82.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 178.17.174.10
+Fingerprint: B5C6F712D656C9390056AA9BA7020C87EEE9FA30
+Connected, Checking...
+Connected Successfully to : 179_check_178-17-174-10.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 192.42.116.19
+Fingerprint: BC64503664C90B4A9DA913736C361DEAD313B130
+Connected, Checking...
+Connected Successfully to : 512_check_192-42-116-19.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 104.223.123.101
+Fingerprint: 02A627FA195809A3ABE031B7864CCA7A310F1D44
+Connected, Checking...
+Connected Successfully to : 6412_check_104-223-123-101.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 103.84.172.38
+Fingerprint: 55E6460993C0B9B7A79775E28B2F5A990AD0D140
+Connected, Checking...
+Checking Failed : 5448_check_103-84-172-38.dnstestsuite.space/check
+re-Checking Failed : 5448_re_check_103-84-172-38.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 46.246.44.85
+Fingerprint: CD406A3CBCF313B0B068690CC706C142484CE29C
+
+1- Starting Tor, connecting to: 46.182.106.190
+Fingerprint: 02CD25EC7E55BADBEFDF63BF2FAA2C8B16BD1C26
+Connected, Checking...
+Connected Successfully to : 3493_check_46-182-106-190.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 193.90.12.115
+Fingerprint: 9F95F042409E36FCF7986E445AE378E43FBEBE6A
+Connected, Checking...
+Connected Successfully to : 4121_check_193-90-12-115.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 163.172.157.143
+Fingerprint: A0BCB9CDE9A269125C79E82AC60D5F346BE05D03
+Connected, Checking...
+Checking Failed : 8291_check_163-172-157-143.dnstestsuite.space/check
+re-Checking Failed : 8291_re_check_163-172-157-143.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 173.255.229.8
+Fingerprint: 9883F316C4AC98650E878136C591990FF8702340
+Connected, Checking...
+Checking Failed : 6944_check_173-255-229-8.dnstestsuite.space/check
+re-Checking Failed : 6944_re_check_173-255-229-8.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 37.218.240.80
+Fingerprint: 94541F30DE462C066F4504D397C10776DFAD475F
+Connected, Checking...
+Connected Successfully to : 9435_check_37-218-240-80.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 62.72.82.222
+Fingerprint: 843C4F774DA2653DADBA5B847A33CC646995F6A1
+Connected, Checking...
+Checking Failed : 1939_check_62-72-82-222.dnstestsuite.space/check
+re-Checking Failed : 1939_re_check_62-72-82-222.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 195.123.212.34
+Fingerprint: B27509F6D6233ACD2EAC8936D5FE7CBF009163BE
+Connected, Checking...
+Checking Failed : 4834_check_195-123-212-34.dnstestsuite.space/check
+re-Checking Successfully to : 4834_re_check_195-123-212-34.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 80.79.23.7
+Fingerprint: 4FB8C28667F785C9CC98BF7317C76DAEC8072E6F
+Connected, Checking...
+Connected Successfully to : 1521_check_80-79-23-7.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 144.217.60.211
+Fingerprint: 74FB777F25E7F80BA6BF8B808DF873A1708821A7
+Connected, Checking...
+Connected Successfully to : 5059_check_144-217-60-211.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 185.220.101.34
+Fingerprint: 47C42E2094EE482E7C9B586B10BABFB67557030B
+Connected, Checking...
+Checking Failed : 9114_check_185-220-101-34.dnstestsuite.space/check
+re-Checking Successfully to : 9114_re_check_185-220-101-34.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 86.104.15.15
+Fingerprint: 9E3845093ECDB1C46974540F45190A82E0738B3D
+Connected, Checking...
+Checking Failed : 3278_check_86-104-15-15.dnstestsuite.space/check
+re-Checking Failed : 3278_re_check_86-104-15-15.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 195.228.45.176
+Fingerprint: FAD823A2AA7400D4A8107D7CD83050EEBB7A51FE
+Connected, Checking...
+Connected Successfully to : 144_check_195-228-45-176.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 92.225.238.58
+Fingerprint: 36CFB07E071B94A7FF0E712E53545206C5751693
+
+1- Starting Tor, connecting to: 185.191.204.254
+Fingerprint: AF4997738E0CFC014CD04FB09A670D2C5F1E79A4
+Connected, Checking...
+Checking Failed : 7351_check_185-191-204-254.dnstestsuite.space/check
+re-Checking Failed : 7351_re_check_185-191-204-254.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 104.244.78.207
+Fingerprint: 4E33EEBC1267C7E262758F3943A3AE532635CC09
+Connected, Checking...
+Checking Failed : 6332_check_104-244-78-207.dnstestsuite.space/check
+re-Checking Successfully to : 6332_re_check_104-244-78-207.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 51.15.64.212
+Fingerprint: 28A598AF03F9552B19B53ADAC80B4C1C51904B64
+Connected, Checking...
+Connected Successfully to : 40_check_51-15-64-212.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 70.168.93.214
+Fingerprint: 24DB33DBAB74633ACE7BAA9DC61230179BCF13E1
+Connected, Checking...
+Connected Successfully to : 2643_check_70-168-93-214.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 79.142.76.251
+Fingerprint: 6FA6E86A5A32A0BA14FAB573A97105336C258553
+Connected, Checking...
+Connected Successfully to : 6036_check_79-142-76-251.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 192.99.151.112
+Fingerprint: F77BFD205E65B286585583E4EF990CEB1A2B91F1
+Connected, Checking...
+Connected Successfully to : 2500_check_192-99-151-112.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 185.220.102.6
+Fingerprint: A2534EF23390CAE079B1586F0FDF9CE11F556062
+Connected, Checking...
+Connected Successfully to : 2215_check_185-220-102-6.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 163.172.160.182
+Fingerprint: CB6FF27F3A474F6A67D20683C9C97DC275F2658F
+Connected, Checking...
+Connected Successfully to : 3883_check_163-172-160-182.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 46.246.93.70
+Fingerprint: 7D44D48A8AFE78198669C13A20472427BEB78B87
+Connected, Checking...
+Checking Failed : 6271_check_46-246-93-70.dnstestsuite.space/check
+re-Checking Failed : 6271_re_check_46-246-93-70.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 178.175.135.102
+Fingerprint: EB2DE4CF346BA42C40A583CC7F330547BAA1FAE4
+Connected, Checking...
+Connected Successfully to : 144_check_178-175-135-102.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 54.38.120.214
+Fingerprint: AC1C1086B17A90F50BD1930AD0FEBBA775CDA0CB
+
+1- Starting Tor, connecting to: 178.17.174.14
+Fingerprint: B06F093A3D4DFAD3E923F4F28A74901BD4F74EB1
+Connected, Checking...
+Connected Successfully to : 9197_check_178-17-174-14.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 185.220.101.9
+Fingerprint: 14877C6384A9E793F422C8D1DDA447CACA4F7C4B
+Connected, Checking...
+Connected Successfully to : 7712_check_185-220-101-9.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 217.170.197.83
+Fingerprint: C1B13471F6980BCA80EF7674FEE95E38C0EB32E3
+Connected, Checking...
+Connected Successfully to : 9872_check_217-170-197-83.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 146.255.57.228
+Fingerprint: 13816FEEFBC1DE77EF5B57F2627020BABA20769D
+
+1- Starting Tor, connecting to: 84.48.199.78
+Fingerprint: 64B770AF739F28FCEBCB31D7D0A7AC9A78BB4C7D
+Connected, Checking...
+Checking Failed : 5859_check_84-48-199-78.dnstestsuite.space/check
+re-Checking Failed : 5859_re_check_84-48-199-78.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 84.195.252.128
+Fingerprint: C30E1963354BFC17B124C43EEA72DC5EFCE6FE1E
+
+1- Starting Tor, connecting to: 193.171.202.146
+Fingerprint: 01A9258A46E97FF8B2CAC7910577862C14F2C524
+Connected, Checking...
+Checking Failed : 412_check_193-171-202-146.dnstestsuite.space/check
+re-Checking Successfully to : 412_re_check_193-171-202-146.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 91.203.146.126
+Fingerprint: 1B8188170F0AD7998A7D04BD5CE9F6128B032C8E
+Connected, Checking...
+Checking Failed : 7360_check_91-203-146-126.dnstestsuite.space/check
+re-Checking Failed : 7360_re_check_91-203-146-126.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 54.39.119.69
+Fingerprint: 64FD507B19A1A0311460DFD332746D650D3A71D3
+Connected, Checking...
+Checking Failed : 51_check_54-39-119-69.dnstestsuite.space/check
+re-Checking Failed : 51_re_check_54-39-119-69.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 185.62.57.215
+Fingerprint: 3A1611881CE343709632BB9F64FF6F788946F5B0
+Connected, Checking...
+Checking Failed : 5231_check_185-62-57-215.dnstestsuite.space/check
+re-Checking Failed : 5231_re_check_185-62-57-215.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 206.248.184.127
+Fingerprint: 42ED3E667FF7F543F3C7CA01FA6763FEE06D72A7
+Connected, Checking...
+Checking Failed : 7808_check_206-248-184-127.dnstestsuite.space/check
+re-Checking Successfully to : 7808_re_check_206-248-184-127.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 139.99.130.178
+Fingerprint: 867B95CACD64653FEEC4D2CEFC5C49B4620307A7
+Connected, Checking...
+Connected Successfully to : 1152_check_139-99-130-178.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 94.156.144.239
+Fingerprint: 36504674840FA88EC78282F4045541FC282B51AF
+Connected, Checking...
+Checking Failed : 6291_check_94-156-144-239.dnstestsuite.space/check
+re-Checking Failed : 6291_re_check_94-156-144-239.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 45.76.179.27
+Fingerprint: D8972986BE19E0287770DF51C47C630A53DC6E97
+
+1- Starting Tor, connecting to: 62.102.148.67
+Fingerprint: 4A0C3E177AF684581EF780981AEAF51A98A6B5CF
+Connected, Checking...
+Checking Failed : 6066_check_62-102-148-67.dnstestsuite.space/check
+re-Checking Failed : 6066_re_check_62-102-148-67.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 176.10.99.203
+Fingerprint: 2DFDEA5DD415B95594BFB12D59FE841167F94B5F
+Connected, Checking...
+Checking Failed : 1787_check_176-10-99-203.dnstestsuite.space/check
+re-Checking Failed : 1787_re_check_176-10-99-203.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Checking Failed : 2353_check_195-123-224-108.dnstestsuite.space/check
+re-Checking Failed : 2353_re_check_195-123-224-108.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 142.44.232.99
+Fingerprint: D9B1E08CC91F7F42EEE5578EA8B069C0F09DE5C3
+Connected, Checking...
+Checking Failed : 8726_check_142-44-232-99.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 163.172.209.74
+Fingerprint: 882AB6DEF56D472EF3279FDB20E7F46949DE98BF
+
+1- Starting Tor, connecting to: 91.203.146.126
+Fingerprint: 1B8188170F0AD7998A7D04BD5CE9F6128B032C8E
+Connected, Checking...
+Checking Failed : 6278_check_91-203-146-126.dnstestsuite.space/check
+re-Checking Failed : 6278_re_check_91-203-146-126.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 213.61.215.54
+Fingerprint: C332CB1924619CF9E748981542321D795448038B
+Connected, Checking...
+Checking Failed : 757_check_213-61-215-54.dnstestsuite.space/check
+re-Checking Failed : 757_re_check_213-61-215-54.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 176.58.89.182
+Fingerprint: 7B6B2AA9E319A1883774A418E6F51E641E4B434A
+
+1- Starting Tor, connecting to: 185.100.87.207
+Fingerprint: C8AB1B2AF0CBAAE3611A814B4C7D38DCE0CBFEB4
+Connected, Checking...
+Checking Failed : 6020_check_185-100-87-207.dnstestsuite.space/check
+re-Checking Failed : 6020_re_check_185-100-87-207.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 51.38.110.161
+Fingerprint: D15A51CA2A2F0B3534C2F20171974F82B8576AA4
+Connected, Checking...
+Checking Failed : 3427_check_51-38-110-161.dnstestsuite.space/check
+re-Checking Failed : 3427_re_check_51-38-110-161.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 104.131.206.23
+Fingerprint: 657339F813C63A826623414B31961471BAE6D790
+Connected, Checking...
+Checking Failed : 4450_check_104-131-206-23.dnstestsuite.space/check
+re-Checking Failed : 4450_re_check_104-131-206-23.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 77.247.181.166
+Fingerprint: 77131D7E2EC1CA9B8D737502256DA9103599CE51
+Connected, Checking...
+Checking Failed : 5686_check_77-247-181-166.dnstestsuite.space/check
+re-Checking Failed : 5686_re_check_77-247-181-166.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 194.68.44.88
+Fingerprint: 7470E91A9C69B2120BC6D881D98B3FD9C8AC850B
+Connected, Checking...
+Checking Failed : 6933_check_194-68-44-88.dnstestsuite.space/check
+re-Checking Failed : 6933_re_check_194-68-44-88.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 69.164.207.234
+Fingerprint: D37F3344CDB47860FF52A7C02761049FF4763EC1
+Connected, Checking...
+Checking Failed : 6896_check_69-164-207-234.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 185.100.87.207
+Fingerprint: C8AB1B2AF0CBAAE3611A814B4C7D38DCE0CBFEB4
+Connected, Checking...
+Connected Successfully to : 2629_check_185-100-87-207.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 84.3.10.87
+Fingerprint: C6EB199FE28BE05529710B97D1874D0BE3B7FAF9
+Connected, Checking...
+Connected Successfully to : 5702_check_84-3-10-87.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 77.247.181.163
+Fingerprint: 5974B3F4C66D83BBC9622E0F0F023FE48428DB9B
+Connected, Checking...
+Connected Successfully to : 9593_check_77-247-181-163.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 54.39.119.73
+Fingerprint: 70EE2AEDB5F23675068B9B79AA05F7876FC0BA5E
+Connected, Checking...
+Connected Successfully to : 1518_check_54-39-119-73.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 164.132.51.91
+Fingerprint: 78EBA3F8933A0F596B43A7DBD794C5630F5B587D
+Connected, Checking...
+Connected Successfully to : 8575_check_164-132-51-91.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 23.129.64.105
+Fingerprint: C42E78EC7BEB5CA0FABD4A6BBDDD67EDD61DFF8D
+Connected, Checking...
+Connected Successfully to : 7126_check_23-129-64-105.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 54.36.222.37
+Fingerprint: 51B35EEA2E94F594968C5FAC86F2A6EA6591C0CA
+Connected, Checking...
+Connected Successfully to : 2831_check_54-36-222-37.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 206.248.184.127
+Fingerprint: 42ED3E667FF7F543F3C7CA01FA6763FEE06D72A7
+Connected, Checking...
+Connected Successfully to : 1142_check_206-248-184-127.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 193.169.252.24
+Fingerprint: DDFD587212E4E1905114377851FFAF6659F19823
+Connected, Checking...
+
+1- Starting Tor, connecting to: 46.166.139.35
+Fingerprint: 8D5E746762C487A9A230B67BFE5821E2B460EA51
+Connected, Checking...
+Connected Successfully to : 3008_check_46-166-139-35.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 37.187.96.78
+Fingerprint: BB833DEB882AF8AC80C2C67DB2AC4F7012CB1171
+Connected, Checking...
+Checking Failed : 2567_check_37-187-96-78.dnstestsuite.space/check
+re-Checking Failed : 2567_re_check_37-187-96-78.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 35.248.27.205
+Fingerprint: 3A7554FFD5425F4E40EF3E2942F2AAC3AB9577A1
+Connected, Checking...
+Connected Successfully to : 1685_check_35-248-27-205.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 176.53.90.26
+Fingerprint: B00478C4CD2F3ACC7D6F02AF8033D2906673651F
+Connected, Checking...
+Connected Successfully to : 446_check_176-53-90-26.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 88.99.89.151
+Fingerprint: D33B5A899263D69C05EABCD18286F168FFD15C4D
+Connected, Checking...
+Connected Successfully to : 9826_check_88-99-89-151.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 51.15.82.2
+Fingerprint: AA5750E4A356128E868F33940D61A420A0146171
+Connected, Checking...
+Checking Failed : 721_check_51-15-82-2.dnstestsuite.space/check
+re-Checking Failed : 721_re_check_51-15-82-2.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 51.38.110.160
+Fingerprint: 51420DFB2047A33803A9A6E456D627937DD6E316
+Connected, Checking...
+Checking Failed : 9430_check_51-38-110-160.dnstestsuite.space/check
+re-Checking Successfully to : 9430_re_check_51-38-110-160.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 185.165.169.71
+Fingerprint: 46DB8D5F5714A82AA6A1F6228FDC47E714912C78
+Connected, Checking...
+Checking Failed : 533_check_185-165-169-71.dnstestsuite.space/check
+re-Checking Failed : 533_re_check_185-165-169-71.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 139.162.62.105
+Fingerprint: 40D53DBFD568B9CE463A1210BB6B3F9D87D1609E
+Connected, Checking...
+Connected Successfully to : 899_check_139-162-62-105.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 5.196.66.162
+Fingerprint: AFF2FC5C6F793B6E147EB93C1897D6DDA49E54FD
+Connected, Checking...
+Connected Successfully to : 8573_check_5-196-66-162.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 185.127.25.68
+Fingerprint: BB3ADF16D53C5756DFDCE6B48E8F7DAB1A7E2190
+Connected, Checking...
+Connected Successfully to : 5031_check_185-127-25-68.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 193.110.157.151
+Fingerprint: 9BEA0C19942928B1ABE66E7FFDF0B4762F452830
+Connected, Checking...
+Connected Successfully to : 2270_check_193-110-157-151.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 176.10.104.240
+Fingerprint: 0111BA9B604669E636FFD5B503F382A4B7AD6E80
+Connected, Checking...
+Connected Successfully to : 6467_check_176-10-104-240.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 192.42.116.23
+Fingerprint: 9A8CD9CD62B29DB0549E2A117EB2F014F5AFFEF1
+Connected, Checking...
+Connected Successfully to : 5422_check_192-42-116-23.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 94.248.16.7
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+
+1- Starting Tor, connecting to: 190.210.98.90
+Fingerprint: 2027A1BAF0D9FBD7E2B5734789D71EA9E90C1B81
+Connected, Checking...
+Checking Failed : 2630_check_190-210-98-90.dnstestsuite.space/check
+re-Checking Failed : 2630_re_check_190-210-98-90.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 185.107.47.215
+Fingerprint: 51377C496818552E263583A44C796DF3FB0BC71B
+Connected, Checking...
+Connected Successfully to : 7564_check_185-107-47-215.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 162.247.74.200
+Fingerprint: A7C7EB2A0DFB2E3FFFC12B7756707433DD550F9E
+Connected, Checking...
+Connected Successfully to : 5719_check_162-247-74-200.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 82.223.27.82
+Fingerprint: C058C71CAD4E9DB3C4B49FBC210AF6C6F5568D69
+Connected, Checking...
+Connected Successfully to : 9699_check_82-223-27-82.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 204.11.50.131
+Fingerprint: 185F2A57B0C4620582602761097D17DB81654F70
+Connected, Checking...
+Connected Successfully to : 2487_check_204-11-50-131.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 94.156.144.239
+Fingerprint: 36504674840FA88EC78282F4045541FC282B51AF
+Connected, Checking...
+Connected Successfully to : 1143_check_94-156-144-239.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 37.233.103.114
+Fingerprint: B4543E0EB1D0A10F752A1C7683C97E3B98AA890B
+Connected, Checking...
+Connected Successfully to : 5491_check_37-233-103-114.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 176.126.70.240
+Fingerprint: 6A384954C2403F8B641C7AC5087BF72C34E545A9
+Connected, Checking...
+Connected Successfully to : 8661_check_176-126-70-240.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 178.17.170.81
+Fingerprint: 2CF0726C7170B975BA7371BF931CE0A6F3699850
+Connected, Checking...
+Connected Successfully to : 5872_check_178-17-170-81.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 189.84.21.44
+Fingerprint: 2B88AAD2E601E56E5EAE82BEC38AAB0CA6EF2283
+Connected, Checking...
+Connected Successfully to : 301_check_189-84-21-44.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 185.83.215.29
+Fingerprint: 33F9E8AD698E644C042D5A2EA8B43B8D4B46F2F1
+Connected, Checking...
+Checking Failed : 5698_check_185-83-215-29.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 185.125.33.242
+Fingerprint: 7B484E83BAAD77F9159A09DC34A8DE9495FF3C03
+Connected, Checking...
+Connected Successfully to : 1215_check_185-125-33-242.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 65.19.167.131
+Fingerprint: 0DA9BD201766EDB19F57F49F1A013A8A5432C008
+Connected, Checking...
+Connected Successfully to : 9905_check_65-19-167-131.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 51.15.49.134
+Fingerprint: ACDDC33428080D906C86357651D12DC49C460F4B
+Connected, Checking...
+Connected Successfully to : 9408_check_51-15-49-134.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 37.233.102.65
+Fingerprint: A807254E0EC8F6F5569BC98EC06DC4E9514BE6B2
+Connected, Checking...
+Connected Successfully to : 7894_check_37-233-102-65.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 37.187.180.18
+Fingerprint: 45D6A70CAEC4A2C2FCE46A127E461FF852A41280
+Connected, Checking...
+Connected Successfully to : 4600_check_37-187-180-18.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 23.129.64.106
+Fingerprint: B4944F8E31472498E86F89A028F5B84BEEC0B73A
+
+1- Starting Tor, connecting to: 195.176.3.20
+Fingerprint: 0D2DE242ADA0ED77325E3AEE3A9D8C5CD07C2CF3
+Connected, Checking...
+Connected Successfully to : 1115_check_195-176-3-20.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 176.107.179.147
+Fingerprint: BDB015FC64018BBD63BC0005E04B44F18CB19450
+Connected, Checking...
+Connected Successfully to : 1876_check_176-107-179-147.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 50.7.176.2
+Fingerprint: 48A1D31469BBB130255B9E53130A5825ECFCC719
+Connected, Checking...
+Checking Failed : 3628_check_50-7-176-2.dnstestsuite.space/check
+re-Checking Failed : 3628_re_check_50-7-176-2.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 103.1.206.100
+Fingerprint: 262E84A99F53AE1F6860267F7C5DA5B96E57A46D
+Connected, Checking...
+Checking Failed : 4261_check_103-1-206-100.dnstestsuite.space/check
+re-Checking Failed : 4261_re_check_103-1-206-100.dnstestsuite.space/check
+
+5- Starting Tor, connecting to: 103.87.8.163
+Fingerprint: 1E5E75D7865A01AF66563864804C8B401ABF70AF
+Connected, Checking...
+Checking Failed : 3936_check_103-87-8-163.dnstestsuite.space/check
+re-Checking Failed : 3936_re_check_103-87-8-163.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 54.38.120.214
+Fingerprint: AC1C1086B17A90F50BD1930AD0FEBBA775CDA0CB
+
+1- Starting Tor, connecting to: 176.123.8.225
+Fingerprint: B2A41B3EDC1BDDE4B5C01AF7AFC7BA3750E78363
+
+1- Starting Tor, connecting to: 185.200.123.12
+Fingerprint: 9BE24F014E9BD51D399E90C34B64E49344490E54
+Connected, Checking...
+Connected Successfully to : 4504_check_185-200-123-12.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 185.220.101.10
+Fingerprint: 4031460683AE9E0512D3620C2758D98758AC6C93
+Connected, Checking...
+Checking Failed : 1244_check_185-220-101-10.dnstestsuite.space/check
+re-Checking Successfully to : 1244_re_check_185-220-101-10.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 94.31.53.203
+Fingerprint: 35094D4F2418A2169B1C05D4905027EE86C9F0D1
+Connected, Checking...
+Checking Failed : 6888_check_94-31-53-203.dnstestsuite.space/check
+re-Checking Failed : 6888_re_check_94-31-53-203.dnstestsuite.space/check
+
+4- Starting Tor, connecting to: 107.181.161.182
+Fingerprint: 093C6A61929007F97E580BF946E9291013958EB3
+Connected, Checking...
+Connected Successfully to : 6693_check_107-181-161-182.dnstestsuite.space/check
+
+5- Starting Tor, connecting to: 51.15.63.43
+Fingerprint: 93A1FD9BEF964E5D01704FAFB93D6066E3E8CFF1
+Connected, Checking...
+Connected Successfully to : 1395_check_51-15-63-43.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 139.99.96.114
+Fingerprint: D71E2BB7859D0D0DAE5CA3677176C940446E077A
+
+1- Starting Tor, connecting to: 185.220.101.6
+Fingerprint: C08DE49658E5B3CFC6F2A952B453C4B608C9A16A
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+
+1- Starting Tor, connecting to: 195.201.16.199
+Fingerprint: 0F41966987CCA6BC41645FFF579EE9BB5543C4B7
+
+1- Starting Tor, connecting to: 178.175.135.101
+Fingerprint: E181C71DC793F46E8D04F17A7F2FCF57094A6AF3
+Connected, Checking...
+Connected Successfully to : 3814_check_178-175-135-101.dnstestsuite.space/check
+
+2- Starting Tor, connecting to: 178.17.174.196
+Fingerprint: 350A6C93A4A104FD17013BCFC1670451B9AE8A07
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Checking Failed : 6078_check_23-129-64-103.dnstestsuite.space/check
+re-Checking Successfully to : 6078_re_check_23-129-64-103.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Connected Successfully to : 6813_check_173-246-38-148.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Connected Successfully to : 8654_check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Connected Successfully to : 9872_check_195-123-224-108.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Checking Failed : 9701_check_23-129-64-103.dnstestsuite.space/check
+re-Checking Successfully to : 9701_re_check_23-129-64-103.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+Connected Successfully to : 2415_check_173-246-38-148.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connected, Checking...
+Connected Successfully to : 18_check_173-249-57-253.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+Connected Successfully to : 1754_check_195-123-224-108.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 45.62.236.67
+Fingerprint: F8F8AE38B8F976FD8CAB2812001C36EC8E54E204
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+Connected, Checking...
+Connected Successfully to : 915_check_94-248-20-15.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+Connected, Checking...
+Connected Successfully to : 9735_check_94-248-20-15.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+Connected, Checking...
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 173.249.57.253
+Fingerprint: FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF
+Connection failed! - Timed out
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+Connected, Checking...
+Checking Failed : 1732_check_94-248-20-15.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+Connected, Checking...
+Checking Failed : 4277_check_94-248-20-15.dnstestsuite.space/check
+re-Checking Failed : 4277_re_check_94-248-20-15.dnstestsuite.space/check
+
+3- Starting Tor, connecting to: 23.129.64.103
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+Connected, Checking...
+Checking Failed : 1358_check_94-248-20-15.dnstestsuite.space/check
+re-Checking Failed : 1358_re_check_94-248-20-15.dnstestsuite.space/check
+
+1- Starting Tor, connecting to: 192.81.223.177
+Fingerprint: 0EE2082AB57AAF919277685B279292E1465BCE4F
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+
+3- Starting Tor, connecting to: 94.248.20.15
+Fingerprint: 47AD6697492C9CC1F91A709E346555592F71188B
+
+3- Starting Tor, connecting to: 185.107.70.202
+Fingerprint: 38A42B8D7C0E6346F4A4821617740AEE86EA885B
+
+3- Starting Tor, connecting to: 185.107.70.202
+Fingerprint: 38A42B8D7C0E6346F4A4821617740AEE86EA885B
+
+3- Starting Tor, connecting to: 185.107.70.202
+Fingerprint: 38A42B8D7C0E6346F4A4821617740AEE86EA885B
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+Connected, Checking...
+
+3- Starting Tor, connecting to: 173.246.38.148
+Fingerprint: 8ED84B53BD9556CCBB036073A1AD508EC27CBE52
+
+1- Starting Tor, connecting to: 149.56.100.4
+Fingerprint: 56901C99DDADA68B650C80EC914E6DFA96480AD9
+Connected, Checking...
+
+1- Starting Tor, connecting to: 51.15.49.134
+Fingerprint: ACDDC33428080D906C86357651D12DC49C460F4B
+Connected, Checking...
+
+1- Starting Tor, connecting to: 149.202.170.60
+Fingerprint: 4109314E35C8E4084AE2BC1711562D380077B1F0
+Connected, Checking...
+
+1- Starting Tor, connecting to: 199.249.223.47
+Fingerprint: CC14C97F1D23EE97766828FC8ED8582E21E11665
+Connected, Checking...
+
+1- Starting Tor, connecting to: 81.231.177.43
+Fingerprint: 65023D3A7704F9633C3BB2EA11CC339E0995DBA8
+
+1- Starting Tor, connecting to: 66.146.193.33
+Fingerprint: 2037A6568C5771A5D8FF5C64FC1819247E6FEE7B
+Connected, Checking...
+
+1- Starting Tor, connecting to: 64.137.242.29
+Fingerprint: 6ED1509C5DF83DBD896CE617E87550A682A5741D
+Connected, Checking...
+
+1- Starting Tor, connecting to: 199.249.223.81
+Fingerprint: F7447E99EB5CBD4D5EB913EE0E35AC642B5C1EF3
+Connected, Checking...
+
+1- Starting Tor, connecting to: 209.141.45.212
+Fingerprint: 3243B8617D4E97AFA1BAE5D83799DF4FBFF67C4A
+Connected, Checking...
+
+1- Starting Tor, connecting to: 192.160.102.165
+Fingerprint: C90CA3B7FE01A146B8268D56977DC4A2C024B9EA
+
+1- Starting Tor, connecting to: 103.28.52.93
+Fingerprint: C5A6FEE5BC3BE19F5B9EB086CA95DAD393D8A4F6
+Connected, Checking...
+
+1- Starting Tor, connecting to: 144.217.164.104
+Fingerprint: 36B0248E61830048945C288A61FF8428BD6AA592
+Connected, Checking...
+
+1- Starting Tor, connecting to: 188.165.59.43
+Fingerprint: 426C34EC356E885CFA1458C47C033F53CF9649A9
+Connected, Checking...
+
+1- Starting Tor, connecting to: 188.166.184.185
+Fingerprint: A189B02DF1C5DFAD1028342D1942EDEA5FD6772D
+Connected, Checking...
+
+1- Starting Tor, connecting to: 177.99.128.37
+Fingerprint: C6E6F2583F4A2512F735AD19ABCC5412D1073342
+Connected, Checking...
+
+1- Starting Tor, connecting to: 97.107.187.42
+Fingerprint: 63E459A3C7A27A6994123EE62208E8BE7378A785
+Connected, Checking...
+
+1- Starting Tor, connecting to: 198.233.204.165
+Fingerprint: A5E3D05A4F44A915C429BF712334A4E28E46A10C
+Connected, Checking...
+
+1- Starting Tor, connecting to: 85.93.218.204
+Fingerprint: 05FFA39D71DA116F7669EA4EE53A0BAEA315BA7F
+Connected, Checking...
+
+1- Starting Tor, connecting to: 163.172.171.163
+Fingerprint: AC1797B64DDD3CB9F1B9B248BA5493275E5F8E40
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.165.169.71
+Fingerprint: 46DB8D5F5714A82AA6A1F6228FDC47E714912C78
+Connected, Checking...
+
+1- Starting Tor, connecting to: 178.17.171.114
+Fingerprint: BB06A9883F619B440F7B7C850A9C06987FB4CD58
+Connected, Checking...
+
+1- Starting Tor, connecting to: 173.255.229.8
+Fingerprint: 9883F316C4AC98650E878136C591990FF8702340
+Connected, Checking...
+
+1- Starting Tor, connecting to: 82.211.5.20
+Fingerprint: E7565E408F023079CCD3A79116BE8F6201402888
+Connected, Checking...
+
+1- Starting Tor, connecting to: 173.249.48.78
+Fingerprint: 599F80598079CCF1E10FDD535E2158870E07674C
+Connected, Checking...
+
+1- Starting Tor, connecting to: 198.46.238.74
+Fingerprint: 1B54DE9E25C81587FAC9AEB214FD6E6BB1B85638
+
+1- Starting Tor, connecting to: 144.217.254.208
+Fingerprint: 6B4ABE3FA1D4D0D4AEF2FD6C535891333591D06E
+
+1- Starting Tor, connecting to: 95.216.40.15
+Fingerprint: EC3031DBBA7246438E2EFB8BDEB2B396BC95637B
+Connected, Checking...
+
+1- Starting Tor, connecting to: 69.84.77.19
+Fingerprint: 79DF803F3E046F683BD106B79078D6C52C9FABB8
+
+1- Starting Tor, connecting to: 158.69.201.47
+Fingerprint: DADCAD37DE5E22E7E1F323927260155EAB3689C2
+Connected, Checking...
+
+1- Starting Tor, connecting to: 195.123.224.108
+Fingerprint: FF80EB7648E54819F37522C4FC1F1AE9E760C0A8
+Connected, Checking...
+
+1- Starting Tor, connecting to: 5.150.254.67
+Fingerprint: F7B32379A32DF14EE6BD0E59D420EF9F87BDBFCA
+Connected, Checking...
+
+1- Starting Tor, connecting to: 94.221.108.106
+Fingerprint: B6D4B2E44405512213FAB0F5CF45E0AD418822C4
+Connected, Checking...
+
+1- Starting Tor, connecting to: 51.15.209.128
+Fingerprint: 7B1807281CC74E54CC2144B87A78F539DEA1E729
+Connected, Checking...
+
+1- Starting Tor, connecting to: 162.247.74.27
+Fingerprint: 6C143720FFF8469EF6A5C5B4066366340CF6C0D1
+Connected, Checking...
+
+1- Starting Tor, connecting to: 77.69.97.164
+Fingerprint: 711265C5CABC3EA394715B21EE52236F0A8893A2
+Connected, Checking...
+
+1- Starting Tor, connecting to: 62.72.82.222
+Fingerprint: 843C4F774DA2653DADBA5B847A33CC646995F6A1
+Connected, Checking...
+
+1- Starting Tor, connecting to: 51.15.37.97
+Fingerprint: 6B062B0FDFEAC3C6F9203FB9584451E295574DAD
+Connected, Checking...
+
+1- Starting Tor, connecting to: 185.104.120.2
+Fingerprint: 518FF8708698E1DA09C823C36D35DF89A2CAD956
+Connected, Checking...
+
+1- Starting Tor, connecting to: 51.15.205.214
+Fingerprint: 5E363D72488276160D062DDD2DFA25CFEBAF5EA9
+Connected, Checking...
+
+1- Starting Tor, connecting to: 40.69.62.87
+Fingerprint: 05B6F892B62C3CBF8574E1258E6FDE29CE04E1B1
+Connected, Checking...
+
+1- Starting Tor, connecting to: 46.246.36.103
+Fingerprint: CD406A3CBCF313B0B068690CC706C142484CE29C
+
+1- Starting Tor, connecting to: 45.33.48.204
+Fingerprint: 46472C16B65B17831B4ED1B9C285788597E51C4C
+Connected, Checking...
+
+1- Starting Tor, connecting to: 173.249.48.78
+Fingerprint: A2D16C8FE72090CD099414D3CCE208441EEA21D4
+
+1- Starting Tor, connecting to: 37.187.94.86
+Fingerprint: ABC95691E48C71605244E2B6A4F0BE8E79848F1B
+Connected, Checking...
+
+1- Starting Tor, connecting to: 82.146.57.127
+Fingerprint: 89A3425E6AC874D0CB87EC35E64A9764AC9508A4
+
+1- Starting Tor, connecting to: 46.183.221.155
+Fingerprint: CBD34865BEDFCB78B885438BC93B2F7A82E61761
+Connected, Checking...
+
+1- Starting Tor, connecting to: 46.36.36.184
+Fingerprint: D6C92E9AF6F8A7851EE2D9222AFEF9D7E8D949D1
+
+1- Starting Tor, connecting to: 176.10.99.210
+Fingerprint: 46F90EF3A3628C134DBB4654D0E4FF7EB914B690
+Connected, Checking...
+
+1- Starting Tor, connecting to: 5.199.141.233
+Fingerprint: 0F932217C53603F3B9926D0599C6777EDF241FE7
+Connected, Checking...
+
+1- Starting Tor, connecting to: 178.175.139.122
+Fingerprint: 490FB3FAAF8837407D94CA7E1DEF025DEF0F3516
+Connected, Checking...
+
+1- Starting Tor, connecting to: 31.185.27.203
+Fingerprint: 5D263037FC175596B3A344132B0B755EB8FB1D1C
+Connected, Checking...
+
+1- Starting Tor, connecting to: 173.255.226.142
+Fingerprint: A3CB2E3D24A1688DC7213988B1BE9321B62AAD8C
+Connected, Checking...
+
+1- Starting Tor, connecting to: 122.176.130.168
+Fingerprint: 5D3FA2738D7EBFA00E7A184E2949FB3B4C3C3601
+Connected, Checking...
+
+1- Starting Tor, connecting to: 158.255.7.61
+Fingerprint: 4B4D7C727B603EF6777DC0BC3D169179CA977140
+Connected, Checking...
+
+1- Starting Tor, connecting to: 46.246.36.103
+Fingerprint: CD406A3CBCF313B0B068690CC706C142484CE29C
+
+1- Starting Tor, connecting to: 178.211.45.18
+Fingerprint: 02D10F351A45C6470B795D5AB29DB44B4F5A9F9E

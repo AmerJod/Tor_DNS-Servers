@@ -64,7 +64,7 @@ class NodesHandler:
                 })
 
         # For testing purposes
-        '''if count == 0:
+        '''if nodeCount == 0:
             break'''
         # Write into Json file
         with open(self.NODES_PATH, 'w') as outfile:

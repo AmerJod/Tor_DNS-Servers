@@ -13,6 +13,7 @@ class TASK_MODE(Enum):
     REQUEST_DOMAIN = '-r'
     TOR_CONNECTION_CHECKING = '-d'
     DNS_0x20_CHECKING = '-cd'  # Capitalization
+    DNS_RESOLVER_COUNTER = '-drc'  #
 
 class MODE_TYPES(Enum):
     printing = '-out'
@@ -94,6 +95,29 @@ class Helper:
                 json.dump(exitNodes, outfile)
         except Exception as ex:
             print(ex)
+
+
+    def storeDNSResolverData(objects,path):
+        try:
+            DNSNodes = []
+            for DNSNode in objects:
+                DNSNodes.append({
+                            'DNSResolver': {
+                                'DNSIP': DNSNode.DNSIP,
+                                'nodeCount': DNSNode.nodeCount,
+                                'ExitNodeList' : DNSNode.ExitNodelistJSON
+                            }
+                        })
+            with open(path, 'w+') as outfile:
+                json.dump(DNSNodes, outfile)
+            Helper.printOnScreenAlways("\n*******************************************\n"
+                                       "DNS Resolver Servers information has saved.\n"
+                                       "*******************************************",MSG_TYPES.RESULT)
+
+        except Exception as ex:
+            Helper.printOnScreenAlways("Something went wrong.",MSG_TYPES.ERROR)
+            print(ex)
+
 
     def storeJSONMethod2(objects,path):
         try:

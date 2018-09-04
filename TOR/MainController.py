@@ -20,7 +20,7 @@ from TOR.Helper.Helper import Helper
 from TOR.Helper.Helper import MODE_TYPES
 from TOR.NodeHandler import NodesHandler
 
-VERSION = 1.7
+VERSION = 1.8
 
 def printLogo():
     print(term.format(('\n                           Starting TOR MAPPER.. v%s' % VERSION), term.Color.YELLOW))
@@ -38,6 +38,7 @@ def printLogo():
 #   make the directories in case they are missing
 def makeDirectories():
     try:
+        # TODO: Directories need more abtracte
         if not os.path.exists('GatheredFiles'):
             os.makedirs('GatheredFiles')
             os.makedirs('GatheredFiles/Logs')
@@ -75,7 +76,6 @@ def main(argv):
                     required_Nodes = argv[3]
                 else:
                     error = True
-
                 if argv[4] == MODE_TYPES.printing.value or argv[4] == MODE_TYPES.none.value:
                     mode = argv[4]
                 else:
@@ -86,7 +86,6 @@ def main(argv):
                     sys.exit(2)
             else:
                 Helper.printOnScreen('WRONG Too Many arguments.', color=MSG_TYPES.ERROR)
-
 
             ###---------------------------------------
 
@@ -99,7 +98,7 @@ def main(argv):
                 Helper.printOnScreenAlways(("Exit nodes are not gathered.. :(, ERROR : %s" % str(ex)),MSG_TYPES.ERROR)
                 sys.exit()
 
-            if opt == '-r' or opt == '-c' or opt == '-cd':    #   check the connections
+            if opt == '-r' or opt == '-c' or opt == '-cd' or opt=='-drc':    #   check the connections
                 if(int(required_Nodes) > 0):
                     con = TORConnector.TORConnections(opt,mode,required_Nodes)
                     con.run()
@@ -120,14 +119,14 @@ if __name__ == '__main__':
             main(sys.argv[1:])
         else:
             print('ERROR: argv....')
-            main(['', '-cd','-n','9','-out'])
+            main(['', '-drc','-n','9','-out'])
             #main(['', '-r','-none']) # -r means requesting // -c checking the tor connection only
             sys.exit()
             #main_test()
     except Exception as ex:  # locally
         print('ERROR: argv....  OR %s' % str(ex))
         #main(['','-c','-n','3','-out'])
-        main(['','-cd','-n','9','-out'])
+        main(['','-drc','-n','9','-out'])
         #main(['', '-r', '-none']) # -r means requesting
 
         sys.exit()

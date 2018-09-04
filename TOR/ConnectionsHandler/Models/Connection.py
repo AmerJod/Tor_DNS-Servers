@@ -1,7 +1,8 @@
-'''
-TOR connection class
-'''
 
+"""
+TOR connection class
+
+"""
 
 import io
 import os
@@ -14,6 +15,7 @@ import certifi
 import stem.process
 import random
 
+from async import thread
 from tqdm import tqdm
 from stem.util import term
 from TOR.Helper.Helper import MSG_TYPES
@@ -34,7 +36,7 @@ class Connection:
 
     #
     def __init__(self,mode,pycurlTimeout,socksPort,controlPort,torConnectionTimeout,domainUrl,domainUrlCheck,domainCorrectMessageResult,torCheckConnection,
-                 exitNodeFingerprint,exitNodeIp ) : #opt='r', mode='-none' , ):
+                 forceNotResponseMsg, exitNodeFingerprint,exitNodeIp) : #opt='r', mode='-none' , ):
         #self.mode = mode
         #self.opt = opt
         self.torConnectionTimeouT = torConnectionTimeout
@@ -47,7 +49,9 @@ class Connection:
         self.torCheckConnection = torCheckConnection
         self.exitNodeFingerprint = exitNodeFingerprint
         self.exitNodeIp = exitNodeIp
+        self.forceNotResponseMsg = forceNotResponseMsg
         self.mode = mode
+
         '''  # OTHER WAY TO IMPLEMENT THE CONSTRUCTOR
          def __init__(self, **kwargs):
             valid_keys = ["mode", "pycurlTimeout", "socksPort", "controlPort", "torConnectionTimeout", "domainUrl", "domainUrlCheck", "domainCorrectResult", "torCheckConnection", "exitNodeFingerprint", "exitNodeIp"]
@@ -125,9 +129,11 @@ class Connection:
             return b'unreachable'
 
     #
-    def request(self,runManytimesMode,requestTimes):
+    # **********************************************************************
+
+    def sendRequests(self, runManytimesMode, requestTimes):
         try:
-            randNumber = random.randint(1, 10000)  # to avoid cashing
+
             Helper.printOnScreen((term.format("Requesting our webiste:\n", term.Attr.BOLD)), color=MSG_TYPES.RESULT,
                                  mode=self.mode)
             domain = str(self.exitNodeIp).replace('.', '-') + '.' + self.domainUrl
@@ -136,6 +142,7 @@ class Connection:
 
             #   requesting many times/ testing the same node 100 times./ testing how random is the PORT number and Requset ID
             if runManytimesMode is True:
+
                 self.requestDomain(domain=domain, times=requestTimes)
 
             self.killConnection()
@@ -147,26 +154,93 @@ class Connection:
 
         except Exception as ex:
             self.killConnection()
-            TORFunctions.loggingError('Connection - request: %s' % traceback.format_exc())
-            #Helper.printOnScreenAlways(('Connection - request: %s' % ex), color=MSG_TYPES.ERROR)
+            TORFunctions.loggingError('Connection - sendRequests: %s' % traceback.format_exc())
+            #Helper.printOnScreenAlways(('Connection - sendRequests: %s' % ex), color=MSG_TYPES.ERROR)
             return Result(CONNECTION_STATUS.CONNECTED, DOMAIN_STATUS.STATELESS) # or something went wrong
 
-    # request Url
-    def requestDomain(self, domain, times):
+    def sendRequestsWithResponseMode(self, runManytimesMode, requestTimes, responseMode=True):
+        try:
+            Helper.printOnScreen((term.format("Requesting our webiste:\n", term.Attr.BOLD)), color=MSG_TYPES.RESULT,
+                                 mode=self.mode)
+            domain = str(self.exitNodeIp).replace('.', '-') + '.' + self.domainUrl
+            url = 'http://' + domain
+            #   requesting many times/ testing the same node 100 times./ testing how random is the PORT number and Requset ID
+            #if runManytimesMode is True:
+            self.requestDomain(domain=domain, times=requestTimes, responseMode=responseMode,
+                                   addtionname=self.forceNotResponseMsg, )
+            self.killConnection()
+        except Exception as ex:
+            self.killConnection()
+            TORFunctions.loggingError('Connection - sendRequests: %s' % traceback.format_exc())
+            # Helper.printOnScreenAlways(('Connection - sendRequests: %s' % ex), color=MSG_TYPES.ERROR)
+            # return Result(CONNECTION_STATUS.CONNECTED, DOMAIN_STATUS.STATELESS)  # or something went wrong
+
+    def requestDomainThread(self, domain, times,responseMode,addtionname= None):
+             # to avoid cashing
             pool = Pool(times)
             results = []
-            for i in range(1, times):
-                sub_Domain = ("%d_%d_%s" % (times, i, domain))
-                url = 'http://' + sub_Domain
-                Helper.printOnScreen(('Requesting: %s' % url),
-                                     color=MSG_TYPES.RESULT,
-                                     mode=self.mode)
-                # TODO: need to be solved
-                # pool.apply_async(self.query(url), (10,), callback=)
-                results.append(pool.apply_async(self.query(url)))  # no need to wait for the reponcse
+            try:
+                for i in range(1, times):
+                    randNumber = random.randint(1, 10000)
+                    if addtionname is None:
+                        sub_Domain = ("%d_%d_%d_%s" % (randNumber,times, i, domain))
+                    else:
+                        sub_Domain = ("%d_%s_%s" % (times,addtionname,  domain))
+
+                    url = 'http://' + sub_Domain
+                    Helper.printOnScreen(('%d- Requesting: %s' %(i, url)),
+                                         color=MSG_TYPES.RESULT,
+                                         mode=self.mode)
+                    # TODO: need to be solved
+                    # pool.apply_async(self.query(url), (10,), callback=)
+                    result_ =results.append(pool.apply_async(self.query(url)))  # no need to wait for the reponcse
+                    print(result_)
+                    if result_ is not None:
+                        if 'sock' in result_.lower() and i > 3:
+                            print(result_)
+                            pool.close()
+                            pool.join()
+                            break
+            except Exception as ex:
+                print("requestDomain")
+                print(ex)
 
             pool.close()
             pool.join()
+            # for future in futures:
+            # print(future.get())
+
+    def requestDomain(self, domain, times,responseMode,addtionname= None):
+             # to avoid cashing
+
+            results = []
+            try:
+                randNumber = random.randint(1, 10000)
+                for i in range(1, times):
+
+                    if addtionname is None:
+                        sub_Domain = ("%d_%d_%d_%s" % (randNumber,times, i, domain))
+                    else:
+                        sub_Domain = ("%d_%s_%s" % (randNumber,addtionname,  domain))
+
+                    url = 'http://' + sub_Domain
+                    Helper.printOnScreen(('%d- Requesting: %s' %(i, url)),
+                                         color=MSG_TYPES.RESULT,
+                                         mode=self.mode)
+                    # TODO: need to be solved
+                    # pool.apply_async(self.query(url), (10,), callback=)
+                    result_ = self.query(url) # no need to wait for the reponcse
+
+                    #print(result_)
+                    if result_ is not None:
+                        if 'sock' in result_.lower() and i > 3:
+                            print(result_)
+                            break
+            except Exception as ex:
+                print("requestDomain")
+                print(ex)
+
+
             # for future in futures:
             # print(future.get())
 
@@ -192,7 +266,6 @@ class Connection:
             #Helper.printOnScreenAlways(('Connection - checkTORConnection: %s' % ex), color=MSG_TYPES.ERROR)
             return Result(CONNECTION_STATUS.CONNECTED, DOMAIN_STATUS.STATELESS) # or something went wrong
 
-
     #   This function will check for 0x20 bit encoding
     def checkDNSFor0x20Encoding(self):
         try:
@@ -202,7 +275,6 @@ class Connection:
             url = 'http://' + subDomain
             message = self.domainCorrectMessageResult
             result_message = 'none'
-
             try:
                 result_message = self.query(url) #str((self.query(url).decode('utf-8')).strip())
             except:
@@ -250,6 +322,9 @@ class Connection:
             TORFunctions.loggingError('Connection - checkDNSFor0x20Encoding: %s' % traceback.format_exc())
             self.killConnection()
             return Result(CONNECTION_STATUS.CONNECTED, DOMAIN_STATUS.NOT_ACCESSIBLE)
+
+    # **********************************************************************
+
 
     #
     def wirteIntoFile(self, raw):
