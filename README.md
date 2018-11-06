@@ -37,7 +37,7 @@ This program has been built using python (PyCharm 2018.1)
 
     3- Has the ability to distinction between transactions by depending on the sub-domain.
 
-    4- Has the ability to work as as adversary that can forge DNS replies (Port number or request ID)
+    4- Has the ability to work as as adversary that can forge DNS replies (Port number or sendRequests ID)
 
 3- Web Server:
 

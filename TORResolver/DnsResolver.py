@@ -1,29 +1,36 @@
-import datetime
-import functools
-import getopt
+# import datetime
+# import functools
+# import getopt
 import glob
-import io
-import json
-import os
-import pycurl
-import sys
-import time
-from pprint import pprint
-import certifi
-import stem.process
-from tqdm import tqdm
 
+import json
+# import os
+# import pycurl
+# import sys
+# import time
+# from pprint import pprint
+# import certifi
+
+#from tqdm import tqdm
+from stem.util import term
 
 
 NODES_PATH = 'TOR/ConnectionsHandler/Nodes/ExitNodesJSON.json'
 
-class NodeObject():
+class DNSObject():
     def __init__(self,DNSIP):
         self.DNSIP = DNSIP
         self.list = []
         self.count = 0
     def insertNode(self,NodeIp):
          self.list.append(NodeIp)
+
+class ExitNodeObject():
+    def __init__(self,nodeIP,nodeDomain,nodeModifiedDomainfull):
+        self.nodeIP = nodeIP
+        self.nodeDomian = nodeDomain
+        self.nodeModifiedDomian = nodeModifiedDomainfull
+
 
 def loadExitNodes(dir):
     jsonFiles = glob.glob(str('%s/*.json' % dir))
@@ -33,53 +40,62 @@ def loadExitNodes(dir):
 
 def fun3(DNSObj,WEBObj):
     count = 0
-    outerList = []
-    for obj in DNSObj:
+    DNSouterList = []
+    for obj in DNSObj: # get all the dns ip wittout repetation
         innerList = []
 
-
-        DNSIP = DNSObj[obj]['Request']['SrcIP'].encode("ascii")
-        EXITNODE = DNSObj[obj]['Request']['Domain'].encode("ascii")
-        EXITNODE = [x.strip() for x in EXITNODE.split('.')][0]
+        dnsIP = DNSObj[obj]['Request']['SrcIP'] #.encode("ascii")
+        dnsDomainfull = DNSObj[obj]['Request']['Domain']#.encode("ascii")
+        dnsDomainfull = [x.strip() for x in dnsDomainfull.split('.')][0] # remove the domain: dnstestsuite.space
         temp = ''
+        dnsExitnodeIP = [x.strip() for x in dnsDomainfull.split('_')][-1:][0] # get the ip of the exitnode
+        if (dnsExitnodeIP.__contains__('-')):
+            if dnsIP not in DNSouterList:
+                DNSouterList.append(dnsIP)
+                #print('DNS Resolver IP: %s' % dnsIP)
 
-        if (EXITNODE.__contains__('-')):
-            if temp != DNSIP:
-                temp = DNSIP
-                outerList.append(DNSIP)
-                #print('DNS Resolver IP: %s' % DNSIP)
-
-    outerList= set(outerList)
+    DNSouterList= set(DNSouterList)
     DNSList= []
-    for obj in outerList:
-        node = NodeObject(obj)
+    for obj in DNSouterList:
+
+        node = DNSObject(obj)
         DNSList.append(node)
 
-    EXITNODE=''
 
     for DnsNodeObj in DNSList:
+        tempNodeList =[]
         count = 1 + count
         for Dns in DNSObj:
-            DNSIP = DNSObj[Dns]['Request']['SrcIP'].encode("ascii")
-            if DNSIP == DnsNodeObj.DNSIP:
-                EXITNODE = DNSObj[Dns]['Request']['Domain'].encode("ascii")
-                EXITNODE = [x.strip() for x in EXITNODE.split('.')][0]
-                if (EXITNODE.__contains__('-')):
-                    EXITNODE = EXITNODE.replace("-", ".")
-                    if EXITNODE not in DnsNodeObj.list:
-                        DnsNodeObj.insertNode(EXITNODE)
+            dnsIP = DNSObj[Dns]['Request']['SrcIP']
+            if dnsIP == DnsNodeObj.DNSIP:
+                nodeDomainfull = DNSObj[Dns]['Request']['Domain']
+                nodeModifiedDomainfull = DNSObj[Dns]['Request']['modifiedDomain']
+                nodeDomain = [x.strip() for x in nodeDomainfull.split('.')][0]  # remove the domain: dnstestsuite.space
+                dnsExitnodeIP = [x.strip() for x in nodeDomain.split('_')][-1:][0]  # get the ip of the exitnode
+                if (dnsExitnodeIP.__contains__('-')):
+                    dnsExitnodeIP = dnsExitnodeIP.replace("-", ".")
+
+                    if dnsExitnodeIP not in tempNodeList:#DnsNodeObj.ExitNodelist.exitNodeIP:
+                        tempNodeList.append(dnsExitnodeIP)
+                        exitnode=ExitNodeObject(dnsExitnodeIP,nodeDomain,nodeModifiedDomainfull)
+                        DnsNodeObj.insertNode(exitnode)
                         DnsNodeObj.count += 1
 
     for DnsNodeObj in DNSList:
         index = 0
-        print('DNS Resolver IP: %s - Exitnode: %d ' % (DnsNodeObj.DNSIP, DnsNodeObj.count))
+        print(term.format('DNS Resolver IP: %s - Exitnode: %d ' % (DnsNodeObj.DNSIP, DnsNodeObj.count) ,term.Color.GREEN))
         for node1 in DnsNodeObj.list:
             index += 1
-            print("      %d - %s " % (index, node1))
+            print(term.format("      %d - %s " % (index, node1.nodeIP),term.Color.YELLOW))
         print
 
     print(+count)
+
+
+
 if __name__ == '__main__':
     DNSObj = loadExitNodes('DNS')
-    WEBObj = loadExitNodes('HTTP')
+    WEBObj = loadExitNodes('WEB')
+    print('DNSObj len: %d'% len(DNSObj))
+    print('WEBObj len: %d'% len(WEBObj))
     fun3(DNSObj,WEBObj)
