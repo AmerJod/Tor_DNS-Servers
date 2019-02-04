@@ -2,7 +2,7 @@
 
 # A Dynamic Test-Suite for DNS Resilience - 10/08/2018
 
-UCL - MSc Project
+# UCL - MSc Project - "Distinction"
 
 This project is part of dissertation 'A Dynamic Test-Suite for DNS Resilience' at UNIVERSITY COLLEGE LONDON.
 
