@@ -4,10 +4,9 @@
 
 import json
 import os
-import traceback
-
-import stem.descriptor.remote
 import sys
+import traceback
+import stem.descriptor.remote
 
 from enum import Enum
 from pprint import pprint
@@ -22,21 +21,21 @@ from TOR.NodeHandler import NodesHandler
 
 VERSION = 1.8
 
+#
 def printLogo():
+    #
     print(term.format(('\n                           Starting TOR MAPPER.. v%s' % VERSION), term.Color.YELLOW))
     with open('Logo/logo.txt', 'r') as f:
         line_Arr = f.read()
         print(term.format((line_Arr % str(VERSION)), term.Color.GREEN))
         print('\n')
 
-        '''
-        with open('Logo/logo2.txt', 'r') as f:
-        lineArr = f.read()
-        print(term.format(lineArr,term.Color.RED))
-        '''
-
-#   make the directories in case they are missing
+#
 def makeDirectories():
+    '''
+        Make the directories in case they are missing
+    '''
+
     try:
         # TODO: Directories need more abtracte
         if not os.path.exists('GatheredFiles'):
@@ -52,12 +51,10 @@ def makeDirectories():
 
     except Exception as ex:
         Helper.printOnScreenAlways(ex, term.Color.RED)
-        #Helper.l logging.error('DNSFunctions - makeDirectories: %s' % traceback.format_exc())
 
-
-
-
+#
 def main(argv):
+
     mode = '-none'
     required_Nodes = 0
     printLogo()
@@ -107,7 +104,6 @@ def main(argv):
                     con.run()
 
         except Exception as ex:
-            #Helper.printOnScreenAlways(ex,MSG_TYPES.ERROR)
             print(ex)
             sys.exit()
 
@@ -120,15 +116,11 @@ if __name__ == '__main__':
         else:
             print('ERROR: argv....')
             main(['', '-drc','-n','9','-out'])
-            #main(['', '-r','-none']) # -r means requesting // -c checking the tor connection only
             sys.exit()
-            #main_test()
+
     except Exception as ex:  # locally
         print('ERROR: argv....  OR %s' % str(ex))
-        #main(['','-c','-n','3','-out'])
         main(['','-drc','-n','9','-out'])
-        #main(['', '-r', '-none']) # -r means requesting
-
         sys.exit()
 
 

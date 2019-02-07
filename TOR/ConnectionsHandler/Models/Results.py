@@ -23,39 +23,28 @@ class DOMAIN_STATUS(Enum):
 
 
 class Result:
+    #
     def __init__(self,connectionStatus, requestingDomainStatus):
         self.connectionStatus = connectionStatus.value
         self.requestingDomainStatus = requestingDomainStatus.value
 
-
+    #
     def reprJSON(self):
         return dict(ConnectionStatus=self.connectionStatus, RequestingDomainStatus=self.requestingDomainStatus)
 
 
-    # def toJSON1(self):
-    #     #return json.dumps(self.__dict__)
-    #     jsonText = {
-    #                     'ConnectionStatus': self.connectionStatus,
-    #                     'RequestingDomainStatus': self.requestingDomainStatus
-    #                 }
-    #     return jsonText
-
-
-
 class FinalResult:
+    #
     def __init__(self,resultList,nodesCount,timetaken):
         self.resultList = resultList
         self.timetaken = timetaken
         self.nodesCount = nodesCount
 
-        #self.successfullyConnections = successfullyConnections
-        #self.successfullyConnectionsCheckingFailed = successfullyConnectionsCheckingFailed
-        #self.failedConnections = failedConnections
-
-    '''
-    This function print the result of checking if the DNS support 0x20 bit encoding(Capitalization)
-    '''
+    #
     def printCheckedResult(self):
+        '''
+            This function print the result of checking if the DNS support 0x20 bit encoding(Capitalization)
+        '''
         connectionFailed =0
         connectionSucceeded=0
         connectedAndAccessible = 0
@@ -92,8 +81,7 @@ class FinalResult:
         Helper.printOnScreenAlways('\n***********************************================END===============***********************************\n',MSG_TYPES.RESULT)
 
 
-        # store them in a file
-        #self.writeCheckedResult()
+    #
     def writeCheckedResult(self):
         connectionFailed = 0
         connectionSucceeded = 0

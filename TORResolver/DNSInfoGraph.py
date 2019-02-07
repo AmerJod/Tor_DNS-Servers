@@ -5,13 +5,15 @@ import json
 import random
 import os
 import time
-from builtins import print
+import matplotlib.pyplot as plt
 import socket
 
-import matplotlib.pyplot as plt
-from collections import Counter
+
+from builtins import print
 from mpl_toolkits.mplot3d import Axes3D
+from collections import Counter
 from enum import Enum
+from multiprocessing import Pool
 
 from TOR.Helper.Helper import Helper
 from TOR.Helper.Helper import MSG_TYPES
@@ -30,11 +32,13 @@ MINNUMBER_DrawGraph = 3000 #000 #2000  ## -1 means parse all the files
 #FILE_PATH ='C:\\DNS9_back_new_logo_6/*.txt'
 FILE_PATH ="C:/Users/Amer Jod/Desktop/UCL/Term 2/DS/DNS_Project/TOR/GatheredFiles/Logs/*.txt"
 
+#
 class GRAPHS(Enum):
     ALL = 0
     HISTOGRAM = 1
     SCATTER = 2
 
+#
 class DNSInfo():
     def __init__(self,DNSIP):
         self.DNSIP = DNSIP
@@ -50,6 +54,7 @@ class DNSInfo():
         self.listPortNumbers.append(PortNumber_)
         self.listPortNumberAndId.append((RequestId_,PortNumber_))
 
+#
 class RequestInfo():
     def __init__(self, requestId, srcIP, srcPort):
         self.requestId = requestId
@@ -78,16 +83,20 @@ def filterLine(info):
 
     # Create instance form RequestInfo class
     request = RequestInfo(RequestId_,SrcIP_,SrcPort_)
-    # Add the instance to  Requests List
-    #Requests.append(sendRequests)
+
     return request
 
+#
 def findValue(value):
     info = value.split(':')
     return info[1].strip() # get the second part of the ExitNodelist, For exmaple: portNumber : 39879
 
-# get info form text file and store it in ExitNodelist and return the total numbe
+#
 def getInfoFormTextFiles(PATH=FILE_PATH):
+    '''
+        Get info form text file and store it in ExitNodelist and return the total numbe
+    '''
+
     temp_Requests =[]
     totalLines = 0
     first = True
@@ -120,20 +129,29 @@ def getInfoFormTextFiles(PATH=FILE_PATH):
                         first= False
                         temp_Requests.append(filterLine(info))
                         totalLines += 1
+
                     elif previousPortNumber != SrcPort_ and previousRequestId != RequestId_:
                         temp_Requests.append(filterLine(info))
                         previousPortNumber = SrcPort_
                         previousRequestId = RequestId_
                         totalLines += 1
+
     return totalLines, temp_Requests,AllLINE
 
+#
 def dumper(obj):
     try:
         return obj.toJSON()
+
     except:
         return obj.__dict__
 
-def normalizeDNSRequests(objects): # Draw Request Id 1/ Port Nnumber 2
+#
+def normalizeDNSRequests(objects): #
+    '''
+        Plot Request Id 1/ Port Nnumber 2
+    '''
+
     listDNSTemp = []
     listDNS = []
     graphName = ''
@@ -145,7 +163,6 @@ def normalizeDNSRequests(objects): # Draw Request Id 1/ Port Nnumber 2
 
     print(listDNSTemp.__len__())
     listDNSTemp = set(listDNSTemp)
-    #print(listDNSTemp.__len__())
 
     print(2)
     try:
@@ -173,16 +190,21 @@ def normalizeDNSRequests(objects): # Draw Request Id 1/ Port Nnumber 2
             if index == MAXNUMBER:
                 break
         print(0)
+
     except Exception as ex:
         print(ex) # add  it to the log
 
-        #print(json.dumps(listDNS, default=dumper))
     with open('JSON/DnsFilterList.json', 'w') as F:
         # Use the json dumps method to write the ExitNodelist to disk
         F.write(json.dumps(listDNS, default=dumper))
         print('writing listDNS is done')
 
-def drawGraphScattor(objects,option, mode=0): # Draw Request options :Id 1/ Port Nnumber 2 ||| mode: 0:normal / 1: one DNS
+#
+def drawGraphScattor(objects,option, mode=0):
+    '''
+        Draw Request options :Id 1/ Port Nnumber 2 ||| mode: 0:normal / 1: one DNS
+    '''
+
     list = []
     graphName = ''
     graphTitle = ''
@@ -230,7 +252,6 @@ def drawGraphScattor(objects,option, mode=0): # Draw Request options :Id 1/ Port
                 for i in unique_List:
                     newVal = int(i)
                     newValFeq = random.uniform(-0.5,0.9) + float(unique_List[i]) # add some noise to help to read the graph
-                    #newValFeq = float(unique_List[i])
                     x.append(newVal)
                     y.append(newValFeq)
                 plt.plot(x, y, linestyle='', marker='o', markersize=0.7)
@@ -238,7 +259,6 @@ def drawGraphScattor(objects,option, mode=0): # Draw Request options :Id 1/ Port
                 for i in unique_List:
                     newVal = int(i)
                     newValFeq = float(unique_List[i])  # add some noise to help to read the graph
-                    # newValFeq = float(unique_List[i])
                     x.append(newVal)
                     y.append(newValFeq)
                 plt.plot(x, y, linestyle='', marker='o', markersize=2)
@@ -252,11 +272,16 @@ def drawGraphScattor(objects,option, mode=0): # Draw Request options :Id 1/ Port
                 os.remove(store_Path)  # Opt.: os.system("rm "+strFile)
             plt.savefig(store_Path)
             plt.clf()
-            #plt.show()
+
         except Exception as ex:
             print('In drawGraph' + str(ex))
 
-def drawGraph(objects, option, mode=0,graphType=GRAPHS.ALL): # Draw Request options :Id 1/ Port Nnumber 2 ||| mode: 0:normal / 1: one DNS
+#
+def drawGraph(objects, option, mode=0,graphType=GRAPHS.ALL):
+    '''
+        Plot Request options :Id 1/ Port Nnumber 2 ||| mode: 0:normal / 1: one DNS
+    '''
+
     list = []
     graphName = ''
     graphTitle = ''
@@ -307,7 +332,6 @@ def drawGraph(objects, option, mode=0,graphType=GRAPHS.ALL): # Draw Request opti
                 plt.ylabel("Frequency")
                 plt.title(graphTitle)
                 if os.path.isfile(storePathHistogram):
-                    #print('found %s' % store_Path)
                     os.remove(storePathHistogram)  # Opt.: os.system("rm "+strFile)
                 plt.savefig(storePathHistogram)
                 Helper.printOnScreenAlways(' H_%s Saved' % srcIP, MSG_TYPES.RESULT)
@@ -323,7 +347,6 @@ def drawGraph(objects, option, mode=0,graphType=GRAPHS.ALL): # Draw Request opti
                     for i in unique_List:
                         newVal = int(i)
                         newValFeq = random.uniform(-0.5,0.9) + float(unique_List[i]) # add some noise to help to read the graph
-                        #newValFeq = float(unique_List[i])
                         x.append(newVal)
                         y.append(newValFeq)
                     plt.plot(x, y, linestyle='', marker='o', markersize=0.7)
@@ -331,21 +354,19 @@ def drawGraph(objects, option, mode=0,graphType=GRAPHS.ALL): # Draw Request opti
                     for i in unique_List:
                         newVal = int(i)
                         newValFeq = float(unique_List[i])  # add some noise to help to read the graph
-                        # newValFeq = float(unique_List[i])
                         x.append(newVal)
                         y.append(newValFeq)
                     plt.plot(x, y, linestyle='', marker='o', markersize=2)
 
                 if os.path.isfile(storePathScatter):
-                    # print('found %s' % store_Path)
                     os.remove(storePathScatter)  # Opt.: os.system("rm "+strFile)
+
                 plt.xlim([-500, 70000])  # fix the x axis
                 plt.xlabel(graphName)
                 plt.ylabel("Frequency")
                 plt.title(graphTitle)
                 plt.savefig(storePathScatter)
                 Helper.printOnScreenAlways(' S_%s Saved' % srcIP, MSG_TYPES.RESULT)
-                #plt.show()
                 plt.clf()
 
             elif graphType == GRAPHS.HISTOGRAM:
@@ -354,12 +375,11 @@ def drawGraph(objects, option, mode=0,graphType=GRAPHS.ALL): # Draw Request opti
                 plt.xlabel(graphName)
                 plt.ylabel("Frequency")
                 if os.path.isfile(storePathHistogram):
-                    #print('found %s' % store_Path)
                     os.remove(storePathHistogram)  # Opt.: os.system("rm "+strFile)
                 plt.savefig(storePathHistogram)
                 Helper.printOnScreenAlways(' H_%s Saved' % srcIP,MSG_TYPES.RESULT)
-                #plt.show()
                 plt.clf()
+
             elif graphType == GRAPHS.SCATTER:
                 unique_List = Counter(list)
                 set(unique_List)
@@ -371,17 +391,17 @@ def drawGraph(objects, option, mode=0,graphType=GRAPHS.ALL): # Draw Request opti
                         newVal = int(i)
                         newValFeq = random.uniform(-0.5, 0.9) + float(
                             unique_List[i])  # add some noise to help to read the graph
-                        # newValFeq = float(unique_List[i])
                         x.append(newVal)
                         y.append(newValFeq)
                     plt.plot(x, y, linestyle='', marker='o', markersize=0.7)
+
                 else:
                     for i in unique_List:
                         newVal = int(i)
                         newValFeq = float(unique_List[i])  # add some noise to help to read the graph
-                        # newValFeq = float(unique_List[i])
                         x.append(newVal)
                         y.append(newValFeq)
+
                     plt.plot(x, y, linestyle='', marker='o', markersize=2)
 
                 plt.xlim([-500, 70000])  # fix the x axis
@@ -398,7 +418,11 @@ def drawGraph(objects, option, mode=0,graphType=GRAPHS.ALL): # Draw Request opti
         except Exception as ex:
             print('In drawGraph' + str(ex))
 
-def drawGraphIDPORTNumber(objects,option, mode=0): # Draw Request options :Id 1/ Port Nnumber 2 ||| mode: 0:normal / 1: one DNS
+#
+def drawGraphIDPORTNumber(objects,option, mode=0):
+    '''
+        Plot Request options :Id 1/ Port Nnumber 2 ||| mode: 0:normal / 1: one DNS
+    '''
     list = []
     graphName = ''
     graphTitle = ''
@@ -435,14 +459,17 @@ def drawGraphIDPORTNumber(objects,option, mode=0): # Draw Request options :Id 1/
                 print('found %s' % store_Path)
                 os.remove(store_Path)  # Opt.: os.system("rm "+strFile)
             plt.savefig(store_Path)
-            #plt.show()
             plt.clf()
-
 
         except Exception as ex:
             print('In drawGraph' + str(ex))
 
-def drawGraphIDPORTNumber3D(objects,option, mode=0): # Draw Request options :Id 1/ Port Nnumber 2 ||| mode: 0:normal / 1: one DNS
+#
+def drawGraphIDPORTNumber3D(objects,option, mode=0):
+    '''
+        Plot Request options :Id 1/ Port Nnumber 2 ||| mode: 0:normal / 1: one DNS
+    '''
+
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
 
@@ -460,21 +487,15 @@ def drawGraphIDPORTNumber3D(objects,option, mode=0): # Draw Request options :Id 
 
         try:
             Path = "Graphs/%s.png" % (graphName)
-
             list.sort()
             unique_List = Counter(list)
-            #unique_List = ExitNodelist
-            #set(unique_List)
             x = []
             y = []
             z =[]
             markersize = 0.1
             index = 0
-
-
             for obj in unique_List:
                 index += 1
-                #print(index)
                 portNumberVal = int(obj[0])
                 requestIDVal = int(obj[1])
                 freg = int(unique_List[obj])
@@ -483,15 +504,8 @@ def drawGraphIDPORTNumber3D(objects,option, mode=0): # Draw Request options :Id 
                 x.append(portNumberVal)
                 y.append(requestIDVal)
                 z.append(freg)
-                #if index ==10000:
-                 #   break
 
-            ax.scatter(x, y, z, c='r', marker='.' ,s=0.1)#, #markersize=markersize)
-            #ax.ylim([-5000, 80000])  # fix the 8 axis
-            #ax.xlim([-5000, 80000])  # fix the x axis
-            #ax.xlabel("PORT")
-            #ax.ylabel("ID")
-            #ax.title(graphTitle)
+            ax.scatter(x, y, z, c='r', marker='.' ,s=0.1) # markersize=markersize)
             print('savefig0')
 
             if os.path.isfile(store_Path):
@@ -500,40 +514,40 @@ def drawGraphIDPORTNumber3D(objects,option, mode=0): # Draw Request options :Id 
                 print(store_Path)
                 print('d')
 
-            print('savefig2')
-            #plt.savefig(store_Path)
-            print('savefig3')
-
-            #plt.clf()
-            print('savefig4')
-
             plt.show()
         except Exception as ex:
             print('In drawGraph: ' + str(ex))
 
-# write/log all the files into json file - EVERYTHING
-def writeAllTextFiles(all): #
+#
+def writeAllTextFiles(all):
+    '''
+        Write/log all the files into json file - EVERYTHING
+    '''
+
     with open('JSON/AllTextFiles.json', 'w') as F:
         # Use the json dumps method to write the ExitNodelist to disk
-        #print(AllLINE.__len__())
         F.write(json.dumps(all, default=dumper))
         print('writing all text files is done')
 
-# write/logs all the Requests into json file - SEMI-FILTERED
+#
 def writeAllRequests(requests):
+    '''
+        Write/logs all the Requests into json file - SEMI-FILTERED
+    '''
+
     with open('JSON/AllRequestsInfo.json', 'w') as F:
         # Use the json dumps method to write the ExitNodelist to disk
         print(requests.__len__())
         F.write(json.dumps(requests, default=dumper))
         print('writing all requests info is done')
 
-
+#
 def getAllDNSIPs(requests):
+
         listDNSTemp = []
         for obj in requests:
             listDNSTemp.append(obj.srcIP)
         listDNSTemp = set(listDNSTemp)
-        #list = json.loads(listDNSTemp)
         with open('JSON/AllDNSIPsFiles.txt', 'w') as F:
             for obj in listDNSTemp:
                 F.writelines(obj+'\n')
@@ -552,51 +566,21 @@ def writeInfoForSpicalIP(IP,requests,ID=None,PORT=None,DRAW=False,index=0):
         filename = ('JSON/ByIP/IP_%s_ID_%s_PORT_%s.json' % (IP, ID, PORT))
         for line in requests:
             if IP in line.srcIP and ID in line.requestId and PORT in line.srcPort:
-                #temp_Requests.append(line)
                 list.append(line)
-
-        # ID = ' '+ID+' '
-        # PORT = ' '+PORT+' '
-        # filename = ('JSON/ByIP/IP_%s_ID_%s_PORT_%s.json' % (IP, ID, PORT))
-        # for txtfile in txtFiles:
-        #     with open(txtfile) as file:
-        #         for line in file:
-        #             if IP in line and ID in line and PORT in line:  # unfortunately this method is not accurate || 5% to 10%  error margin
-        #                 list.append(line)
 
     elif ID is not None:
         filename = ('JSON/ByID/IP_%s_ID_%s.json' % (IP, ID))
-        #ID = ' '+ID+' '
         for line in requests:
             if IP in line.srcIP and ID in line.requestId:
                 temp_Requests.append(line)
                 list.append(line)
 
-    # elif PORT is not None:
-    #     filename = ('JSON/ByPort/IP_%s_PORT_%s.json' % (IP, PORT))
-    #     PORT = ' '+PORT+' '
-    #     for txtfile in txtFiles:
-    #         with open(txtfile) as file:    # unfortunately this method is not accurate
-    #             for line in file:
-    #                 if IP in line and PORT in line:
-    #                     info = line.split('|')
-    #                     temp_Requests.append(filterLine(info))
-    #                     list.append(line)
     elif PORT is not None:
         filename = ('JSON/ByPort/IP_%s_PORT_%s.json' % (IP, PORT))
         for line in requests:
             if IP in line.srcIP and PORT in line.srcPort:
                 temp_Requests.append(line)
                 list.append(line)
-    # else:
-    #     filename = ('JSON/ByIP/IP_%s.json' % IP)
-    #     for txtfile in txtFiles:
-    #         with open(txtfile) as file:  # accurate 100%
-    #             for line in file:
-    #                 if IP in line:
-    #                     info = line.split('|')
-    #                     temp_Requests.append(filterLine(info))
-    #                     list.append(line)
     else:
         filename = ('JSON/ByIP/IP_%s.json' % IP)
         for line in requests:
@@ -611,7 +595,6 @@ def writeInfoForSpicalIP(IP,requests,ID=None,PORT=None,DRAW=False,index=0):
             F.write(json.dumps(list, default=dumper))
             print('Writing All Requests Info is done :  %s' % str(list.__len__()))
 
-
     if DRAW is True:
         # TODO: add enum
         requestCount = temp_Requests.__len__()
@@ -622,8 +605,7 @@ def writeInfoForSpicalIP(IP,requests,ID=None,PORT=None,DRAW=False,index=0):
             Helper.printOnScreenAlways('%d - Ignored: %s - Requests: %d' % (index,temp_Requests[0].srcIP, requestCount),
                                        MSG_TYPES.YELLOW)
 
-
-
+#
 def DrawGraphsForAll(requests):
     listDNSTemp = []
     for obj in requests:
@@ -634,14 +616,16 @@ def DrawGraphsForAll(requests):
         writeInfoForSpicalIP(ip, requests,DRAW=True,index=index)
         index= index +1
 
-# make the directories in case they are missing
+#
 def makeDirectories():
+    '''
+        Make the directories in case they are missing.
+    '''
 
     if not os.path.exists('Graphs'):
         os.makedirs('Graphs/DNS_Graphs')
         os.makedirs('Graphs/DNS_Graphs/ByID')
         os.makedirs('Graphs/DNS_Graphs/ByPort')
-
     elif not os.path.exists('Graphs/DNS_Graphs'):
         os.makedirs('Graphs/DNS_Graphs')
         os.makedirs('Graphs/DNS_Graphs/ByID')
@@ -664,6 +648,7 @@ def makeDirectories():
         if not os.path.exists('JSON/ByPort'):
             os.makedirs('JSON/ByPort')
 
+#
 def timing(f):
     def wrap(*args):
         time1 = time.time()
@@ -674,6 +659,7 @@ def timing(f):
         return ret
     return wrap
 
+#
 class NodeObject():
     def __init__(self,DNSIP):
         self.DNSIP = DNSIP
@@ -682,13 +668,14 @@ class NodeObject():
     def insertNode(self,NodeIp):
          self.list.append(NodeIp)
 
+#
 def loadExitNodes(dir):
     jsonFiles = glob.glob(str('%s/*.json' % dir))
     with open(jsonFiles[0]) as f:
         jsonObjects = json.load(f)
         return jsonObjects
 
-
+#
 def graphTask():
     # make the directories in case they are missing
     makeDirectories()
@@ -702,7 +689,6 @@ def graphTask():
     # TODO: need to be refactored/renamed- be more clear
     writeAllTextFiles(all)
     # write all the Requests into json file
-    #writeAllRequests(all)
     writeAllRequests(requests)
     getAllDNSIPs(requests)
 
@@ -721,44 +707,15 @@ def graphTask():
 
     drawGraphIDPORTNumber(requests, 1)
 
-
-
-    # writeInfoForSpicalIP('23.129.64.1',DRAW=True)
-    # writeInfoForSpicalIP('23.129.64.1',ID='51025')
-    # writeInfoForSpicalIP('23.129.64.1',ID='51025')
-
-    ##writeInfoForSpicalIP('62.210.17.74')
-    # writeInfoForSpicalIP('62.210.17.74',ID='8691')
-    # writeInfoForSpicalIP('62.210.17.74',ID='39838')
-    # writeInfoForSpicalIP('62.210.17.74',ID='18093')
-    # writeInfoForSpicalIP('23.129.64.1',ID='57739')
-
-    # writeInfoForSpicalIP('149.20.48.31',ID='49324')
-    # writeInfoForSpicalIP('149.20.48.31',ID='49589')
-    # writeInfoForSpicalIP('149.20.48.31',ID='48774')
-    # writeInfoForSpicalIP('149.20.48.31',ID='59194')
-
-
-    # drawGraphIDPORTNumber3D(requests,1)
-    # drawGraph(requests, 1)  # Request Ids
-    # drawGraph(requests, 2)  # port Number
-
-
-    # drawGraph(Requests, 3) # port + number
-    # drawMix(Requests, 4) # port - number
-
-
+#
 def GetAllResolversInfo():
-    #pool = Pool(processes=4)
-    #https://stackoverflow.com/questions/19080792/run-separate-processes-in-parallel-python
-
     # list = json.loads(listDNSTemp)
     list
     index = 1
     with open('JSON/AllDNSResolversInfo.json') as f:
         json_Objects = json.load(f)
         # Random
-        #random.shuffle(json_Objects)
+        # random.shuffle(json_Objects)
 
     accessible = 0
     inaccessible = 0
@@ -770,36 +727,25 @@ def GetAllResolversInfo():
             inaccessible +=1
 
     print('%d DNS resolver can be accessible directly' % accessible)
-
     print('%d DNS resolver cannot be accessible directly' % inaccessible)
 
-
-        #fingerprint = str(obj['ExitNode']['Fingerprint'].encode("ascii"), 'utf-8')
-
-
-
+#
 def ResolverTask():
 
-    # Helper.printOnScreenAlways("TEST",MSG_TYPES.RESULT)
     print('Files Directory: %s' % FILE_PATH)
     total, requests, all = getInfoFormTextFiles()
     print('Found %d records: ' % total)
 
     # TODO: need to be refactored/renamed- be more clear
-    #writeAllTextFiles(all)
     # write all the Requests into json file
-    #writeAllRequests(requests)
     getAllDNSIPs(requests=requests)
     CheckForPubliclyAccessible()
 
-from multiprocessing import Pool
-
+#
 def CheckForPubliclyAccessible():
-    #pool = Pool(processes=4)
-    #https://stackoverflow.com/questions/19080792/run-separate-processes-in-parallel-python
+
     listDNSTempIP = []
     listDNSTemp = []
-    # list = json.loads(listDNSTemp)
     index = 1
     with open('JSON/AllDNSIPsFiles.txt', 'r') as file:
         for obj in file:
@@ -812,20 +758,17 @@ def CheckForPubliclyAccessible():
         listDNSTemp.append([IP,connected])
         index += 1
 
-
-    #print(listDNSTemp)
     with open('JSON/AllDNSResolversInfo.json', 'w') as F:
         # Use the json dumps method to write the ExitNodelist to disk
         F.write(json.dumps(listDNSTemp, default=dumper))
         print('writing all requests info is done')
     print('writing all DNS IPs into a text file is done')
 
+#
 def checkDNSIP(ip):
     #ip = '8.8.8.8'
     try:
         command = 'dig +short +tries=1 DNS_Checker.dnstestsuite.space @%s' % ip
-        #print(command)
-        #result = subprocess.check_call(command, stdout=devnull, stderr=subprocess.STDOUT)
         result = check_output(command,  shell=True) #stdout=DEVNULL, stderr=STDOUT)
         if result.decode("utf-8").rstrip() == '52.20.33.59': #ip address of the website
             return True
@@ -833,11 +776,9 @@ def checkDNSIP(ip):
             return False
     except Exception as ex:
         return False
-    return False
 
+    return False
 
 #   TODO: add options : 1- fetch the new files or process the old ones
 if __name__ == '__main__':
     graphTask()
-    #ResolverTask()
-    #GetAllResolversInfo()

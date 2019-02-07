@@ -37,7 +37,6 @@ from TOR.ConnectionsHandler.Models.Connection import Connection
 from TOR.ConnectionsHandler.Models.ExitNode import ExitNode
 from TOR.ConnectionsHandler import TORFunctions
 
-
 class TORConnections:
 
     def __init__(self, opt='-r', mode='-none',requiredNodes=10000,runManyTimeMode=False):
@@ -54,7 +53,6 @@ class TORConnections:
         self.TOR_CHECK_CONNECTION = 'https://icanhazip.com'
         self.FORCE_NOT_RESPONSE_MSG = 'tor_dont_response' # MUST BE THE SAME IN THE DNS SERVER
         self.OUTPUT_FILE = 'result.txt'
-        #self.GATHERED_NODES_PATH = 'TOR/ConnectionsHandler/Nodes/ExitNodesJSON.json'
         self.GATHERED_NODES_PATH = 'Nodes/GatheredExitNodesJSON.json'  # gathered by NodeHandler class
         self.PROCESSED_NODES_PATH = 'Nodes/ProcessedExitNodesJSON.json'  # gathered by NodeHandler class
         self.TOR_CONNECTION_TIMEOUT = 30  # timeout before we give up on a circuit
@@ -69,17 +67,13 @@ class TORConnections:
         self.Result_List = []
         self.ExitNodes_List = []
 
-
+    #
     def loadExitNodesFromJSON(self):
         cur_path = os.path.dirname(__file__)
         cwd = os.getcwd()
-        #print(cwd)
         os.chdir(cur_path)
         # read all the nodes
         new_path = os.path.relpath(self.GATHERED_NODES_PATH, cur_path)
-
-        # new_path1 = os.listdir(self.GATHERED_NODES_PATH)
-        #os.chdir(new_path1)
 
         with open(new_path) as f:
             json_Objects= json.load(f)
@@ -97,7 +91,6 @@ class TORConnections:
 
         # load
         json_Objects = self.loadExitNodesFromJSON()
-        #random.shuffle(json_Objects)
 
         result = 3 # assume that the connection has failed
 
@@ -108,7 +101,6 @@ class TORConnections:
         print('\n')
         total_Nodes=len(json_Objects)
         number_Of_Nodes = int(numberOfNodes)
-        #for obj in tqdm(json_Objects):
         for obj in json_Objects:
 
             fingerprint = str(obj['ExitNode']['Fingerprint'].encode("ascii"),'utf-8')
@@ -117,8 +109,6 @@ class TORConnections:
             nodes_Count = nodes_Count + 1
             if nodes_Count <= number_Of_Nodes:
                 break
-
-            # https://stackoverflow.com/questions/21827874/timeout-a-python-function-in-windows
             result = self.connectToTORExitNode(fingerprint, ip, nodes_Count, TASK_MODE.TOR_CONNECTION_CHECKING)
             self.Result_List.append(result)
 
@@ -157,8 +147,6 @@ class TORConnections:
 
         # load
         json_Objects = self.loadExitNodesFromJSON()
-        # random.shuffle(json_Objects)
-
         result = 3  # assume that connection failed
 
         if stem.util.system.is_windows():
@@ -170,7 +158,6 @@ class TORConnections:
         number_Of_Nodes = int(numberOfNodes)
         nodesCount = 0
 
-        # for obj in tqdm(json_Objects):
         for obj in json_Objects:
             ip = str(obj['ExitNode']['Address'].encode("ascii"), 'utf-8')
             fingerprint = str(obj['ExitNode']['Fingerprint'].encode("ascii"), 'utf-8')
@@ -182,7 +169,6 @@ class TORConnections:
             if nodesCount >= number_Of_Nodes:
                 break
             nodesCount = nodesCount + 1
-            # https://stackoverflow.com/questions/21827874/timeout-a-python-function-in-windows
             result = self.connectToTORExitNode(fingerprint, ip, nodesCount,  TASK_MODE.DNS_0x20_CHECKING)    # check if the website is accessible / we use this method for check if the DNS support 0x20 coding for the domain name.
             exitNode = ExitNode(ipaddress=ip, fingerprint=fingerprint, nickname=nickname, or_port=or_port,
                                 dir_port=dir_port, status=result)
@@ -218,7 +204,6 @@ class TORConnections:
             nickname = str(obj['ExitNode']['Nickname'].encode("ascii"), 'utf-8')
             or_port = str(obj['ExitNode']['Or_port'].encode("ascii"))
             dir_port = str(obj['ExitNode']['Dir_port'].encode("ascii"))
-            # https://stackoverflow.com/questions/21827874/timeout-a-python-function-in-windows
             result = self.connectToTORExitNode(fingerprint, ip, nodesCount + 1, TASK_MODE.REQUEST_DOMAIN)
             exitNode = ExitNode(ipaddress=ip,fingerprint=fingerprint,nickname=nickname,or_port=or_port,dir_port=dir_port,status=result)
             self.ExitNodes_List.append(exitNode)
@@ -234,7 +219,6 @@ class TORConnections:
 
 
     # resolve our domain via our DNS
-    # findTORDNSResolver(self)
     def countDNSRequest(self):
         Helper.printOnScreenAlways('Requesting %s  via TOR ' % self.DOMAIN_URL)
         start_time = time.time()
@@ -253,23 +237,9 @@ class TORConnections:
             nickname = str(obj['ExitNode']['Nickname'].encode("ascii"), 'utf-8')
             or_port = str(obj['ExitNode']['Or_port'])
             dir_port = str(obj['ExitNode']['Dir_port'])
-
-            # https://stackoverflow.com/questions/21827874/timeout-a-python-function-in-windows
             self.connectToTORExitNode(fingerprint, ip, nodesCount + 1, TASK_MODE.DNS_RESOLVER_COUNTER)
-            #exitNode = ExitNode(ipaddress=ip,fingerprint=fingerprint,nickname=nickname,or_port=or_port,dir_port=dir_port,status=result)
-            #self.ExitNodes_List.append(exitNode)
-            #self.Result_List.append(result)
 
         time_taken = time.time() - start_time
-        #finalResult = Results.FinalResult(self.Result_List, nodesCount, time_taken)
-
-        #cur_path = os.path.dirname(__file__)
-        #os.chdir(cur_path)
-        #new_path = os.path.relpath(self.PROCESSED_NODES_PATH, cur_path)
-        #Helper.storeExitNodesJSON(object=self.ExitNodes_List,path=new_path)
-
-
-
 
     def startTorConnection(self, exitFingerprint, ip,mode=TASK_MODE.DNS_0x20_CHECKING):
         # Start an instance of Tor configured to only exit through Russia. This prints
@@ -300,13 +270,10 @@ class TORConnections:
             pass
 
         Helper.printOnScreen("\nChecking our endpoint: \n", MSG_TYPES.RESULT, mode=self.mode)
-        #print(term.format("\nChecking our endpoint:\n", term.Attr.BOLD))
         url = 'http://'+str(ip).replace('.','-')+'.'+self.DOMAIN_URL
         result = self.query(url)
         if result is True:
             Helper.printOnScreen(('Successfully connected over TOR: %S' % url), MSG_TYPES.RESULT, mode=self.mode)
-            #print(term.format(('Successfully connected over TOR: %S' % url), term.Color.GREEN))
-        #tor_process.kill()  # stops tor
 
     def wirteIntoFile(self,raw):
         data = ''
@@ -345,6 +312,7 @@ class TORConnections:
         with open(self.GATHERED_NODES_PATH, 'w') as outfile:
             json.dump(exit_Nodes, outfile)
 
+    #
     def connectToTORExitNode(self, exitNodeFingerprint, exitNodeIp, index, mode):
         # Start an instance of Tor configured to only exit through Russia. This prints
         # Tor's bootstrap information as it starts. Note that this likely will not
@@ -355,7 +323,6 @@ class TORConnections:
         # 2 : Connected but failed to check it
         # 3 : Connection failed
 
-        #global TOR_CONNECTION_TIMEOUT
         if stem.util.system.is_windows():
             self.TOR_CONNECTION_TIMEOUT=90  ## MUST be 90 - DO NOT CHANGE IT
 
@@ -388,33 +355,9 @@ class TORConnections:
             traceback.print_exc(file=sys.stdout)
             print('Error.... 400000 - %s', str(ex))
 
-            '''
-            Helper.printOnScreen(('connectToTORExitNode: '+ str(ex)),color=MSG_TYPES.ERROR, mode=self.mode)
-            #tor_process.kill()  # stops tor
-            Helper.printOnScreen(('Failed Checking %s' % sub_Domain), color=MSG_TYPES.ERROR, mode=self.mode)
-            self.wirteIntoFile('Failed Checking to : %s' % sub_Domain)
-            # re-checking
-            print('re-checking')
-
-            domain = (str(ip).replace('.', '-') + '.' + self.DOMAIN_URL_CHECK).strip()
-            sub_Domain = '%d_re_check_%s' % (randNumber,domain)  # re_check_12.23.243.12.dnstestsuite.space
-            url = 'http://' + sub_Domain
-            message = self.DOMAIN__CORRECT_MESSAGE_RESULT
-            if message == str(self.query(url), 'utf-8').strip():
-                Helper.printOnScreen(('re-Connected Successfully to: %s' % sub_Domain), color=MSG_TYPES.RESULT,
-                                     mode=self.mode)
-                self.wirteIntoFile('re-Connected Successfully to : %s' % sub_Domain)
-                result = 1
-            else:
-                Helper.printOnScreen(('re-Failed Checking to : %s' % sub_Domain), color=MSG_TYPES.ERROR,
-                                     mode=self.mode)
-                self.wirteIntoFile('re-Failed Checking to : %s' % sub_Domain)
-                result = 2
-            '''
-        #tor_process.kill()  # stops tor
-
         return result
 
+    #
     def showArgu(self):
         parser = argparse.ArgumentParser(description='Enumerate all the exit nodes in TOR network -> CheckingRequest TOR connection via them || Request website.')
         group = parser.add_mutually_exclusive_group()
@@ -426,6 +369,7 @@ class TORConnections:
         answer = args.x ** args.y
         print(args)
 
+    #
     def maintest(self,argv):
         if argv[1:] != []:  # on the server
             try:
@@ -444,6 +388,7 @@ class TORConnections:
                 print('maintest :' + str(ex))
                 sys.exit(2)
 
+    #
     def run(self):
         try:
             if self.opt == '-r':  # check the connections
@@ -460,52 +405,8 @@ class TORConnections:
             sys.exit(2)
             #maintest(['', '-c', '3'])
 
-    # def test(self):
-    #     path = 'C:\\Users\\Amer Jod\\Desktop\\UCL\\Term 2\\DS\\DNS_Project\\TOR\\ConnectionsHandler\\Nodes\\PROCESSEDExitNodesJSON.json'
-    #     with open(path, "rb") as f:
-    #         a= pickle.load(f)
-    #     aas =0
-
-
-
-
+#
 if __name__ == '__main__':
     TORFunctions.ProcesskillForWindows('tor.exe')
     con = TORConnections('-cd','-out', 5,runManyTimeMode=True)
-    #con.run()
-    #con.test()
-    #176.10.104.243
-    #167.10.104.240
-    #con.startTorConnection("38A42B8D7C0E6346F4A4821617740AEE86EA885B", "185.107.70.202") # works
-
-
-   # con.startTorConnection("47AD6697492C9CC1F91A709E346555592F71188B","94.248.20.15")
-    #
-    #con.startTorConnection('8ED84B53BD9556CCBB036073A1AD508EC27CBE52', '23.129.64.103')
     con.startTorConnection('8ED84B53BD9556CCBB036073A1AD508EC27CBE52', '173.246.38.148')
-    #
-    #con.startTorConnection('FF7939C956A47C0A1F3C31B955D4179DCCEBF9DF', '173.249.57.253')
-    # con.startTorConnection('FF80EB7648E54819F37522C4FC1F1AE9E760C0A8', '195.123.224.108')
-
-    #con.startTorConnection('C430811EECD20A1BB268D0A855324359D908F45B', '173.71.214.155')
-
-    #con.ProcesskillForWindows('tor.exe')
-    #con.startTorConnection('9883F316C4AC98650E878136C591990FF8702340', '173.255.229.8')
-
-    #con.startTorConnection('7016E939A2DD6EF2FB66A33F1DD45357458B737F', '92.195.107.176')
-    ##dig()
-
-
-
-    #start("47C42E2094EE482E7C9B586B10BABFB67557030B", "185.220.101.34") # works
-    #ProcesskillForWindows('tor.exe')
-
-    #start('8EBB8D1CF48FE2AB95C451DA8F10DB6235F40F8A','51.15.13.245') # not
-    #ProcesskillForWindows('tor.exe')
-    #"185.220.101.34", "Fingerprint":
-
-
-
-
-
-

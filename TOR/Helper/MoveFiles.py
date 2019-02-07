@@ -1,14 +1,16 @@
+#! /usr/bin/env python3
+
 '''
-This to gather all the files and put them together in one folder
+    This to gather all the files and put them together in one folder
 '''
 
 import os
 import shutil
-import sys
 
 from TOR.Helper.Helper import Helper
 from TOR.Helper.Helper import MSG_TYPES
 
+#
 class MoveFiles():
     def __init__(self, dnsPath='none', webPath='none'):
         self.mode = ''
@@ -67,17 +69,12 @@ class MoveFiles():
             try:
                 shutil.move(filePath, newDestinationPath)
                 count += 1
+
             except shutil.Error as e:
                 pass
-                # os.rename(filePath, ('v%s _' % index) + filePath)
-                # shutil.move(filePath, newDestinationPath)
+
         Helper.printOnScreenAlways('%d files has been moved.' % count, MSG_TYPES.RESULT)
+
 if __name__ == '__main__':  # for debugging purpose
-    #argv= sys.argv
     movefiles = MoveFiles()
-    movefiles.findAllDNSFiles(folder='Logs') #folder='JSON'
-    #fetch = FetchFiles()
-    #fetch.run(['','-dns','-fetch', '-logs'])
-
-
-
+    movefiles.findAllDNSFiles(folder='Logs') # folder='JSON'

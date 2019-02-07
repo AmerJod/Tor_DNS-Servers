@@ -8,9 +8,7 @@ This file contains functions to DNS server to complete its tasks.
 import os
 import logging
 import datetime
-
 import  sys, traceback
-
 
 ERRORS_LOG_PATH = 'Logs/Errors/'
 
@@ -21,21 +19,16 @@ COUNTER = 0
 def ProcesskillForWindows(process_name):
     try:
         killed = os.system('taskkill /f /im ' + process_name)
+
     except Exception as e:
         killed = 0
+
     return killed
 
 class LogData():
     def __init__(self, filename, mode='none'):
         date = getTime(2)
         self.mode = mode
-        '''
-        self.file = 'Logs/'+filename+'_'+date+'.log'     # This is hard coded but you could make dynamic
-
-        if (os.path.exists(self.file)) != True:
-            with open(self.file, 'w+') as file:
-                file.write('Start - '+date +'\n')
-        '''
         # TODO: need refactoring - make it more abstract
         self.file = 'Logs/' + filename + '_' + date + '_counter+.txt'
         if (os.path.exists(self.file)) != True:

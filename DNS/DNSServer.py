@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 '''
 DNS Server - UCL - Amer Joudiah
 Mini DNS server for resolving our website 'dnstestsuite.space'.
@@ -29,7 +31,6 @@ PORT = 53  # 53 Default port
 RANDOMIZE_PORT = False  # True # try all the possible port
 RANDOMIZE_REQUEST_ID = False  # False  # try all the possible request ID
 RANDOMIZE_BOTH = False
-
 NUMBER_OF_TRIES = 10000 #   bruteforcing
 
 def printPortAndIP(ip,port):
@@ -44,12 +45,14 @@ def printModifiedDate():
         os.path.abspath(os.path.dirname(__file__))
         (mode, ino, dev, nlink, uid, gid, size, atime, mtime, ctime) = os.stat(filename)
         return time.ctime(mtime)
+
     except Exception as ex:
         Helper.printOnScreenAlways("run_DNS -printModifedDate: %s"%ex , MSG_TYPES.ERROR)
 
 
 
 def setAdversaryModetask(value):
+
     global RANDOMIZE_PORT
     global RANDOMIZE_BOTH
     global RANDOMIZE_REQUEST_ID
@@ -61,7 +64,7 @@ def setAdversaryModetask(value):
         RANDOMIZE_BOTH = True
 
 
-def main(argv,IP):
+def main(argv, IP):
 
     global  FORCE_NOT_RESPONSE_MEG
     letterCaseRandomize = argv.rcase
@@ -85,7 +88,7 @@ def main(argv,IP):
 
             while 1:
                 data, addr = sock.recvfrom(512)
-                response, allowResponse = DNSFunctions.getResponse(data, addr,letterCaseRandomize,forceNotResponseMode=FORCE_NOT_RESPONSE_MODE )
+                response, allowResponse = DNSFunctions.getResponse(data, addr, letterCaseRandomize, forceNotResponseMode=FORCE_NOT_RESPONSE_MODE )
                 if allowResponse:
                     sock.sendto(response, addr)
 
@@ -116,6 +119,7 @@ def main(argv,IP):
         Helper.printOnScreenAlways("\nERROR: Terminated!!! :" + str(ex),MSG_TYPES.ERROR)
 
 def run(argv):
+
     modifiedDate = printModifiedDate()
     DNSFunctions.makeDirectories()
     Helper.initLogger(level=logging.ERROR, enableConsole=False)
@@ -127,16 +131,17 @@ def run(argv):
         ip = socket.gethostbyname(socket.gethostname())
     else:
         ip = IP_ADDRESS_LOCAL
+
     main(argv, ip)
 
 
 if __name__ == '__main__':
     try: # on the server
-            #setArgs= {'s': True, 'l': False, 'rcase': False, 'adversary': False, 'task': 'rboth', 'port': 53}
-            setArgs = argparse.Namespace(l=True,adversary=False, port=53, rcase=True, s=False, task='rport', dont=True)
+            setArgs = argparse.Namespace(l=True, adversary=False, port=53, rcase=True, s=False, task='rport', dont=True)
             run(setArgs)
+
     except Exception as ex: # locally
-        print('ERROR:o argv.... %s' %ex)
+        print('ERROR:o argv.... %s' % ex)
 
 
 # TODO: need to be refactored
@@ -145,50 +150,26 @@ def main_test():
 
     print("Testing ....  ")
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    #sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind((IP_ADDRESS_LOCAL, PORT))
     print("Host: %s | Port: %s " % (IP_ADDRESS_LOCAL,PORT ))
     # open socket and
     # keep listening
     while 1:
         data, addr = sock.recvfrom(512)
-        #response = DNSFunctions.getResponse(data, addr,case_sensitive=True)
-        #sock.sendto(response, addr)
-
-        # forge port number
-        #response = DNSFunctions.getResponse(data, addr, case_sensitive=False,adversaryMode=ADVERSARY_MODE,withoutRequestId=False)  # we get the correct response.
-        #DNSFunctions.generateResponseWithPortNumber(response, sock, addr, NUMBER_OF_TRIES)  # brute
-
-        # forge ID
-        # response,Realresponse = DNSFunctions.getResponse(data, addr,case_sensitive = False, withoutRequestId = True)  # we get the correct response.
-        # DNSFunctions.generateResponseWithRequestId(response, sock, addr, NUMBER_OF_TRIES)  # brute
-
-        #print("test 1")
-        #print(str(response))
-
 
 # TODO: need to be deleted
 def main_test_local():
-    # gather Zone info and store it into memory
+    '''
+        Gather Zone info and store it into memory
+    '''
 
     DNSFunctions.loadZone()
-    '''
-    try:
-        opts, args = getopt.getopt(argv, 'l:s')
-    except getopt.GetoptError:
-        print('test.py -l')
-        sys.exit(2)
-    '''
     print("Testing ....  ")
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.bind((IP_ADDRESS_LOCAL, PORT))
-
     print("\n                           Host: %s | Port: %s " % (IP_ADDRESS_LOCAL,PORT ))
-
     # testing
-    #BYTES =b'\xe8H\x84\x00\x00\x01\x00\x00\x00\x00\x00\x00\x02ns\x0cdnstEStsuiTe\x05SpACE\x00\x00\x01'
     BYTES =b'\\$\x00\x10\x00\x01\x00\x00\x00\x00\x00\x01\x02ns\x0cdnStEstSuITE  \x05SpACe\x00\x00\x1c\x00\x01\x00\x00)\x10\x00\x00\x00\x80\x00\x00\x00'
-
     response = DNSFunctions.getResponse(BYTES, '127.0.0.2')
     print("response:")
     print(str(response))

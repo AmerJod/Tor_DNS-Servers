@@ -1,22 +1,13 @@
-# import datetime
-# import functools
-# import getopt
+#! /usr/bin/env python3
+
 import glob
-
 import json
-# import os
-# import pycurl
-# import sys
-# import time
-# from pprint import pprint
-# import certifi
 
-#from tqdm import tqdm
 from stem.util import term
-
 
 NODES_PATH = 'TOR/ConnectionsHandler/Nodes/ExitNodesJSON.json'
 
+#
 class DNSObject():
     def __init__(self,DNSIP):
         self.DNSIP = DNSIP
@@ -25,19 +16,21 @@ class DNSObject():
     def insertNode(self,NodeIp):
          self.list.append(NodeIp)
 
+#
 class ExitNodeObject():
     def __init__(self,nodeIP,nodeDomain,nodeModifiedDomainfull):
         self.nodeIP = nodeIP
         self.nodeDomian = nodeDomain
         self.nodeModifiedDomian = nodeModifiedDomainfull
 
-
+#
 def loadExitNodes(dir):
     jsonFiles = glob.glob(str('%s/*.json' % dir))
     with open(jsonFiles[0]) as f:
         jsonObjects = json.load(f)
         return jsonObjects
 
+#
 def fun3(DNSObj,WEBObj):
     count = 0
     DNSouterList = []
@@ -52,7 +45,6 @@ def fun3(DNSObj,WEBObj):
         if (dnsExitnodeIP.__contains__('-')):
             if dnsIP not in DNSouterList:
                 DNSouterList.append(dnsIP)
-                #print('DNS Resolver IP: %s' % dnsIP)
 
     DNSouterList= set(DNSouterList)
     DNSList= []
@@ -60,7 +52,6 @@ def fun3(DNSObj,WEBObj):
 
         node = DNSObject(obj)
         DNSList.append(node)
-
 
     for DnsNodeObj in DNSList:
         tempNodeList =[]
@@ -75,7 +66,7 @@ def fun3(DNSObj,WEBObj):
                 if (dnsExitnodeIP.__contains__('-')):
                     dnsExitnodeIP = dnsExitnodeIP.replace("-", ".")
 
-                    if dnsExitnodeIP not in tempNodeList:#DnsNodeObj.ExitNodelist.exitNodeIP:
+                    if dnsExitnodeIP not in tempNodeList:
                         tempNodeList.append(dnsExitnodeIP)
                         exitnode=ExitNodeObject(dnsExitnodeIP,nodeDomain,nodeModifiedDomainfull)
                         DnsNodeObj.insertNode(exitnode)
@@ -87,11 +78,8 @@ def fun3(DNSObj,WEBObj):
         for node1 in DnsNodeObj.list:
             index += 1
             print(term.format("      %d - %s " % (index, node1.nodeIP),term.Color.YELLOW))
-        print
-
+        print()
     print(+count)
-
-
 
 if __name__ == '__main__':
     DNSObj = loadExitNodes('DNS')

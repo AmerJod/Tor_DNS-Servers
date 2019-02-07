@@ -1,6 +1,6 @@
+
 """
 This class is for each exitNode which delong to DNS resolver
-
 """
 
 class DNSExitNode():
@@ -11,5 +11,4 @@ class DNSExitNode():
         self.JSON = self.reprExitNodelistJSON()
 
     def reprExitNodelistJSON(self):
-        # for node in self.ExitNodelist
         return dict(nodeIP=self.exitNodeIP, nodeDomian=self.nodeDomian, nodeModifiedDomian= self.nodeModifiedDomian)

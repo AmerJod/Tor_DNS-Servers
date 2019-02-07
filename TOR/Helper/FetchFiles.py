@@ -1,6 +1,8 @@
+#! /usr/bin/env python3
+
 '''
-This file is to fetch files from and to servers(DNS/WebServer)
-YOU MUST HAVE THE KEY STORE ON YOUR MACHINE.
+    This file is to fetch files from and to servers(DNS/WebServer)
+    YOU MUST HAVE THE KEY STORE ON YOUR MACHINE.
 '''
 
 import sys
@@ -17,6 +19,7 @@ WEB_SERVERIP = '52.20.33.59'
 DNS_SERVER_KEY = "C:/pem/DNS_MSc_Thesis_amer.pem"
 WEB_SERVER_KEY = "C:/pem/DNS_MSc_Thesis_amer.pem"
 
+#
 class FETCHFROM_OPT(Enum):
     FromDNS = 'scp -r -i scp -r -i %s ' + 'ubuntu@%s' % DNS_SERVERIP + ':/home/ubuntu/%s "%s" '
     FromDNSLogs = 'scp -r -i scp -r -i %s ' + 'ubuntu@%s' % DNS_SERVERIP + ':/home/ubuntu/%s/Logs "%s" '
@@ -24,13 +27,13 @@ class FETCHFROM_OPT(Enum):
     FromWebServer = 'scp -r -i %s ' + 'ubuntu@%s' % WEB_SERVERIP + ':/home/ubuntu/%s "%s" '
     FromWebServerJOSNs = 'scp -r -i %s ' + 'ubuntu@%s' % WEB_SERVERIP + ':/home/ubuntu/%s/JSON "%s" '
 
-
+#
 class FETCHFILE_OPT(Enum):
     All = 'all'
     Logs = 'logs'
     JSON = 'json'
 
-
+#
 class FetchFiles:
     DnsServerPath = 'dns_114_B'
     WebServerPath = 'web402'
@@ -96,12 +99,13 @@ class FetchFiles:
         except Exception as ex:
             print(ex)
 
+    #
     def getdate(self):
         date = datetime.datetime.now()
         date_ = (((str(date)).split('.')[0])).replace(':', '-').replace(' ','_')
         return date_
 
-    # make the directories in case they are missing
+    #   make the directories in case they are missing
     def makeDirectories(self):
         try:
 
@@ -119,21 +123,15 @@ class FetchFiles:
         except Exception as ex:
             print(ex)
 
-
+    #
     def removeEmptyDirectories(self):
         Folders = [x for x in os.listdir('FetchFiles')]
-        #Folders = [x for x in os.listdir('FetchFiles') if (os.path.isdir(os.path.join('FetchFiles', x))) == True]
         for folder in Folders:
-
             os.rmdir(folder)
-            #if os.listdir(folder) == []:
-            #   print(folder)
-            #  os.rmdir(folder)
 
+    #
     def run(self,argv):
         self.makeDirectories()
-
-        #print('path: ' + str(os.chdir(os.path.dirname(os.path.realpath(__file__)))))
         try:
             if len(argv) != 1:
                 if argv[1] == '-dns': # DNS Server
@@ -166,10 +164,6 @@ if __name__ == '__main__':  # for debugging purpose
     argv= sys.argv
     fetch = FetchFiles()
     fetch.run(['','-dns','-fetch', '-all'])
-    #fetch.removeEmptyDirectories()
-
-    #move = MoveFiles()
-    #move.findAllDNSFiles(folder='logs')
 
 
 

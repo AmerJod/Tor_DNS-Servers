@@ -1,7 +1,6 @@
-"""
-This class is for DNS Resolvers information
-
-"""
+'''
+    This class is for DNS Resolvers information
+'''
 
 
 import glob
@@ -9,9 +8,10 @@ import json
 import random
 import os
 import time
-from builtins import print
 
 import matplotlib.pyplot as plt
+
+from builtins import print
 from collections import Counter
 from mpl_toolkits.mplot3d import Axes3D
 from enum import Enum
@@ -31,15 +31,16 @@ MINNUMBER_DrawGraph = 3000 #000 #2000  ## -1 means parse all the files
 FILE_PATH ="C:/Users/Amer Jod/Desktop/UCL/Term 2/DS/DNS_Project/TOR/GatheredFiles/Logs/*.txt"
 
 
-
+#
 class DNSInfo():
+    #
     def __init__(self,DNSIP):
         self.DNSIP = DNSIP
         self.listIDs = []
         self.listPortNumbers = []
         self.listPortNumberAndId = [] # find anyrelastionship between them
         self.count = 0
-
+    #
     def insertPortAndID(self,RequestId,PortNumber):
         RequestId_ = int(RequestId)
         PortNumber_ = int(PortNumber)
@@ -47,6 +48,7 @@ class DNSInfo():
         self.listPortNumbers.append(PortNumber_)
         self.listPortNumberAndId.append((RequestId_,PortNumber_))
 
+#
 class RequestInfo():
     def __init__(self, requestId, srcIP, srcPort,requestIP,domain,modifiedDomain):
         self.requestId = requestId
@@ -83,7 +85,6 @@ def filterLine(info):
     # Create instance form RequestInfo class
     request = RequestInfo(RequestId_,SrcIP_,SrcPort_)
     # Add the instance to  Requests List
-    #Requests.append(sendRequests)
     return request
 
 def findValue(value):
@@ -91,24 +92,34 @@ def findValue(value):
     return info[1].strip() # get the second part of the ExitNodelist, For exmaple: portNumber : 39879
 
 
-# write/log all the files into json file - EVERYTHING
-def writeAllTextFiles(all): #
+#
+def writeAllTextFiles(all):
+    '''
+        Write/log all the files into json file - EVERYTHING
+    '''
+
     with open('JSON/AllTextFiles.json', 'w') as F:
         # Use the json dumps method to write the ExitNodelist to disk
-        #print(AllLINE.__len__())
         F.write(json.dumps(all, default=dumper))
         print('writing all text files is done')
 
-# write/logs all the Requests into json file - SEMI-FILTERED
+#
 def writeAllRequests(requests):
+    '''
+        Write/logs all the Requests into json file - SEMI-FILTERED
+    '''
     with open('JSON/AllRequestsInfo.json', 'w') as F:
         # Use the json dumps method to write the ExitNodelist to disk
         print(requests.__len__())
         F.write(json.dumps(requests, default=dumper))
         print('writing all requests info is done')
 
-# get info form text file and store it in ExitNodelist and return the total numbe
+#
 def getInfoFormTextFiles(PATH=FILE_PATH):
+    '''
+        Get info form text file and store it in ExitNodelist and return the total numbe
+    '''
+
     temp_Requests =[]
     totalLines = 0
     first = True
@@ -116,8 +127,10 @@ def getInfoFormTextFiles(PATH=FILE_PATH):
     txtFiles = glob.glob(PATH)
     previousPortNumber = ''
     previousRequestId = ''
+
     for txtfile in txtFiles:
         with open(txtfile) as file:
+
             for line in file:
                 if ('RecordType' in line  or 'Domain' in line or 'RequestId' in line) and 'check' in line.lower() :
                     # get all the legitimate/reasonable records/lines from the text fileS
@@ -135,21 +148,25 @@ def getInfoFormTextFiles(PATH=FILE_PATH):
                     RequestId_ = findValue(RequestId)
                     SrcIP_ = findValue(SrcIP)
                     SrcPort_ = findValue(SrcPort)
+
                     if first is True: # To avoid sendRequests repetation
                         previousPortNumber = SrcPort_
                         previousRequestId =RequestId_
                         first= False
                         temp_Requests.append(filterLine(info))
                         totalLines += 1
+
                     elif previousPortNumber != SrcPort_ and previousRequestId != RequestId_:
                         temp_Requests.append(filterLine(info))
                         previousPortNumber = SrcPort_
                         previousRequestId = RequestId_
                         totalLines += 1
-    return totalLines, temp_Requests,AllLINE
 
+    return totalLines, temp_Requests,AllLINE
+#
 def dumper(obj):
     try:
         return obj.toJSON()
+
     except:
         return obj.__dict__

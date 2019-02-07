@@ -4,31 +4,30 @@ import os
 from TOR.Helper.Helper import Helper
 from TOR.Helper.Helper import MODE_TYPES
 from TOR.Helper.Helper import MSG_TYPES
-#from TOR.Helper.Helper import ADVERSARY_TASK_MODE
 from TOR.ConnectionsHandler.Models.Results import DOMAIN_STATUS
 
 
 class ExitNodeFilter:
+
     listDNSConnected = []
     listTORConnected = []
     listTORAccessWebsite = []
     listTORREAccessWebsite = []
     listTORFullyAccessWebsite = []
-
     listTORNOTAccessWebsite = []
     listDNSNotConnected = []
     listDNSSupport0x20BitEncoding = []
 
+    #
     def __init__(self, nodePath='',mode=''):
         self.nodePath =nodePath
         self.nodePath2 ="C:/Users/Amer Jod/Desktop/UCL/Term 2/DS/DNS_Project/TOR/ConnectionsHandler/Nodes/ProcessedExitNodesJSON.json"
 
+    #
     def filterExitNode(self):
+
         allExitnodes = self.loadExitNodesFromJSON()
-
         total_Nodes = len(allExitnodes)
-       # number_Of_Nodes = int(allExitnodes)
-
         print('Total nodes found: %d' % total_Nodes)
 
         for exitnode in allExitnodes:
@@ -56,33 +55,21 @@ class ExitNodeFilter:
 
         self.listTORFullyAccessWebsite = self.listTORAccessWebsite + self.listTORREAccessWebsite
 
-        #print('listTORConnected:   %d' % len(self.listTORConnected))
-        #print('listTORAccessWebsite:   %d' % len(self.listTORAccessWebsite))
-        #print('listTORREAccessWebsite:   %d'  % len(self.listTORREAccessWebsite))
-
-        #print('listTORFullyAccessWebsite:   %d\n' % len(self.listTORFullyAccessWebsite))
-        #print('listTORNOTAccessWebsite:   %d\n'  % len(self.listTORNOTAccessWebsite))
-
-        #print('listDNSNotConnected:   %d' % len(self.listDNSNotConnected))
-
         return (self.listTORConnected, self.listTORAccessWebsite,
-                self.listTORREAccessWebsite,self.listTORFullyAccessWebsite,self.listTORNOTAccessWebsite)
+                self.listTORREAccessWebsite, self.listTORFullyAccessWebsite, self.listTORNOTAccessWebsite)
 
-
+    #
     def loadExitNodesFromJSON(self):
+
         cur_path = os.path.dirname(__file__)
         cwd = os.getcwd()
-        # print(cwd)
         os.chdir(cur_path)
         # read all the nodes
         new_path = os.path.relpath(self.nodePath2, cur_path)
 
-        # new_path1 = os.listdir(self.GATHERED_NODES_PATH)
-        # os.chdir(new_path1)
-
         with open(new_path) as f:
             json_Objects = json.load(f)
-            # Random
+
             return json_Objects
 
 

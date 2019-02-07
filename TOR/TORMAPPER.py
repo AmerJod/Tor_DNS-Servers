@@ -1,8 +1,11 @@
 import argparse
+import traceback
+
 from TOR.MainController import main
 
-import traceback
+#
 def parserArgs():
+
     parser = argparse.ArgumentParser(prog='TORMAPPER', description='TORMAPPER Tool',
                                      epilog="that's how my Tool works")
     group = parser.add_mutually_exclusive_group(required=True)
@@ -26,13 +29,13 @@ def parserArgs():
 
 
 if __name__ == '__main__':
+
     try:
         args = parserArgs()
-        # print(args)
         main(args)
+
     except Exception as ex:
         print(" ........... Testing .........")
         print(ex)
         print('runDns - MAIN: \n%s ' % traceback.format_exc())
         setArgs = argparse.Namespace(r=True,cr =False,cd=False,pa=False,drc=False, g=True, m=100, n=100000, out= False)
-        #dnsServer.run(setArgs)

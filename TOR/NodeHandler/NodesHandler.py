@@ -3,39 +3,42 @@
 import json
 import os
 import time
-
-import stem.descriptor.remote
 import sys
+import stem.descriptor.remote
+
 from enum import Enum
 from pprint import pprint
 from stem.util import term
 from pathlib import Path
-
-
 from tqdm import tqdm
 
 from TOR.Helper.Helper import Helper
 
+#
 class Node_DATA(Enum):
     Address = 1
     AllData = 2
 
+#
 class MSG_TYPES(Enum):
     RESULT = term.Color.GREEN
     ERROR = term.Color.RED
     YELLOW = term.Color.YELLOW
 
-'''
-Gather Eixt nodes and store them in a JSON file
-'''
-class NodesHandler:
 
+class NodesHandler:
+    '''
+        Gather EXIT nodes and store them in a JSON file
+    '''
+
+    #
     def __init__(self, mode='none'):
         script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
         self.NODES_PATH = ('../ConnectionsHandler/Nodes/GatheredExitNodesJSON.json')
         self.NODES_PATH = os.path.join(script_dir, self.NODES_PATH)
         self.mode = '-none' #mode
 
+    #
     def run(self):
         self.ExitNode()
         node_Number = self.GetJOSNInfo(Node_DATA.Address)
@@ -48,10 +51,10 @@ class NodesHandler:
 
 
         for desc in stem_Nodes:
+
             # CheckingRequest if the Node is an exit one
             if desc.exit_policy.is_exiting_allowed():
                 count = count + 1
-                # Print nodes
                 Helper.printOnScreen('  %s %s' % (desc.nickname, desc.address) ,MSG_TYPES.RESULT.value, self.mode)
                 exit_Nodes.append({
                     'ExitNode': {
@@ -63,9 +66,6 @@ class NodesHandler:
                     }
                 })
 
-        # For testing purposes
-        '''if nodeCount == 0:
-            break'''
         # Write into Json file
         with open(self.NODES_PATH, 'w') as outfile:
             json.dump(exit_Nodes, outfile)
@@ -74,7 +74,6 @@ class NodesHandler:
         count = 0
         with open(self.NODES_PATH) as f:
             json_Objects = json.load(f)
-        # print the whole obj
 
         node_number =len(json_Objects)
         for obj in tqdm(json_Objects, ncols=80, desc='Storing ExitNodes'):
@@ -87,8 +86,6 @@ class NodesHandler:
             #   just for showing the progress bar
             time.sleep(0.005)
             count = count + 1
-        #print("Done.")
-        #print('\n')
         time.sleep(1)
 
         return count

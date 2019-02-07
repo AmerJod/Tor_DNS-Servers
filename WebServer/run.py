@@ -1,4 +1,5 @@
-#!flask/bin/python3
+#! /usr/bin/env python3
+
 import sys
 import os
 from app import app
@@ -7,9 +8,10 @@ from stem.util import term
 app.debug = True
 app.static_folder = 'static'
 
-
 VERSION = '4.02'
 STARTS = False
+
+#
 def main(argv):
     try:
         if argv.__len__() > 0:
@@ -25,7 +27,7 @@ def main(argv):
         print('Running locally... ')
         app.run()
 
-
+#
 def makeDirectories():
 
     if not os.path.exists('JSON'):
@@ -40,6 +42,7 @@ def makeDirectories():
     if not os.path.exists('Logs'):
         os.makedirs('Logs')
 
+#
 def printLogo():
         try:
             with open('Logo/logo.txt', 'r') as f:
@@ -51,6 +54,7 @@ def printLogo():
         except Exception as ex:
             print('ERROR: printLogo - ' + str(ex))
 
+#
 if __name__ == '__main__':
     makeDirectories()
     printLogo()
