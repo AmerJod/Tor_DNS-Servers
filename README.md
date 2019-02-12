@@ -32,6 +32,7 @@ This program has been built using python (PyCharm 2018.1)
                that have been used.
             5- DNS resolver servers publicly accessible checkor.
             6- Dns resolver servers' issued requests counter.
+![](Images/TORMAPPER_TOOL_v2.png)
 
 2- DNS Server:
 
